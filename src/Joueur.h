@@ -10,12 +10,14 @@
 #include "Personne.h"
 #include "Animal.h"
 class Joueur:Personne {
-public:
-	Joueur();
-	virtual ~Joueur();
-
 private:
 	Animal *mesAnimaux;
+
+public:
+	Joueur(int num, string name, Animal *mesAnimaux):Personne(num,name),mesAnimaux(mesAnimaux){}
+	virtual ~Joueur();
+
+
 };
 
 #endif /* SRC_JOUEUR_H_ */

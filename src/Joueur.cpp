@@ -6,13 +6,3 @@
  */
 
 #include "Joueur.h"
-
-Joueur::Joueur() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Joueur::~Joueur() {
-	// TODO Auto-generated destructor stub
-}
-

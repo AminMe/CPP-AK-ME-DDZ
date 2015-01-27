@@ -9,19 +9,22 @@
 #define PERSONNE_H_
 
 #include "Animal.h"
+#include <string>
 
 using namespace std;
 
 class Personne {
-public:
+protected:
 	int num;
-	Animal* mesAnimaux;
+	string name;
+public:
 
 	Personne();
-	Personne(int numero):num(numero), mesAnimaux(NULL){};
-
-	int setAnimaux(Animal *animal);
+	Personne(int numero,string name):num(numero),name(name){};
 	virtual ~Personne();
+
+	int getNum(){ return num;}
+	string getName(){ return name;}
 };
 
 #endif /* PERSONNE_H_ */

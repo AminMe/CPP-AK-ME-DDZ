@@ -9,17 +9,21 @@
 #define ANIMAL_H_
 #include <iostream>
 #include "Personne.h"
+#include "Joueur.h"
 
 using namespace std;
 
 
-virtual class Animal {
-public:
+class Animal {
+protected:
 	string nom;
-	static int idGen;
 	int id;
-	Personne personne;
-	Animal(string nom, Personne personne):nom(nom), personne(personne), id(idGen++){};
+	Joueur joueur;
+public:
+
+	static int idGen;
+
+	Animal(string nom, Joueur joueur):nom(nom), joueur(joueur), id(idGen++){};
 
 	virtual ~Animal(){
 
