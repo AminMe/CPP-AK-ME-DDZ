@@ -8,7 +8,6 @@
 #ifndef PERSONNE_H_
 #define PERSONNE_H_
 
-#include "Animal.h"
 #include <string>
 
 using namespace std;

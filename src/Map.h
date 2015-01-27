@@ -15,7 +15,7 @@ private:
 	int taille;
 
 public:
-	Case[][] tab;
+	Case tab[][];
 	Map(int taille):taille(taille)
 	{
 
