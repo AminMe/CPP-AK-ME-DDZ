@@ -10,20 +10,18 @@
 
 #include <iostream>
 
-#include "Personne.h"
-
 
 class Animal;
 
 
-class Joueur:Personne {
+class Joueur{
 private:
 	Animal *mesAnimaux;
 
 public:
 
 	int toto;
-	Joueur(int num, string name, Animal *mesAnimaux):Personne(num,name),mesAnimaux(mesAnimaux){}
+	//Joueur(int num, string name, Animal *mesAnimaux):Personne(num,name),mesAnimaux(mesAnimaux){}
 	virtual ~Joueur();
 
 };
