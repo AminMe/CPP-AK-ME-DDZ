@@ -9,7 +9,7 @@
 
 Case::Case() {
 	// TODO Auto-generated constructor stub
-
+	estOccupe = false;
 }
 
 Case::~Case() {

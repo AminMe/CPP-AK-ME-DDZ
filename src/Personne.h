@@ -15,8 +15,9 @@ using namespace std;
 class Personne {
 public:
 	int num;
-	Animal * mesAnimaux;
+	Animal* mesAnimaux;
 
+	Personne();
 	Personne(int numero):num(numero), mesAnimaux(NULL){};
 
 	int setAnimaux(Animal *animal);

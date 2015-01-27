@@ -8,7 +8,7 @@
 #ifndef ANIMAL_H_
 #define ANIMAL_H_
 #include <iostream>
-#include 'Persone.h'
+#include "Personne.h"
 
 using namespace std;
 
@@ -21,7 +21,9 @@ public:
 	Personne personne;
 	Animal(string nom, Personne personne):nom(nom), personne(personne), id(idGen++){};
 
-	virtual ~Animal()=0;
+	virtual ~Animal(){
+
+	}
 
 };
 int Animal::idGen = 0;
