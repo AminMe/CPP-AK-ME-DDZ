@@ -7,12 +7,11 @@
 
 #include "Case.h"
 
-Case::Case() {
-	// TODO Auto-generated constructor stub
-	estOccupe = false;
-}
-
 Case::~Case() {
 	// TODO Auto-generated destructor stub
 }
 
+void Case::setOccupe(bool caseOcupe)
+{
+	estOccupe = caseOcupe;
+}

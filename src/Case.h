@@ -10,12 +10,14 @@
 
 class Case {
 public:
+	int x;
+	int y;
 	int secteur;
 	bool estOccupe;
+	Case (int x, int y, int secteur): x(x),y(y),secteur(secteur), estOccupe(false){};
+	void setOccupe(bool caseOcupe);
 
-	Case();
 	virtual ~Case();
-
 };
 
 #endif /* CASE_H_ */

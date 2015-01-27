@@ -6,3 +6,7 @@
  */
 
 #include "Animal.h"
+
+void Animal::setEstCache(bool etatAnimal){
+	estCache = etatAnimal;
+}

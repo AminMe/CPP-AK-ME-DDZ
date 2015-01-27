@@ -9,14 +9,13 @@
 #define MAP_H_
 #include "Case.h"
 
-
 class Map {
 private:
-	int taille;
-
+	int tailleX=5;
 public:
-	Case tab[][];
-	Map(int taille):taille(taille)
+	Case tab[tailleX][tailleX];
+
+	Map()
 	{
 
 	}

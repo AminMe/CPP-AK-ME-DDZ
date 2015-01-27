@@ -7,16 +7,24 @@
 
 #ifndef SRC_JOUEUR_H_
 #define SRC_JOUEUR_H_
+
+#include <iostream>
+
 #include "Personne.h"
-#include "Animal.h"
+
+
+class Animal;
+
+
 class Joueur:Personne {
 private:
 	Animal *mesAnimaux;
 
 public:
+
+	int toto;
 	Joueur(int num, string name, Animal *mesAnimaux):Personne(num,name),mesAnimaux(mesAnimaux){}
 	virtual ~Joueur();
-
 
 };
 
