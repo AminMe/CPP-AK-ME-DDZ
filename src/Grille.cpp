@@ -24,7 +24,7 @@ Grille::~Grille() {
 }
 
 int main(int argc, char **argv) {
-	cout<<"lllllll"<<endl;
+	cout<<"totototot"<<endl;
 }
 
 
