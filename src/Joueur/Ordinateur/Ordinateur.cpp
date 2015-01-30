@@ -7,11 +7,6 @@
 
 #include "Ordinateur.h"
 
-Ordinateur::Ordinateur() {
-	// TODO Auto-generated constructor stub
-
-}
-
 Ordinateur::~Ordinateur() {
 	// TODO Auto-generated destructor stub
 }

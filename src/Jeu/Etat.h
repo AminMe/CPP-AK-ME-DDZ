@@ -12,6 +12,11 @@ class Etat {
 public:
 	Etat();
 	virtual ~Etat();
+	void play();
+	void pause();
+	void stop();
+	void save();
+	bool isFinished();
 };
 
 #endif /* SRC_ETAT_H_ */

@@ -8,9 +8,11 @@
 #ifndef SRC_INTERMEDIAIRE_H_
 #define SRC_INTERMEDIAIRE_H_
 
-class Intermediaire {
+#include "Ordinateur.h"
+
+class Intermediaire: Ordinateur{
 public:
-	Intermediaire();
+	Intermediaire(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
 	virtual ~Intermediaire();
 };
 

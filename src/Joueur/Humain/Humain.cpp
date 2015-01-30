@@ -7,12 +7,11 @@
 
 #include "Humain.h"
 
-Humain::Humain() {
-	// TODO Auto-generated constructor stub
-
-}
-
 Humain::~Humain() {
 	// TODO Auto-generated destructor stub
 }
 
+void Joueur::play()
+{
+
+}

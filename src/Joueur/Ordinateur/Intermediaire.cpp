@@ -7,12 +7,11 @@
 
 #include "Intermediaire.h"
 
-Intermediaire::Intermediaire() {
-	// TODO Auto-generated constructor stub
-
-}
-
 Intermediaire::~Intermediaire() {
 	// TODO Auto-generated destructor stub
 }
 
+void Ordinateur::algo()
+{
+
+}

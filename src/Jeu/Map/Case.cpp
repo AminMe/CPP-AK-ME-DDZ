@@ -6,6 +6,8 @@
  */
 
 #include "Case.h"
+#include <iostream>
+using namespace std;
 
 Case::Case(int posiX, int posiY, int secteurNum) {
 	x=posiX;
@@ -23,3 +25,8 @@ void Case::setOccupe(bool caseOcupe)
 	estOccupe = caseOcupe;
 }
 
+
+void Case::affiche()
+{
+	cout<<"1 - Z";
+}
