@@ -7,9 +7,10 @@
 
 #ifndef ANIMAL_H_
 #define ANIMAL_H_
+
 #include <iostream>
-#include "Personne.h"
-#include "Joueur.h"
+
+#include "../Joueur/Joueur.h"
 
 using namespace std;
 

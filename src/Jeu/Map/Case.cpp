@@ -7,12 +7,7 @@
 
 #include "Case.h"
 
-Case::Case() {
-	// TODO Auto-generated constructor stub
-	estOccupe = false;
-}
+void Case::affiche()
+{
 
-Case::~Case() {
-	// TODO Auto-generated destructor stub
 }
-

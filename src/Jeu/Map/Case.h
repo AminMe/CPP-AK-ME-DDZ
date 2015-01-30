@@ -8,14 +8,23 @@
 #ifndef CASE_H_
 #define CASE_H_
 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 class Case {
 public:
 	int secteur;
 	bool estOccupe;
 
-	Case();
-	virtual ~Case();
+	/**
+	 * Constructeur par defaut
+	 */
+	Case():secteur(-1),estOccupe(false){};
+	virtual ~Case(){cout<<"Destruction de Case"<<endl;}
 
+	void affiche();
 };
 
 #endif /* CASE_H_ */

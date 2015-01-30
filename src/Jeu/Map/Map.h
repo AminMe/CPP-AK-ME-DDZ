@@ -11,17 +11,26 @@
 
 #define TAILLE 15
 
+using namespace std;
 class Map {
 private:
 
 	Case tab[TAILLE][TAILLE];
 public:
 
-	Map()
-	{
+	/*
+	 * Constructeur par defaut
+	 */
+	Map(){}
 
-	}
-	virtual ~Map();
+	/*
+	 * Destructeur
+	 */
+	virtual ~Map(){cout<<"Destruction d'une Map"<<endl;}
+
+	void init();
+
+	void affiche();
 };
 
 #endif /* MAP_H_ */
