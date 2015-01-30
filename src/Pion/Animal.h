@@ -1,16 +1,9 @@
-/*
- * Animal.h
- *
- *  Created on: 20 janv. 2015
- *      Author: firminrabefiringa
- */
-
 #ifndef ANIMAL_H_
 #define ANIMAL_H_
 
 #include <iostream>
 
-#include "../Joueur/Joueur.h"
+class Joueur;
 
 using namespace std;
 
@@ -19,15 +12,16 @@ protected:
 	string nom;
 	int id;
 	Joueur *joueur;
+	bool estCache;
 public:
 
 	static int idGen;
 
-	Animal(string nom, Joueur *joueur):nom(nom), joueur(joueur), id(idGen++){};
+	Animal(string nom, Joueur *joueur):nom(nom),id(idGen++),joueur(joueur), estCache(false){};
 
-	virtual ~Animal(){
+	virtual ~Animal(){};
+    void setEstCache(bool etatAnimal);
 
-	}
 
 };
 int Animal::idGen = 0;

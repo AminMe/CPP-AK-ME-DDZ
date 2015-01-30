@@ -7,6 +7,10 @@
 
 #include "Intermediaire.h"
 
+Intermediaire::~Intermediaire() {
+	// TODO Auto-generated destructor stub
+}
+
 void Ordinateur::algo()
 {
 

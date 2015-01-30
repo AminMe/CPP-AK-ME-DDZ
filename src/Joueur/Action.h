@@ -7,10 +7,12 @@
 
 #ifndef SRC_ACTION_H_
 #define SRC_ACTION_H_
-#include "../Joueur/Joueur.h"
-#include "../Jeu/Map/Case.h"
-#include "../Pion/Animal.h"
-#include "../Pion/Pion.h"
+
+class Animal;
+class Case;
+class Joueur;
+class Pion;
+
 class Action {
 public:
 	Action();

@@ -7,14 +7,12 @@
 
 #ifndef SRC_JOUEUR_H_
 #define SRC_JOUEUR_H_
-
 #include <iostream>
 #include <string>
 
 using namespace std;
 
 class Animal;
-
 
 class Joueur{
 private:

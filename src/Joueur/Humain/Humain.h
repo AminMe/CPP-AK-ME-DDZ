@@ -12,8 +12,8 @@
 
 class Humain:Joueur {
 public:
-	Humain(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){}
-	virtual ~Humain(){}
+	Humain(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){};
+	virtual ~Humain();
 };
 
 #endif /* SRC_HUMAIN_H_ */

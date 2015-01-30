@@ -8,12 +8,17 @@
 #ifndef SRC_ORDINATEUR_H_
 #define SRC_ORDINATEUR_H_
 
+#include <iostream>
+
 #include "../Joueur.h"
 
+using namespace std;
+
 class Ordinateur:Joueur {
+
 public:
 	Ordinateur(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){}
-	virtual ~Ordinateur(){}
+	virtual ~Ordinateur();
 
 	virtual void algo()=0;
 };

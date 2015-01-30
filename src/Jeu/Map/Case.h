@@ -8,25 +8,22 @@
 #ifndef CASE_H_
 #define CASE_H_
 
-#include <iostream>
-#include <string>
-
-using namespace std;
 
 class Case {
 public:
+	int x;
+	int y;
 	int secteur;
 	bool estOccupe;
 
-	/**
-	 * Constructeur par defaut
-	 */
-
+	Case (int posiX, int posiY, int secteurNum);
 	Case():secteur(-1),estOccupe(false){};
 
-	Case(int secteur,bool estOccupe):secteur(secteur),estOccupe(estOccupe){}
+	void setOccupe(bool caseOcupe);
 
-	virtual ~Case(){/*cout<<"Destruction de Case"<<endl;*/}
+	virtual ~Case();
+
+	//Case(int secteur,bool estOccupe):secteur(secteur),estOccupe(estOccupe){}
 
 	void affiche();
 

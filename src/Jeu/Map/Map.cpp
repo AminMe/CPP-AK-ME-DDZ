@@ -6,7 +6,6 @@
  */
 
 #include "Map.h"
-
 void Map::init()
 {
 	int i = 0;

@@ -6,6 +6,25 @@
  */
 
 #include "Case.h"
+#include <iostream>
+using namespace std;
+
+Case::Case(int posiX, int posiY, int secteurNum) {
+	x=posiX;
+	y=posiY;
+	secteur=secteurNum;
+	estOccupe=false;
+}
+
+Case::~Case() {
+	// TODO Auto-generated destructor stub
+}
+
+void Case::setOccupe(bool caseOcupe)
+{
+	estOccupe = caseOcupe;
+}
+
 
 void Case::affiche()
 {

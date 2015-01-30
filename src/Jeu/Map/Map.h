@@ -1,15 +1,9 @@
-/*
- * Map.h
- *
- *  Created on: 26 janv. 2015
- *      Author: firminrabefiringa
- */
-
 #ifndef MAP_H_
 #define MAP_H_
 #include "Case.h"
-
-#define TAILLE 15
+#include <cstdlib>
+#include <iostream>
+#define TAILLE 5
 
 using namespace std;
 class Map {
@@ -17,6 +11,7 @@ private:
 
 	Case **tab;
 	int ligne,colonne;
+
 public:
 
 	/*
@@ -24,9 +19,6 @@ public:
 	 */
 	Map(int ligne, int colonne):ligne(ligne),colonne(colonne)
 	{
-
-
-
 		tab = (Case**) calloc(ligne,sizeof(Case*));
 		if(tab==NULL)
 		{
@@ -46,7 +38,8 @@ public:
 		{
 			for(int j = 0; j<colonne; j++)
 			{
-				Case c(1,false);
+				//Case c(1,false)
+				Case c(i, j, 1);/* a definir secteur */
 				tab[i][j] = c;
 			}
 		}
