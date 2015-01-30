@@ -9,5 +9,5 @@
 
 void Case::affiche()
 {
-
+	cout<<"1 - Z";
 }

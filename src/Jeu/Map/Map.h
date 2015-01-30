@@ -15,13 +15,42 @@ using namespace std;
 class Map {
 private:
 
-	Case tab[TAILLE][TAILLE];
+	Case **tab;
+	int ligne,colonne;
 public:
 
 	/*
 	 * Constructeur par defaut
 	 */
-	Map(){}
+	Map(int ligne, int colonne):ligne(ligne),colonne(colonne)
+	{
+
+
+
+		tab = (Case**) calloc(ligne,sizeof(Case*));
+		if(tab==NULL)
+		{
+			cout<<"Erreur allocation"<<endl;
+		}
+
+		for(int j = 0; j<colonne; j++)
+		{
+			tab[j] = (Case*)calloc(colonne,sizeof(Case));
+			if(tab[j]==NULL)
+			{
+				cout<<"Erreur allocation"<<endl;
+			}
+		}
+
+		for(int i = 0; i<ligne; i++)
+		{
+			for(int j = 0; j<colonne; j++)
+			{
+				Case c(1,false);
+				tab[i][j] = c;
+			}
+		}
+	}
 
 	/*
 	 * Destructeur

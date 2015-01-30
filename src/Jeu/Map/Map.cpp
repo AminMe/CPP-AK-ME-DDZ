@@ -28,7 +28,10 @@ void Map::affiche()
 		{
 			for(j = 0; j<TAILLE; j++)
 			{
+				cout<<"[";
 				tab[i][j].affiche();
+				cout<<"]";
+
 			}
 			cout<<endl;
 		}

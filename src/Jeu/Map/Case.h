@@ -21,10 +21,19 @@ public:
 	/**
 	 * Constructeur par defaut
 	 */
+
 	Case():secteur(-1),estOccupe(false){};
+
+	Case(int secteur,bool estOccupe):secteur(secteur),estOccupe(estOccupe){}
+
 	virtual ~Case(){cout<<"Destruction de Case"<<endl;}
 
 	void affiche();
+
+	Case& operator = (const Case&& other) // copy assignment
+	{
+	    return *this;
+	}
 };
 
 #endif /* CASE_H_ */
