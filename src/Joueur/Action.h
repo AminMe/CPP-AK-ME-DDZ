@@ -8,6 +8,8 @@
 #ifndef SRC_ACTION_H_
 #define SRC_ACTION_H_
 
+
+
 class Animal;
 class Case;
 class Joueur;
