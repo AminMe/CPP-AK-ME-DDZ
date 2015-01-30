@@ -19,9 +19,11 @@ public:
 
 	void update();
 	void controlAction(Joueur *j);
-	void put(Animal * a, Case c);
+	/* Chnagement de Animal à Pion, on met case dans le deuxième caractère ? ou x et y ?  */
+	void put(Pion * a, Case c);
 	void affiche();
-	void controlDeplacement(Pion * p);
+
+	void controlDeplacement(Pion * p,);
 };
 
 #endif /* SRC_ACTION_H_ */
