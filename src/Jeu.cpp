@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
 	map.init();
 	map.affiche();
 
-
+	int *p = NULL;
 
 }
 
