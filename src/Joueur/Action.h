@@ -17,10 +17,10 @@ public:
 	virtual ~Action();
 
 	void update();
-	void controlAction(Joueur j);
-	void put(Animal a, Case c);
+	void controlAction(Joueur *j);
+	void put(Animal * a, Case c);
 	void affiche();
-	void controlDeplacement(Pion p);
+	void controlDeplacement(Pion * p);
 };
 
 #endif /* SRC_ACTION_H_ */

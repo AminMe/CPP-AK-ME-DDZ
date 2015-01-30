@@ -7,7 +7,3 @@
 
 #include "Ordinateur.h"
 
-void Joueur::play()
-{
-
-}

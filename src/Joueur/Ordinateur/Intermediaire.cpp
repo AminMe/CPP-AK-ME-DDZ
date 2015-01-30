@@ -7,4 +7,7 @@
 
 #include "Intermediaire.h"
 
+void Ordinateur::algo()
+{
 
+}
