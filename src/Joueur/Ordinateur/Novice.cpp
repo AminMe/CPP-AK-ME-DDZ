@@ -7,12 +7,3 @@
 
 #include "Novice.h"
 
-Novice::Novice() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Novice::~Novice() {
-	// TODO Auto-generated destructor stub
-}
-

@@ -9,20 +9,26 @@
 #define SRC_JOUEUR_H_
 
 #include <iostream>
+#include <string>
 
+using namespace std;
 
 class Animal;
 
 
 class Joueur{
 private:
+	int num;
+	string name;
 	Animal *mesAnimaux;
-
+	int point;
 public:
 
-	int toto;
-	//Joueur(int num, string name, Animal *mesAnimaux):Personne(num,name),mesAnimaux(mesAnimaux){}
+	Joueur(int num, string name, Animal *mesAnimaux):num(num),name(name),mesAnimaux(mesAnimaux),point(0){}
 	virtual ~Joueur();
+
+	virtual void play()=0;
+	int getPoint() const {return point;}
 
 };
 

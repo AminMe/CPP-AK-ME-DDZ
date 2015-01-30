@@ -8,9 +8,11 @@
 #ifndef SRC_NOVICE_H_
 #define SRC_NOVICE_H_
 
-class Novice {
+#include "Ordinateur.h"
+
+class Novice : Ordinateur{
 public:
-	Novice();
+	Novice(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
 	virtual ~Novice();
 };
 

@@ -8,10 +8,12 @@
 #ifndef SRC_ORDINATEUR_H_
 #define SRC_ORDINATEUR_H_
 
-class Ordinateur {
+#include "../Joueur.h"
+
+class Ordinateur:Joueur {
 public:
-	Ordinateur();
-	virtual ~Ordinateur();
+	Ordinateur(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){}
+	virtual ~Ordinateur(){}
 };
 
 #endif /* SRC_ORDINATEUR_H_ */

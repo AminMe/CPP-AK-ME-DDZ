@@ -26,7 +26,7 @@ public:
 
 	Case(int secteur,bool estOccupe):secteur(secteur),estOccupe(estOccupe){}
 
-	virtual ~Case(){cout<<"Destruction de Case"<<endl;}
+	virtual ~Case(){/*cout<<"Destruction de Case"<<endl;*/}
 
 	void affiche();
 

@@ -12,6 +12,11 @@ class Jeu {
 public:
 	Jeu();
 	virtual ~Jeu();
+
+	void init();
+
+	bool isFinished();
+	int countNbAnimalLeft();
 };
 
 #endif /* SRC_JEU_H_ */

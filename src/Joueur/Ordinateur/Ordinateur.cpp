@@ -7,12 +7,7 @@
 
 #include "Ordinateur.h"
 
-Ordinateur::Ordinateur() {
-	// TODO Auto-generated constructor stub
+void Joueur::play()
+{
 
 }
-
-Ordinateur::~Ordinateur() {
-	// TODO Auto-generated destructor stub
-}
-

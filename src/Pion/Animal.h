@@ -14,17 +14,16 @@
 
 using namespace std;
 
-
 class Animal {
 protected:
 	string nom;
 	int id;
-	Joueur joueur;
+	Joueur *joueur;
 public:
 
 	static int idGen;
 
-	Animal(string nom, Joueur joueur):nom(nom), joueur(joueur), id(idGen++){};
+	Animal(string nom, Joueur *joueur):nom(nom), joueur(joueur), id(idGen++){};
 
 	virtual ~Animal(){
 
