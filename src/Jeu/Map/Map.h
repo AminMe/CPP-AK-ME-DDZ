@@ -92,17 +92,6 @@ public:
 		this->ligne = ligne;
 	}
 
-	const Case**& getTab() const {
-		return tab;
-	}
-
-	void setTab(const Case**& tab) {
-		this->tab = tab;
-	}
-
-	const int* getTabSecteur() const {
-		return tabSecteur;
-	}
 };
 
 #endif /* MAP_H_ */
