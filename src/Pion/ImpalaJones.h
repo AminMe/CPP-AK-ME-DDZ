@@ -10,10 +10,10 @@
 
 #include "Pion.h"
 
-class ImpalaJones : Pion {
+class ImpalaJones : public Pion {
 public:
-	ImpalaJones();
-	virtual ~ImpalaJones();
+	ImpalaJones(int x, int y, Map map):Pion("Impala Jones",0,0,map){};
+	virtual ~ImpalaJones(){}
 };
 
 #endif /* SRC_IMPALAJONES_H_ */

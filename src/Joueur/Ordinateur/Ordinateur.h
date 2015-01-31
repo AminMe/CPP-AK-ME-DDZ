@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class Ordinateur:Joueur {
+class Ordinateur: public Joueur {
 
 public:
 	Ordinateur(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){}

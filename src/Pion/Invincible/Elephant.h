@@ -8,10 +8,12 @@
 #ifndef SRC_ELEPHANT_H_
 #define SRC_ELEPHANT_H_
 
-class Elephant {
+#include "../Animal.h"
+
+class Elephant: public Animal {
 public:
-	Elephant();
-	virtual ~Elephant();
+	Elephant(string nom, Joueur *joueur, Map map):Animal(nom,joueur,map){}
+	virtual ~Elephant(){}
 };
 
 #endif /* SRC_ELEPHANT_H_ */

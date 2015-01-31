@@ -24,8 +24,8 @@ protected:
 	string name;
 	Case c;
 public:
-	Pion();
-	Pion(int x, int y, Map map)
+
+	Pion(string name, int x, int y, Map map):name(name)
 	{
 		//return tab[x][y]
 		pair<int, int> index(x,y);
@@ -33,7 +33,7 @@ public:
 	}
 	Pion(Case c):c(c){}
 
-	virtual ~Pion();
+	virtual ~Pion(){}
 
 	void poser(int x,int y)
 	{

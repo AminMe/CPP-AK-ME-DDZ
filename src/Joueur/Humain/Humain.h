@@ -4,7 +4,7 @@
 #include "../Joueur.h"
 
 
-class Humain:Joueur {
+class Humain: public Joueur {
 public:
 
 

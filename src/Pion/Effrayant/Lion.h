@@ -8,10 +8,12 @@
 #ifndef SRC_LION_H_
 #define SRC_LION_H_
 
-class Lion {
+#include "../Animal.h"
+
+class Lion : public Animal {
 public:
-	Lion();
-	virtual ~Lion();
+	Lion(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
+	virtual ~Lion(){}
 };
 
 #endif /* SRC_LION_H_ */

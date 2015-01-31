@@ -6,13 +6,3 @@
  */
 
 #include "ImpalaJones.h"
-
-ImpalaJones::ImpalaJones() {
-	// TODO Auto-generated constructor stub
-
-}
-
-ImpalaJones::~ImpalaJones() {
-	// TODO Auto-generated destructor stub
-}
-

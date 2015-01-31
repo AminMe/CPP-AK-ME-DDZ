@@ -9,20 +9,6 @@
 #include <iostream>
 using namespace std;
 
-
-Case::~Case() {
-	// TODO Auto-generated destructor stub
-}
-
-void Case::setOccupe(bool caseOcupe)
-{
-	estOccupe = caseOcupe;
-}
-
-bool Case::getEstOccupe(){
-	return estOccupe;
-}
-
 void Case::affiche()
 {
 	cout<<"1 - Z";

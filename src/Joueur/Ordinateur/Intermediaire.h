@@ -10,7 +10,7 @@
 
 #include "Ordinateur.h"
 
-class Intermediaire: Ordinateur{
+class Intermediaire: public Ordinateur{
 public:
 	Intermediaire(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
 	virtual ~Intermediaire(){};

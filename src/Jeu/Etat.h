@@ -10,8 +10,8 @@
 
 class Etat {
 public:
-	Etat();
-	virtual ~Etat();
+	Etat(){}
+	virtual ~Etat(){}
 	void play();
 	void pause();
 	void stop();

@@ -6,13 +6,3 @@
  */
 
 #include "Pion.h"
-
-Pion::Pion() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Pion::~Pion() {
-	// TODO Auto-generated destructor stub
-}
-

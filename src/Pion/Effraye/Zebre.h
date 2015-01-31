@@ -8,10 +8,15 @@
 #ifndef SRC_ZEBRE_H_
 #define SRC_ZEBRE_H_
 
-class Zebre {
+#include <iostream>
+
+#include "../../Jeu/Map/Map.h"
+#include "../Animal.h"
+
+class Zebre : public Animal{
 public:
-	Zebre();
-	virtual ~Zebre();
+	Zebre(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
+	virtual ~Zebre(){}
 };
 
 #endif /* SRC_ZEBRE_H_ */

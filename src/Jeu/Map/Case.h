@@ -29,13 +29,7 @@ public:
 	}
 
 	Case():x(-1),y(-1),secteur(-1),estOccupe(false),pionCase(NULL){};
-
-
-	void setOccupe(bool caseOcupe);
-
-	bool getEstOccupe();
-
-	virtual ~Case();
+	virtual ~Case(){}
 
 	void affiche();
 
@@ -46,11 +40,19 @@ public:
 
 	void setPion(Pion *p){
 		if(p!=NULL){
-		pionCase = p;
-		estOccupe=true;
+			pionCase = p;
+			estOccupe=true;
 		}
 	}
-
+	Pion*& getPionCase() {return pionCase;}
+	bool isEstOccupe() const {return estOccupe;}
+	void setEstOccupe(bool estOccupe) {this->estOccupe = estOccupe;}
+	int getSecteur() const {return secteur;}
+	void setSecteur(int secteur) { this->secteur = secteur;}
+	int getX() const {return x;}
+	void setX(int x) {this->x = x;}
+	int getY() const {return y;}
+	void setY(int y) {this->y = y;}
 };
 
 #endif /* CASE_H_ */

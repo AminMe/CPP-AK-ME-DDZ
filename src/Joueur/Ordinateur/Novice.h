@@ -11,7 +11,7 @@
 
 #include "Ordinateur.h"
 
-class Novice : Ordinateur{
+class Novice : public Ordinateur{
 public:
 	Novice(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
 	virtual ~Novice(){};

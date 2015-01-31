@@ -7,12 +7,3 @@
 
 #include "Crocodile.h"
 
-Crocodile::Crocodile() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Crocodile::~Crocodile() {
-	// TODO Auto-generated destructor stub
-}
-

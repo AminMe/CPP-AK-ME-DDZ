@@ -60,8 +60,6 @@ public:
 		}
 	}
 
-
-
 	/*
 	 * Destructeur
 	 */
@@ -76,21 +74,10 @@ public:
 		return tab[Index.first][Index.second];
 	}
 
-	int getColonne() const {
-		return colonne;
-	}
-
-	void setColonne(int colonne) {
-		this->colonne = colonne;
-	}
-
-	int getLigne() const {
-		return ligne;
-	}
-
-	void setLigne(int ligne) {
-		this->ligne = ligne;
-	}
+	int getColonne() const {return colonne;}
+	void setColonne(int colonne) {this->colonne = colonne;}
+	int getLigne() const {return ligne;}
+	void setLigne(int ligne) {this->ligne = ligne;}
 
 };
 

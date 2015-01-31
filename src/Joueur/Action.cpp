@@ -19,7 +19,7 @@ Action::~Action() {
 }
 
 void Action::put(Pion *a, Case c){
-	if(!c.getEstOccupe()){
+	if(!c.isEstOccupe()){
 	    c.setPion(a);
 	}
 }

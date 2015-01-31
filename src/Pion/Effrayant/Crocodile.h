@@ -8,10 +8,12 @@
 #ifndef SRC_CROCODILE_H_
 #define SRC_CROCODILE_H_
 
-class Crocodile {
+#include "../Animal.h"
+
+class Crocodile : public Animal {
 public:
-	Crocodile();
-	virtual ~Crocodile();
+	Crocodile(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
+	virtual ~Crocodile(){}
 };
 
 #endif /* SRC_CROCODILE_H_ */
