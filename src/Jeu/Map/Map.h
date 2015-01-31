@@ -66,6 +66,11 @@ public:
 	void init();
 
 	void affiche();
+
+	Case operator[](const std::pair<int,int>& Index)
+	{
+		return tab[Index.first][Index.second];
+	}
 };
 
 #endif /* MAP_H_ */
