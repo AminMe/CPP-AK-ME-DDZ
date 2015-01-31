@@ -7,7 +7,3 @@
 
 #include "Ordinateur.h"
 
-Ordinateur::~Ordinateur() {
-	// TODO Auto-generated destructor stub
-}
-

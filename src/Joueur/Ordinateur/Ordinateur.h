@@ -18,7 +18,7 @@ class Ordinateur:Joueur {
 
 public:
 	Ordinateur(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){}
-	virtual ~Ordinateur();
+	virtual ~Ordinateur(){};
 
 	virtual void algo()=0;
 };
