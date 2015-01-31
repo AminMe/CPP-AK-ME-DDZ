@@ -14,7 +14,10 @@
 class Novice : public Ordinateur{
 public:
 	Novice(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
-	virtual ~Novice(){};
+	~Novice(){};
+
+	void play();
+	void algo();
 };
 
 #endif /* SRC_NOVICE_H_ */

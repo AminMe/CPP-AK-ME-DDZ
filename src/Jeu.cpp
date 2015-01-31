@@ -6,9 +6,13 @@
  */
 
 #include "Jeu.h"
-#include "../src/Jeu/Map/Map.h"
-#include <iostream>
+
 #include <stdio.h>
+#include <iostream>
+
+#include "Jeu/Map/Map.h"
+#include "Joueur/Humain/Humain.h"
+#include "Pion/Animal.h"
 
 using namespace std;
 
@@ -30,6 +34,11 @@ int main(int argc, char **argv) {
 	map.affiche();
 
 	int *p = NULL;
+
+	//Animal *aminAnimal = new Animal[5];
+	Humain amin(1,"Amin",NULL);
+
+	Humain gishan(2,"Gishan",NULL);
 
 }
 

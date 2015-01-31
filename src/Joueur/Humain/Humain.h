@@ -9,7 +9,10 @@ public:
 
 
 	Humain(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){};
-	virtual ~Humain(){};
+	~Humain(){};
+
+	void play();
+
 };
 
 #endif /* SRC_HUMAIN_H_ */

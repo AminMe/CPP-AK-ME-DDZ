@@ -21,6 +21,8 @@ public:
 	virtual ~Ordinateur(){};
 
 	virtual void algo()=0;
+
+	virtual void play()=0;
 };
 
 #endif /* SRC_ORDINATEUR_H_ */

@@ -7,7 +7,7 @@
 
 #include "Humain.h"
 
-void Joueur::play()
+void Humain::play()
 {
 
 }

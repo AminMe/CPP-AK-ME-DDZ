@@ -7,7 +7,12 @@
 
 #include "Intermediaire.h"
 
-void Ordinateur::algo()
+void Intermediaire::play()
+{
+
+}
+
+void Intermediaire::algo()
 {
 
 }

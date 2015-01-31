@@ -7,5 +7,14 @@
 
 #include "Novice.h"
 
+void Novice::play()
+{
+
+}
+
+void Novice::algo()
+{
+
+}
 
 
