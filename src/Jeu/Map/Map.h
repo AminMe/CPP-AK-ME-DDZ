@@ -33,7 +33,7 @@ public:
 		for(int j = 0; j<ligne; j++)
 		{
 			//tab[j] = (Case*)calloc(colonne,sizeof(Case));
-			//tab[j] = new Case[colonne];
+			tab[j] = new Case[colonne];
 			if(tab[j]==NULL)
 			{
 				cout<<"Erreur allocation"<<endl;
