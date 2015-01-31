@@ -7,8 +7,5 @@
 
 #include "Novice.h"
 
-Novice::~Novice() {
-	// TODO Auto-generated destructor stub
-}
 
 

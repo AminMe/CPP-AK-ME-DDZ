@@ -13,7 +13,7 @@
 class Intermediaire: Ordinateur{
 public:
 	Intermediaire(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
-	virtual ~Intermediaire();
+	virtual ~Intermediaire(){};
 };
 
 #endif /* SRC_INTERMEDIAIRE_H_ */
