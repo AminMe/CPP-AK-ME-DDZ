@@ -14,6 +14,7 @@ Case::Case(int posiX, int posiY, int secteurNum) {
 	y=posiY;
 	secteur=secteurNum;
 	estOccupe=false;
+	//pionCase = p;
 }
 
 Case::~Case() {
@@ -25,6 +26,9 @@ void Case::setOccupe(bool caseOcupe)
 	estOccupe = caseOcupe;
 }
 
+bool Case::getEstOccupe(){
+	return estOccupe;
+}
 
 void Case::affiche()
 {

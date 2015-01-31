@@ -1,14 +1,16 @@
 #ifndef MAP_H_
 #define MAP_H_
-#include "Case.h"
+
 #include <cstdlib>
 #include <iostream>
+
+#include "Case.h"
+
 #define TAILLE 5
 
 using namespace std;
 class Map {
 private:
-
 	Case **tab;
 	int ligne,colonne;
 	/* solution provisoire pour initialiser les scénario */

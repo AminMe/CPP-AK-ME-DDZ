@@ -8,7 +8,9 @@
 #ifndef SRC_IMPALAJONES_H_
 #define SRC_IMPALAJONES_H_
 
-class ImpalaJones {
+#include "Pion.h"
+
+class ImpalaJones : Pion {
 public:
 	ImpalaJones();
 	virtual ~ImpalaJones();

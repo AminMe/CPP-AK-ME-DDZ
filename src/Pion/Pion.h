@@ -19,9 +19,17 @@ class Map;
 using namespace std;
 
 class Pion {
+<<<<<<< HEAD
+
 protected:
 	string name;
 	Case c;
+
+=======
+protected:
+	string name;
+	Case c;
+>>>>>>> refs/remotes/origin/master
 public:
 	Pion();
 	Pion(int x, int y, Map map)
@@ -30,7 +38,13 @@ public:
 		pair<int, int> index(x,y);
 		c = map[index];
 	}
+<<<<<<< HEAD
+
 	Pion(Case c):c(c){}
+
+=======
+	Pion(Case c):c(c){}
+>>>>>>> refs/remotes/origin/master
 	virtual ~Pion();
 
 	void poser(int x,int y)
