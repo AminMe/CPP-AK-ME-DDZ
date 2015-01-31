@@ -9,13 +9,6 @@
 #include <iostream>
 using namespace std;
 
-Case::Case(int posiX, int posiY, int secteurNum) {
-	x=posiX;
-	y=posiY;
-	secteur=secteurNum;
-	estOccupe=false;
-	//pionCase = p;
-}
 
 Case::~Case() {
 	// TODO Auto-generated destructor stub

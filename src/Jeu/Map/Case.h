@@ -18,13 +18,19 @@ public:
 	int y;
 	int secteur;
 	bool estOccupe;
-	//Pion pionCase;
-	/* une case à un pion ?*/
+	Pion *pionCase; //= NULL;
+
+	Case(int posiX, int posiY, int secteurNum) {
+		x=posiX;
+		y=posiY;
+		secteur=secteurNum;
+		estOccupe=false;
+		pionCase=NULL;
+	}
 
 
-	Case (int posiX, int posiY, int secteurNum);
-
-	Case():secteur(-1),estOccupe(false){};
+	Case():x(-1),y(-1),secteur(-1),estOccupe(false),pionCase(NULL){};
+	//Case():secteur(-1),estOccupe(false){};
 
 	void setOccupe(bool caseOcupe);
 
@@ -41,11 +47,11 @@ public:
 	    return *this;
 	}
 
-	void setPion(Pion &p){
-		/*if(p!=NULL){
-		pionCase = p;*/
+	void setPion(Pion *p){
+		if(p!=NULL){
+		pionCase = p;
 		estOccupe=true;
-		//}
+		}
 	}
 
 };

@@ -7,6 +7,8 @@
 
 #include "Action.h"
 
+#include "../Jeu/Map/Case.h"
+
 Action::Action() {
 	// TODO Auto-generated constructor stub
 
@@ -16,9 +18,8 @@ Action::~Action() {
 	// TODO Auto-generated destructor stub
 }
 
-void Action::put(Pion &a, Case &c){
-	/*if(!c.getEstOccupe()){
+void Action::put(Pion *a, Case c){
+	if(!c.getEstOccupe()){
 	    c.setPion(a);
 	}
-	*/
 }
