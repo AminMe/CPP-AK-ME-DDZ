@@ -15,18 +15,22 @@ using namespace std;
 class Animal;
 
 class Joueur{
+<<<<<<< HEAD
+
+=======
+>>>>>>> refs/remotes/origin/master
 protected:
 	int num;
 	string name;
 	Animal *mesAnimaux;
 	int point;
-public:
 
+public:
 	Joueur(int num, string name, Animal *mesAnimaux):num(num),name(name),mesAnimaux(mesAnimaux),point(0){}
 	virtual ~Joueur();
-
-	virtual void play()=0;
 	int getPoint() const {return point;}
+	virtual void play()=0;
+
 
 };
 

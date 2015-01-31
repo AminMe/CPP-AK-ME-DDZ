@@ -8,6 +8,9 @@
 #ifndef CASE_H_
 #define CASE_H_
 
+#include <cstdlib>
+
+class Pion;
 
 class Case {
 public:
@@ -15,11 +18,17 @@ public:
 	int y;
 	int secteur;
 	bool estOccupe;
+	//Pion pionCase;
+	/* une case à un pion ?*/
+
 
 	Case (int posiX, int posiY, int secteurNum);
+
 	Case():secteur(-1),estOccupe(false){};
 
 	void setOccupe(bool caseOcupe);
+
+	bool getEstOccupe();
 
 	virtual ~Case();
 
@@ -31,6 +40,14 @@ public:
 	{
 	    return *this;
 	}
+
+	void setPion(Pion &p){
+		/*if(p!=NULL){
+		pionCase = p;*/
+		estOccupe=true;
+		//}
+	}
+
 };
 
 #endif /* CASE_H_ */

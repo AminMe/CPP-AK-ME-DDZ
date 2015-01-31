@@ -3,11 +3,13 @@
 
 #include <iostream>
 
+#include "Pion.h"
+
 class Joueur;
 
 using namespace std;
 
-class Animal {
+class Animal : Pion {
 protected:
 	string nom;
 	int id;

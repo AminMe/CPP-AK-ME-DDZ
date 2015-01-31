@@ -7,3 +7,8 @@
 
 #include "Ordinateur.h"
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> refs/remotes/origin/master
