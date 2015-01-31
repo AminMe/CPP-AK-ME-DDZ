@@ -7,10 +7,6 @@
 
 #include "Intermediaire.h"
 
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/master
 void Ordinateur::algo()
 {
 

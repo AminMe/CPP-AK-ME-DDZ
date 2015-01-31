@@ -18,13 +18,13 @@ public:
 	int y;
 	int secteur;
 	bool estOccupe;
-	//Pion pionCase;
+	Pion *pion = NULL;
 	/* une case à un pion ?*/
 
 
 	Case (int posiX, int posiY, int secteurNum);
 
-	Case():secteur(-1),estOccupe(false){};
+	Case():x(-1),y(-1),secteur(-1),estOccupe(false),pion(NULL){};
 
 	void setOccupe(bool caseOcupe);
 
