@@ -60,6 +60,8 @@ public:
 		}
 	}
 
+
+
 	/*
 	 * Destructeur
 	 */
@@ -72,6 +74,34 @@ public:
 	Case operator[](const std::pair<int,int>& Index)
 	{
 		return tab[Index.first][Index.second];
+	}
+
+	int getColonne() const {
+		return colonne;
+	}
+
+	void setColonne(int colonne) {
+		this->colonne = colonne;
+	}
+
+	int getLigne() const {
+		return ligne;
+	}
+
+	void setLigne(int ligne) {
+		this->ligne = ligne;
+	}
+
+	const Case**& getTab() const {
+		return tab;
+	}
+
+	void setTab(const Case**& tab) {
+		this->tab = tab;
+	}
+
+	const int* getTabSecteur() const {
+		return tabSecteur;
 	}
 };
 
