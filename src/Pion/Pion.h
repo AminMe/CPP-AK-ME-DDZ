@@ -19,6 +19,7 @@ class Map;
 using namespace std;
 
 class Pion {
+
 protected:
 	string name;
 	Case c;
@@ -30,7 +31,6 @@ public:
 		pair<int, int> index(x,y);
 		c = map[index];
 	}
-
 	Pion(Case c):c(c){}
 
 	virtual ~Pion();
