@@ -28,17 +28,14 @@ public:
 		pionCase=NULL;
 	}
 
-
 	Case():x(-1),y(-1),secteur(-1),estOccupe(false),pionCase(NULL){};
-	//Case():secteur(-1),estOccupe(false){};
+
 
 	void setOccupe(bool caseOcupe);
 
 	bool getEstOccupe();
 
 	virtual ~Case();
-
-	//Case(int secteur,bool estOccupe):secteur(secteur),estOccupe(estOccupe){}
 
 	void affiche();
 

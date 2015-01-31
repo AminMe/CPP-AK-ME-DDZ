@@ -15,6 +15,7 @@ using namespace std;
 class Animal;
 
 class Joueur{
+
 protected:
 	int num;
 	string name;
