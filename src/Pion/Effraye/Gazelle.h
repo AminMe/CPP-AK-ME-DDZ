@@ -8,6 +8,8 @@
 #ifndef SRC_GAZELLE_H_
 #define SRC_GAZELLE_H_
 
+#include <iostream>
+
 #include "../Animal.h"
 
 class Gazelle : public Animal {

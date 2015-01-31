@@ -8,6 +8,8 @@
 #ifndef SRC_CROCODILE_H_
 #define SRC_CROCODILE_H_
 
+#include <iostream>
+
 #include "../Animal.h"
 
 class Crocodile : public Animal {

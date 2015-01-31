@@ -8,6 +8,8 @@
 #ifndef SRC_LION_H_
 #define SRC_LION_H_
 
+#include <iostream>
+
 #include "../Animal.h"
 
 class Lion : public Animal {

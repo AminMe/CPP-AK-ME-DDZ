@@ -9,8 +9,6 @@
 #define SRC_ZEBRE_H_
 
 #include <iostream>
-
-#include "../../Jeu/Map/Map.h"
 #include "../Animal.h"
 
 class Zebre : public Animal{

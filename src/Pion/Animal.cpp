@@ -6,3 +6,5 @@
  */
 
 #include "Animal.h"
+
+int Animal::idGen = 0;

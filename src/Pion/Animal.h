@@ -10,13 +10,14 @@ class Joueur;
 using namespace std;
 
 class Animal : public Pion {
+private :
+	static int idGen;
 protected:
 	int id;
 	Joueur *joueur;
 	bool estCache;
 public:
 
-	static int idGen;
 
 	Animal(string name, Joueur *joueur, Map map):Pion(name,-1,-1,map),id(idGen++),joueur(joueur), estCache(false){}
 
@@ -38,5 +39,5 @@ public:
 		return joueur;
 	}
 };
-int Animal::idGen = 0;
+
 #endif /* ANIMAL_H_ */

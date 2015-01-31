@@ -8,6 +8,7 @@
 #ifndef SRC_ELEPHANT_H_
 #define SRC_ELEPHANT_H_
 
+#include "../../Jeu/Map/Map.h"
 #include "../Animal.h"
 
 class Elephant: public Animal {
