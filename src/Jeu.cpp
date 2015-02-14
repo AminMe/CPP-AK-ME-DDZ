@@ -37,22 +37,20 @@ int main(int argc, char **argv) {
 	map.init();
 	map.affiche();
 
-
 	//Il faut constructeur par defaut d'animal mais avec l'heritage avec pion ca galere
-	Animal **listeanimaux;
+	Animal *listeanimaux = (Animal*)calloc(5,sizeof(Animal));
+	cout<<"Ok"<<endl;
+	listeanimaux[0] = Crocodile("croco",NULL,map);
+	listeanimaux[1] = Lion("lion",NULL,map);
+	listeanimaux[2] = Elephant("elephant",NULL,map);
+	listeanimaux[3] = Gazelle("gazelle",NULL,map);
+	listeanimaux[4] = Zebre("zebre",NULL,map);
 
-	listeanimaux[0] = new Crocodile("croco",NULL,map);
-	listeanimaux[1] = new Lion("lion",NULL,map);
-	listeanimaux[2] = new Elephant("elephant",NULL,map);
-	listeanimaux[3] = new Gazelle("gazelle",NULL,map);
-	listeanimaux[4] = new Zebre("zebre",NULL,map);
+	Humain amin(1,"Amin",listeanimaux);
 
-	Humain amin(1,"Amin",*listeanimaux);
-	cout<<"NOK"<<endl;
 	for(int i = 0; i<5; i++)
 	{
-		cout<<"Ok "<<endl;
-		listeanimaux[i]->setJoueur(&amin);
+		listeanimaux[i].setJoueur(&amin);
 	}
 
 	Humain gishan(2,"Gishan",NULL);

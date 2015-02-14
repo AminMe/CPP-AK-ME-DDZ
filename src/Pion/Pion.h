@@ -29,7 +29,8 @@ public:
 	{
 		//return tab[x][y]
 		pair<int, int> index(x,y);
-		c = map[index];
+		/*TODO a corriger*/
+		/*c = map[index];*/
 	}
 	Pion(Case c):c(c){}
 
