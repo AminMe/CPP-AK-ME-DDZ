@@ -35,7 +35,12 @@ int main(int argc, char **argv) {
 
 	int *p = NULL;
 
-	//Animal *aminAnimal = new Animal[5];
+	//Il faut constructeur par defaut d'animal mais avec l'heritage avec pion ca galere
+	Animal *aminAnimal = new Animal[5];
+
+
+
+
 	Humain amin(1,"Amin",NULL);
 
 	Humain gishan(2,"Gishan",NULL);

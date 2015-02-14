@@ -18,7 +18,6 @@ protected:
 	bool estCache;
 public:
 
-
 	Animal(string name, Joueur *joueur, Map map):Pion(name,-1,-1,map),id(idGen++),joueur(joueur), estCache(false){}
 
 	virtual ~Animal(){}
@@ -37,6 +36,11 @@ public:
 
 	Joueur* getJoueur() const {
 		return joueur;
+	}
+
+	Animal& operator = (const Animal&& other) // copy assignment
+	{
+	    return *this;
 	}
 };
 
