@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "../Jeu/Map/Map.h"
+#include "../Joueur/Joueur.h"
 #include "Pion.h"
 
 class Joueur;
@@ -36,6 +38,12 @@ public:
 
 	Joueur* getJoueur() const {
 		return joueur;
+	}
+
+	void setJoueur(Joueur *joueur)
+	{
+		this->joueur = joueur;
+		cout<<"Mon joueur est "<<this->joueur->getName()<<endl;
 	}
 
 	Animal& operator = (const Animal&& other) // copy assignment
