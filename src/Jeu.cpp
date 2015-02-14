@@ -54,6 +54,6 @@ int main(int argc, char **argv) {
 	}
 
 	Humain gishan(2,"Gishan",NULL);
-
+	delete listeanimaux;
 }
 
