@@ -12,7 +12,7 @@
 
 #include "Jeu/Map/Map.h"
 #include "Joueur/Humain/Humain.h"
-#include "Pion/Animal.h"
+#include "Pion/Effrayant/Crocodile.h"
 
 using namespace std;
 
@@ -36,8 +36,10 @@ int main(int argc, char **argv) {
 	int *p = NULL;
 
 	//Il faut constructeur par defaut d'animal mais avec l'heritage avec pion ca galere
-	Animal *listeanimaux;
+	Animal **listeanimaux;
 
+	listeanimaux[0] = new Crocodile("croco",NULL,map);
+	listeanimaux[0]->setEstCache(false);
 
 	Humain amin(1,"Amin",NULL);
 
