@@ -17,7 +17,7 @@ using namespace std;
 class Ordinateur: public Joueur {
 
 public:
-	Ordinateur(int num, string name, Animal *mesAnimaux):Joueur(num,name,mesAnimaux){}
+	Ordinateur(int num, string name):Joueur(num,name){}
 	virtual ~Ordinateur(){};
 
 	virtual void algo()=0;

@@ -17,7 +17,6 @@
 #include "../Pion/Effraye/Gazelle.h"
 #include "../Pion/Effraye/Zebre.h"
 
-class Animal;
 
 using namespace std;
 
