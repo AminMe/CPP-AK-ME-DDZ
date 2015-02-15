@@ -4,7 +4,6 @@
 #include <iostream>
 
 #include "../Jeu/Map/Map.h"
-#include "../Joueur/Joueur.h"
 #include "Pion.h"
 
 class Joueur;

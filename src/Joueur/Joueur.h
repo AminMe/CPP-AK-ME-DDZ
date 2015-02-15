@@ -11,6 +11,8 @@
 #include <iostream>
 #include <string>
 
+#include "../Pion/Animal.h"
+
 using namespace std;
 
 class Animal;
@@ -24,7 +26,12 @@ protected:
 	int point;
 
 public:
-	Joueur(int num, string name, Animal *mesAnimaux):num(num),name(name),mesAnimaux(mesAnimaux),point(0){}
+	Joueur(int num, string name, Animal *mesAnimaux):num(num),name(name),mesAnimaux(mesAnimaux),point(0){
+		for(int i = 0; i<5; i++)
+		{
+			mesAnimaux[i].setJoueur(this);
+		}
+	}
 	virtual ~Joueur(){}
 
 	virtual void play()=0;

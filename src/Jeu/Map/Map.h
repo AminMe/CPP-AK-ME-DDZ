@@ -15,7 +15,17 @@ private:
 	int ligne,colonne;
 	/* solution provisoire pour initialiser les scénario */
 	int tabSecteur[5][6]={{1,2,3,3,3,3},{1,2,2,3,4,4},{1,1,2,3,3,4},{5,2,3,3,3,6},{5,5,6,6,6,6}};
+	static Map& Instance();
 public:
+
+
+    Map& operator= (const Map&){}
+    Map (const Map&){}
+
+    static Map m_instance;
+
+
+
 
 	/*
 	 * Constructeur par defaut
