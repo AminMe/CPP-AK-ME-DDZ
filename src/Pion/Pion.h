@@ -29,8 +29,10 @@ public:
 	{
 		//return tab[x][y]
 		pair<int, int> index(x,y);
-		/*TODO a corriger*/
-		/*c = map[index];*/
+		if(x>=0 && y>=0 && !map[index].isEstOccupe())
+		{
+			c = map[index];
+		}
 	}
 	Pion(Case c):c(c){}
 
