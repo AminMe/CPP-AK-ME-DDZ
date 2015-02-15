@@ -13,12 +13,14 @@
 class Pion;
 
 class Case {
+private:
+	    int x;
+		int y;
+		int secteur;
+		bool estOccupe;
+		Pion *pionCase; //= NULL;
 public:
-	int x;
-	int y;
-	int secteur;
-	bool estOccupe;
-	Pion *pionCase; //= NULL;
+
 	Case(int posiX, int posiY, int secteurNum) {
 		x=posiX;
 		y=posiY;
