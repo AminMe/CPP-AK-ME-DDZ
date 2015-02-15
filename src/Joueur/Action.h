@@ -19,14 +19,16 @@ public:
 	virtual ~Action();
 
 	void update();
-	void controlAction(Joueur *j);
 	/* Changement de Animal à Pion, on met case dans le deuxième caractère ? ou x et y ?  */
 	// on utilisera ton [] pour récupérer la map
 	void put(Pion *a, Case c);
 	void affiche();
 	void controlDeplacement(Pion * p);
 
-
+	/*
+    void deplacerImpala(ImpalaJones *impala, Case c);
+    void deplacerImpala(ImpalaJones *impala);
+    */
 };
 
 #endif /* SRC_ACTION_H_ */

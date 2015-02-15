@@ -13,7 +13,7 @@
 
 class Zebre : public Animal{
 public:
-	Zebre(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
+	Zebre(Joueur *joueur,Map map):Animal("Zebre",joueur,map,6){}
 	virtual ~Zebre(){}
 };
 

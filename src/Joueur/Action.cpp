@@ -16,10 +16,14 @@ Action::Action() {
 
 Action::~Action() {
 	// TODO Auto-generated destructor stub
+
 }
 
-void Action::put(Pion *a, Case c){
-	if(!c.isEstOccupe()){
+void Action::put(Pion *a, Case c)
+{
+
+	if(!c.isEstOccupe())
+	{
 	    c.setPion(a);
 	}
 }

@@ -8,12 +8,11 @@
 #ifndef SRC_ELEPHANT_H_
 #define SRC_ELEPHANT_H_
 
-#include "../../Jeu/Map/Map.h"
 #include "../Animal.h"
 
 class Elephant: public Animal {
 public:
-	Elephant(string nom, Joueur *joueur, Map map):Animal(nom,joueur,map){}
+	Elephant(Joueur *joueur, Map map):Animal("Elephant",joueur,map,5){}
 	virtual ~Elephant(){}
 };
 

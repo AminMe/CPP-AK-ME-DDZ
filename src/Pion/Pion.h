@@ -32,6 +32,7 @@ public:
 		/*TODO a corriger*/
 		/*c = map[index];*/
 	}
+
 	Pion(Case c):c(c){}
 
 	virtual ~Pion(){}

@@ -14,8 +14,8 @@
 
 class Crocodile : public Animal {
 public:
-	Crocodile(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
-	virtual ~Crocodile(){}
+	Crocodile(Joueur *joueur,Map map):Animal("Crocodile",joueur,map,0){}
+	~Crocodile(){}
 };
 
 #endif /* SRC_CROCODILE_H_ */

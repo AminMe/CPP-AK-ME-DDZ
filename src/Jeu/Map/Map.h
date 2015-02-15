@@ -14,7 +14,6 @@ private:
 	Case **tab;
 	int ligne,colonne;
 	/* solution provisoire pour initialiser les scénario */
-	int tabSecteur[5][6]={{1,2,3,3,3,3},{1,2,2,3,4,4},{1,1,2,3,3,4},{5,2,3,3,3,6},{5,5,6,6,6,6}};
 public:
 
 	/*
@@ -23,6 +22,9 @@ public:
 	Map(int ligne, int colonne):ligne(ligne),colonne(colonne)
 	{
 		//tab = (Case**) calloc(ligne,sizeof(Case*));
+		/* A CHANGER SUREMENT */
+		int tabSecteur[7][8]={{-1,-1,-1,-1,-1,-1,-1,-1},{-1,1,2,3,3,3,3,-1},{-1,1,2,2,3,4,4,-1},{-1,1,1,2,3,3,4,-1},{-1,5,2,3,3,3,6,-1},{-1,5,5,6,6,6,6,-1},{-1,-1,-1,-1,-1,-1,-1,-1}};
+		/* Faire init des rivieres */
 		tab = new Case*[ligne];
 
 		if(tab==NULL)
@@ -40,24 +42,18 @@ public:
 			}
 
 		}
+        cout<<"LIGNE : "<<ligne;
+        cout<< "COLONNE" <<colonne;
 
-		for(int i = 0; i<ligne; i++)
+        for(int i = 0; i<ligne; i++)
 		{
-			for(int j = 0; j<colonne; j++)
+        	for(int j = 0; j<colonne; j++)
 			{
-				// pour les cases normaux
-				if((i==0 )|| (j==0) || (i==ligne-1) || (j=colonne-1)){
-				Case c(i,j,-1);
+        		Case c(i, j, tabSecteur[i][j]);
 				tab[i][j] = c;
-				}
-				else{
-				Case c(i, j, tabSecteur[i][j]);
-				tab[i][j] = c;
-				}
-				//Todo : presence rivière ou non
-
 			}
-		}
+				//Todo : presence rivière ou non
+        }
 	}
 
 	/*

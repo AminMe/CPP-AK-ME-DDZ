@@ -33,12 +33,12 @@ Jeu::~Jeu() {
 int main(int argc, char **argv) {
 	cout<<"Debut"<<endl;
 
-	Map map(15,15);
-	map.init();
+	Map map(7,8);
+	/*map.init();*/
 	map.affiche();
 
 	//Il faut constructeur par defaut d'animal mais avec l'heritage avec pion ca galere
-	Animal *listeanimaux = (Animal*)calloc(5,sizeof(Animal));
+	/*Animal *listeanimaux = (Animal*)calloc(5,sizeof(Animal));
 	cout<<"Ok"<<endl;
 	listeanimaux[0] = Crocodile("croco",NULL,map);
 	listeanimaux[1] = Lion("lion",NULL,map);
@@ -55,5 +55,6 @@ int main(int argc, char **argv) {
 
 	Humain gishan(2,"Gishan",NULL);
 	delete listeanimaux;
+	*/
 }
 

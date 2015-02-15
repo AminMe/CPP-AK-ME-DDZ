@@ -8,13 +8,12 @@
 #ifndef SRC_GAZELLE_H_
 #define SRC_GAZELLE_H_
 
-#include <iostream>
-
 #include "../Animal.h"
+
 
 class Gazelle : public Animal {
 public:
-	Gazelle(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
+	Gazelle(Joueur *joueur,Map map):Animal("Gazelle",joueur,map,2){}
 	virtual ~Gazelle(){}
 };
 
