@@ -8,6 +8,12 @@
 #ifndef CASE_H_
 #define CASE_H_
 
+#define RIVIERE_GAUCHE 0
+#define RIVIERE_DROITE 1
+#define RIVIERE_HAUT 2
+#define RIVIERE_BAS 3
+
+
 #include <cstdlib>
 
 class Pion;
@@ -19,6 +25,7 @@ private:
 		int secteur;
 		bool estOccupe;
 		Pion *pionCase; //= NULL;
+		bool tabRiviere[4];
 public:
 
 	Case(int posiX, int posiY, int secteurNum) {
@@ -61,6 +68,10 @@ public:
 		this->pionCase = pionCase;
 	}
 	*/
+
+	const bool* getTabRiviere() const {
+		return tabRiviere;
+	}
 };
 
 #endif /* CASE_H_ */
