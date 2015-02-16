@@ -34,9 +34,8 @@ Jeu::~Jeu() {
 int main(int argc, char **argv) {
 	cout<<"Debut"<<endl;
 
-	Map map(7,8);
+	Map map();
 	/*map.init();*/
-	map.affiche();
 
 	Map& ptr = Map::Instance();
 	ptr.affiche();

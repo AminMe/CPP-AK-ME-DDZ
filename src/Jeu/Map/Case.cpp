@@ -17,4 +17,5 @@ void Case::affiche()
 	else{
 		cout<<" "<<secteur;
 	}
+	cout<<
 }

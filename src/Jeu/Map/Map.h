@@ -6,15 +6,13 @@
 
 #include "Case.h"
 
-#define TAILLE 5
+#define LIGNE 7
+#define COLONNE 8
 
 using namespace std;
 class Map {
 private:
 	Case **tab;
-	int ligne,colonne;
-	/* solution provisoire pour initialiser les scénario */
-	int tabSecteur[5][6]={{1,2,3,3,3,3},{1,2,2,3,4,4},{1,1,2,3,3,4},{5,2,3,3,3,6},{5,5,6,6,6,6}};
 	static Map m_instance;
 
 public:
@@ -31,37 +29,49 @@ public:
 	/*
 	 * Constructeur par defaut
 	 */
-	Map(int ligne, int colonne):ligne(ligne),colonne(colonne)
+	Map()
 	{
 		//tab = (Case**) calloc(ligne,sizeof(Case*));
 		/* A CHANGER SUREMENT */
-		int tabSecteur[7][8]={{-1,-1,-1,-1,-1,-1,-1,-1},{-1,1,2,3,3,3,3,-1},{-1,1,2,2,3,4,4,-1},{-1,1,1,2,3,3,4,-1},{-1,5,2,3,3,3,6,-1},{-1,5,5,6,6,6,6,-1},{-1,-1,-1,-1,-1,-1,-1,-1}};
+		int tabSecteur[LIGNE][COLONNE]={{0,-1,-1,-1,-1,-1,-1,0},{-1,1,2,3,3,3,3,-1},{-1,1,2,2,3,4,4,-1},{-1,1,1,2,3,3,4,-1},{-1,5,2,3,3,3,6,-1},{-1,5,5,6,6,6,6,-1},{0,-1,-1,-1,-1,-1,-1,0}};
+		bool tabRiviere[30][4] = {{false,true,false,false},{true,true,false,false},{true,false,false,true},{false,false,false,false},{false,false,false,true},{false,false,false,true},
+								  {false,true,false,false},{true,true,false,true},{false,true,true,false},{true,true,false,false},{true,false,true,true},{false,false,true,false},
+								  {false,false,false,true},{false,true,true,false},{true,true,false,false},{true,false,false,true},{false,true,true,true},{true,false,false,true},
+								  {false,true,true,false},{true,false,false,true},{true,false,false,true},{false,false,true,true},{false,true,true,true},{true,false,true,false},
+								  {false,false,false,false},{false,true,true,false},{true,false,true,false},{false,false,true,false},{false,false,true,false},{false,false,false,false}};
 		/* Faire init des rivieres */
-		tab = new Case*[ligne];
+		tab = new Case*[LIGNE];
 
 		if(tab==NULL)
 		{
 			cout<<"Erreur allocation"<<endl;
 		}
 
-		for(int j = 0; j<ligne; j++)
+		for(int j = 0; j<LIGNE; j++)
 		{
 			//tab[j] = (Case*)calloc(colonne,sizeof(Case));
-			tab[j] = new Case[colonne];
+			tab[j] = new Case[COLONNE];
 			if(tab[j]==NULL)
 			{
 				cout<<"Erreur allocation"<<endl;
 			}
-
 		}
-        cout<<"LIGNE : "<<ligne;
-        cout<< "COLONNE" <<colonne;
-
-        for(int i = 0; i<ligne; i++)
+        int w = 0;
+        for(int i = 0; i<LIGNE; i++)
 		{
-        	for(int j = 0; j<colonne; j++)
+        	for(int j = 0; j<COLONNE; j++)
 			{
+
         		Case c(i, j, tabSecteur[i][j]);
+
+				if(i!=0 && j!=0 && i!=LIGNE-1 && j!=COLONNE-1)
+				{
+					for(int i=0; i<4; i++)
+					{
+					  /*c.getTabRiviere()[i] = tabRiviere[w][i];*/
+					}
+					w++;
+				}
 				tab[i][j] = c;
 			}
 				//Todo : presence rivière ou non
@@ -82,10 +92,8 @@ public:
 		return tab[Index.first][Index.second];
 	}
 
-	int getColonne() const {return colonne;}
-	void setColonne(int colonne) {this->colonne = colonne;}
-	int getLigne() const {return ligne;}
-	void setLigne(int ligne) {this->ligne = ligne;}
+	int getColonne() const {return COLONNE;}
+	int getLigne() const {return LIGNE;}
 
 };
 
