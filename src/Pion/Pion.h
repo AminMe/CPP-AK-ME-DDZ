@@ -34,6 +34,7 @@ public:
 			c = map[index];
 		}
 	}
+
 	Pion(Case c):c(c){}
 
 	virtual ~Pion(){}

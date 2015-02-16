@@ -12,7 +12,7 @@
 
 class Intermediaire: public Ordinateur{
 public:
-	Intermediaire(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
+	Intermediaire(int num, string name):Ordinateur(num,name){}
 	~Intermediaire(){};
 
 	void play();

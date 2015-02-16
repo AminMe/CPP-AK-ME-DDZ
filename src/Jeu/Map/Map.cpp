@@ -8,7 +8,7 @@
 #include "Map.h"
 
 
-Map Map::m_instance=Map();
+Map Map::m_instance=Map(15,15);
 
 Map& Map::Instance()
 {
@@ -33,9 +33,9 @@ void Map::affiche()
 	int i = 0;
 	int j = 0;
 	cout<<"Grille de jeu : "<<endl;
-	for(i = 0; i<TAILLE;i++)
+	for(i = 0; i<ligne;i++)
 	{
-		for(j = 0; j<TAILLE; j++)
+		for(j = 0; j<colonne; j++)
 		{
 			cout<<"[";
 			tab[i][j].affiche();

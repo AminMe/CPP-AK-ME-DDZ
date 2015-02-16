@@ -14,7 +14,7 @@
 
 class Lion : public Animal {
 public:
-	Lion(string nom, Joueur *joueur,Map map):Animal(nom,joueur,map){}
+	Lion(Joueur *joueur,Map map):Animal("Lion",joueur,map,1){}
 	virtual ~Lion(){}
 };
 

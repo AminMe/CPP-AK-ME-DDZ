@@ -10,34 +10,52 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
+#include "../Pion/Effrayant/Crocodile.h"
+#include "../Pion/Effrayant/Lion.h"
+#include "../Pion/Effraye/Gazelle.h"
+#include "../Pion/Effraye/Zebre.h"
+
 
 #include "../Pion/Animal.h"
 
 using namespace std;
-
-class Animal;
 
 class Joueur{
 
 protected:
 	int num;
 	string name;
-	Animal *mesAnimaux;
+	vector<Animal*> mesAnimaux;
+	/*Animal *mesAnimaux;*/
 	int point;
+	/* Chnagement de *mesAnimaux à Vecteur*/
 
 public:
-	Joueur(int num, string name, Animal *mesAnimaux):num(num),name(name),mesAnimaux(mesAnimaux),point(0){
-		for(int i = 0; i<5; i++)
+
+	Joueur(int num, string name):num(num),name(name),point(0)
+    {
+		/* C'est mieux de faire un Vector ou pas ? */
+		/* Et comme ça on peut directement initialiser chaque liste ici*/
+		Map map(15,15);
+		mesAnimaux.push_back(new Lion(this,map));
+		mesAnimaux.push_back(new Crocodile(this,map));
+		for(int i=0;i<6;i++)
 		{
-			mesAnimaux[i].setJoueur(this);
+			mesAnimaux.push_back(new Gazelle(this,map));
 		}
+		for(int i=0;i<5;i++)
+		{
+			mesAnimaux.push_back(new Zebre(this,map));
+		}
+
 	}
-	virtual ~Joueur(){}
+
+	virtual ~Joueur(){};
 
 	virtual void play()=0;
 
-	Animal* getMesAnimaux() {return mesAnimaux;}
-	void setMesAnimaux(Animal* mesAnimaux) {this->mesAnimaux = mesAnimaux;}
 	const string& getName() const {return name;}
 	void setName(const string& name) {this->name = name;}
 	int getNum() const {return num;}

@@ -14,13 +14,12 @@ class Pion;
 
 class Case {
 private:
-	int x;
+	    int x;
 		int y;
 		int secteur;
 		bool estOccupe;
 		Pion *pionCase; //= NULL;
 public:
-
 
 	Case(int posiX, int posiY, int secteurNum) {
 		x=posiX;
@@ -31,7 +30,7 @@ public:
 	}
 
 	Case():x(-1),y(-1),secteur(-1),estOccupe(false),pionCase(NULL){};
-	virtual ~Case(){}
+	 ~Case(){}
 
 	void affiche();
 
@@ -47,6 +46,7 @@ public:
 		}
 	}
 	Pion*& getPionCase() {return pionCase;}
+
 	bool isEstOccupe() const {return estOccupe;}
 	void setEstOccupe(bool estOccupe) {this->estOccupe = estOccupe;}
 	int getSecteur() const {return secteur;}
@@ -55,6 +55,12 @@ public:
 	void setX(int x) {this->x = x;}
 	int getY() const {return y;}
 	void setY(int y) {this->y = y;}
+
+	/*
+	void setPionCase(const Pion*& pionCase) {
+		this->pionCase = pionCase;
+	}
+	*/
 };
 
 #endif /* CASE_H_ */

@@ -11,5 +11,10 @@ using namespace std;
 
 void Case::affiche()
 {
-	cout<<"1 - Z";
+	if(secteur==-1){
+		cout<<secteur;
+	}
+	else{
+		cout<<" "<<secteur;
+	}
 }
