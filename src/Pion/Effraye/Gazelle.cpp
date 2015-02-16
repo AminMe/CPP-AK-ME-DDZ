@@ -8,3 +8,7 @@
 #include "Gazelle.h"
 
 
+void Gazelle::check(Case position)
+{
+
+}

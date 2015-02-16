@@ -13,7 +13,7 @@
 
 class Novice : public Ordinateur{
 public:
-	Novice(int num, string name, Animal *mesAnimaux):Ordinateur(num,name,mesAnimaux){}
+	Novice(int num, string name, Animal *mesAnimaux):Ordinateur(num,name){}
 	~Novice(){};
 
 	void play();

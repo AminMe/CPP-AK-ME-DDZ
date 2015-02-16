@@ -14,7 +14,19 @@ private:
 	Case **tab;
 	int ligne,colonne;
 	/* solution provisoire pour initialiser les scénario */
+	int tabSecteur[5][6]={{1,2,3,3,3,3},{1,2,2,3,4,4},{1,1,2,3,3,4},{5,2,3,3,3,6},{5,5,6,6,6,6}};
+	static Map m_instance;
+
 public:
+	static Map& Instance();
+
+    Map& operator= (const Map& m){
+    	return *this;
+    }
+
+    Map (const Map& m){
+    	cout<<"Map::Singleton"<<endl;
+    }
 
 	/*
 	 * Constructeur par defaut

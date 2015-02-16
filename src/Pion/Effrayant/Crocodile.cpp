@@ -7,3 +7,7 @@
 
 #include "Crocodile.h"
 
+void Crocodile::check(Case position)
+{
+
+}

@@ -6,6 +6,15 @@
  */
 
 #include "Map.h"
+
+
+Map Map::m_instance=Map(15,15);
+
+Map& Map::Instance()
+{
+	return m_instance;
+}
+
 void Map::init()
 {
 	int i = 0;

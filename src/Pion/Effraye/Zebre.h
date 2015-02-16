@@ -14,7 +14,9 @@
 class Zebre : public Animal{
 public:
 	Zebre(Joueur *joueur,Map map):Animal("Zebre",joueur,map,6){}
-	virtual ~Zebre(){}
+	~Zebre(){}
+
+	void check(Case position);
 };
 
 #endif /* SRC_ZEBRE_H_ */

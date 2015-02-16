@@ -4,8 +4,9 @@
 #include <iostream>
 
 #include "../Jeu/Map/Map.h"
-#include "../Joueur/Joueur.h"
 #include "Pion.h"
+
+class Joueur;
 
 using namespace std;
 class Animal: public Pion {
@@ -44,13 +45,15 @@ public:
 
 	void setJoueur(Joueur *joueur) {
 		this->joueur = joueur;
-		cout << "Mon joueur est " << this->joueur->getName() << endl;
+		//cout << "Mon joueur est " << this->joueur->getName() << endl;
 	}
 
 	Animal& operator =(const Animal& other) // copy assignment
 			{
 		return *this;
 	}
+
+	virtual void check(Case position)=0;
 };
 
 #endif /* ANIMAL_H_ */

@@ -12,12 +12,16 @@
 #include <string>
 #include <vector>
 
+#include "../Jeu/Map/Map.h"
 #include "../Pion/Effrayant/Crocodile.h"
 #include "../Pion/Effrayant/Lion.h"
 #include "../Pion/Effraye/Gazelle.h"
 #include "../Pion/Effraye/Zebre.h"
+#include "../Pion/Invincible/Elephant.h"
+
 
 class Animal;
+
 using namespace std;
 
 class Joueur {
@@ -31,22 +35,31 @@ protected:
 	/* Chnagement de *mesAnimaux à Vecteur*/
 
 public:
-	Joueur(int num, string name) :
-			num(num), name(name), point(0) {
-		/* C'est mieux de faire un Vector ou pas ? */
-		/* Et comme ça on peut directement initialiser chaque liste ici*/
-		mesAnimaux.push_back(new Lion(this, NULL));
-		mesAnimaux.push_back(new Crocodile(this, NULL));
-		for (int i = 0; i < 6; i++) {
-			mesAnimaux.push_back(new Gazelle(this, NULL));
-		}
-		for (int i = 0; i < 5; i++) {
-			mesAnimaux.push_back(new Zebre(this, NULL));
+
+	Joueur(int num, string name):num(num),name(name),point(0)
+    {
+		Map& map = Map::Instance();
+
+		for(int i=0;i<6;i++)
+		{
+			mesAnimaux.push_back(new Gazelle(this,map));
 		}
 
+		for(int i=0;i<5;i++)
+		{
+			mesAnimaux.push_back(new Zebre(this,map));
+		}
+
+		mesAnimaux.push_back(new Elephant(this,map));
+		mesAnimaux.push_back(new Lion(this,map));
+
+		for(int i=0; i<2;i++)
+		{
+			mesAnimaux.push_back(new Crocodile(this,map));
+		}
 	}
 
-	virtual ~Joueur();
+	virtual ~Joueur(){};
 
 	virtual void play()=0;
 

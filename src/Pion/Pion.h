@@ -43,6 +43,16 @@ public:
 	{
 
 	}
+
+	const string& getName() const {
+		return name;
+	}
+
+	void setName(const string& name) {
+		this->name = name;
+	}
+
+	virtual void affiche();
 };
 
 #endif /* SRC_PION_H_ */

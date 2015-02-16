@@ -6,3 +6,8 @@
  */
 
 #include "Lion.h"
+
+void Lion::check(Case position)
+{
+
+}
