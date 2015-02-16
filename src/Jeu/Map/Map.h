@@ -20,14 +20,13 @@ private:
 public:
 	static Map& Instance();
 
+    Map& operator= (const Map& m){
+    	return *this;
+    }
 
-    Map& operator= (const Map&){}
-    Map (const Map&){}
-
-
-
-
-
+    Map (const Map& m){
+    	cout<<"Map::Singleton"<<endl;
+    }
 
 	/*
 	 * Constructeur par defaut
