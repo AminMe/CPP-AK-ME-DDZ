@@ -14,7 +14,7 @@
 
 class Lion : public Animal {
 public:
-	Lion(Joueur *joueur,Map map):Animal("Lion",joueur,map,1){}
+	Lion(Joueur *joueur):Animal("Lion",joueur,1){}
 	~Lion(){}
 
 	void check(Case position);

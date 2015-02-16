@@ -19,11 +19,21 @@ Action::~Action() {
 
 }
 
-void Action::put(Pion *a, Case c)
+bool Action::put(Pion *a, Case c, Case impala)
 {
-
 	if(!c.isEstOccupe())
 	{
-	    c.setPion(a);
+	   if(impala.getX()>0 && c.getX()==impala.getX())
+	   {
+		   c.setPion(a);
+		   return true;
+	   }
+	   else if(impala.getY()>0  && c.getY()==impala.getY())
+	   {
+		   c.setPion(a);
+		   return true;
+	   }
 	}
+
+	return false;
 }

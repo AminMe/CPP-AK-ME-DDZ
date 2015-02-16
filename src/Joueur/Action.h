@@ -21,7 +21,7 @@ public:
 	void update();
 	/* Changement de Animal à Pion, on met case dans le deuxième caractère ? ou x et y ?  */
 	// on utilisera ton [] pour récupérer la map
-	void put(Pion *a, Case c);
+	bool put(Pion *a, Case c, Case impala);
 	void affiche();
 	void controlDeplacement(Pion * p);
 
