@@ -7,7 +7,7 @@
 class Humain: public Joueur {
 public:
 
-	Humain(int num, string name, Animal *mesAnimaux):Joueur(num,name){};
+	Humain(int num, string name):Joueur(num,name){};
 	~Humain(){};
 
 	void play();

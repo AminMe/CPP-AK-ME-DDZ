@@ -24,7 +24,7 @@ void Zebre::check(Case position)
 
 	if(h.first>=0 && h.second>=0 && h.first<map.getLigne() && h.second<map.getColonne() && map[h].isEstOccupe())
 	{
-		lionaualentour = map[h].getPionCase()->name=="Lion";
+		lionaualentour = map[h].getPionCase()->getName()=="Lion";
 	}
 
 	/*
@@ -41,7 +41,7 @@ void Zebre::check(Case position)
 
 	if(g.first>=0 && g.second>=0 && g.first<map.getLigne() && g.second<map.getColonne() && map[g].isEstOccupe())
 	{
-		lionaualentour = map[g].getPionCase()->name=="Lion";
+		lionaualentour = map[g].getPionCase()->getName()=="Lion";
 	}
 
 	if(lionaualentour)
@@ -53,7 +53,7 @@ void Zebre::check(Case position)
 
 	if(b.first>=0 && b.second>=0 && b.first<map.getLigne() && b.second<map.getColonne() && map[b].isEstOccupe())
 	{
-		lionaualentour = map[b].getPionCase()->name=="Lion";
+		lionaualentour = map[b].getPionCase()->getName()=="Lion";
 	}
 
 	if(lionaualentour)
@@ -65,7 +65,7 @@ void Zebre::check(Case position)
 
 	if(d.first>=0 && d.second>=0 && d.first<map.getLigne() && d.second<map.getColonne() && map[d].isEstOccupe())
 	{
-		lionaualentour = map[d].getPionCase()->name=="Lion";
+		lionaualentour = map[d].getPionCase()->getName()=="Lion";
 	}
 
 	if(lionaualentour)

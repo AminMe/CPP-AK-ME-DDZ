@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <string>
 
 #include "Jeu/Map/Map.h"
 #include "Joueur/Humain/Humain.h"
@@ -55,8 +56,6 @@ int main(int argc, char **argv) {
 	{
 		listeanimaux[i].setJoueur(&amin);
 	}
-
-<<<<<<< HEAD
 	Animal *listeanimaux2 = (Animal*)calloc(5,sizeof(Animal));
 	cout<<"Ok"<<endl;
 	listeanimaux2[0] = Crocodile("croco",NULL,map);
@@ -69,9 +68,54 @@ int main(int argc, char **argv) {
 
 
 	delete listeanimaux,listeanimaux2;
-=======
 	Humain gishan(2,"Gishan",NULL);
 	delete listeanimaux;
 	*/
+	int resultat;
+	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
+	cout<<"-----------------------------"<<endl;
+	cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
+	cin>>resultat;
+
+	while(resultat!=1 && resultat!=2)
+	{
+		cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
+		cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
+		cin>>resultat;
+	}
+	if(resultat==1){
+		cout<<"Mode Jeu "<<endl;
+		cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
+		cin>>resultat;
+		while(resultat!=1 && resultat!=2)
+		{
+			cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
+			cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
+			cin>>resultat;
+		}
+		if(resultat==1)
+		{
+			cout<<"Veuillez saisir le nom du premier joueur "<<endl;
+			string name;
+			cin>>name;
+			Humain joueur1(1,name);
+			cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
+			cin>>name;
+			Humain joueur2(2,name);
+			/* Faire fonction affiche */
+
+			/*joueur1.affiche();
+			joueur2.affiche();
+			*/
+
+
+
+		}
+
+
+
+
+	}
+
 }
 
