@@ -13,7 +13,8 @@
 class Elephant: public Animal {
 public:
 	Elephant(Joueur *joueur, Map map):Animal("Elephant",joueur,map,5){}
-	virtual ~Elephant(){}
+	~Elephant(){}
+	void check(Case position);
 };
 
 #endif /* SRC_ELEPHANT_H_ */

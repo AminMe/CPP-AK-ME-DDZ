@@ -7,3 +7,7 @@
 
 #include "Elephant.h"
 
+void Elephant::check(Case position)
+{
+
+}

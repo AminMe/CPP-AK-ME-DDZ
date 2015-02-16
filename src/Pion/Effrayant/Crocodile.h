@@ -16,6 +16,8 @@ class Crocodile : public Animal {
 public:
 	Crocodile(Joueur *joueur,Map map):Animal("Crocodile",joueur,map,0){}
 	~Crocodile(){}
+
+	void check(Case position);
 };
 
 #endif /* SRC_CROCODILE_H_ */

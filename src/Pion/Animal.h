@@ -52,6 +52,8 @@ public:
 			{
 		return *this;
 	}
+
+	virtual void check(Case position)=0;
 };
 
 #endif /* ANIMAL_H_ */

@@ -13,7 +13,9 @@
 class Gazelle : public Animal {
 public:
 	Gazelle(Joueur *joueur,Map map):Animal("Gazelle",joueur,map,2){}
-	virtual ~Gazelle(){}
+	~Gazelle(){}
+
+	void check(Case position);
 };
 
 #endif /* SRC_GAZELLE_H_ */

@@ -6,3 +6,10 @@
  */
 
 #include "Zebre.h"
+
+void Zebre::check(Case position)
+{
+	Map& ptr = Map::Instance();
+
+
+}

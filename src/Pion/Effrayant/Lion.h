@@ -15,7 +15,9 @@
 class Lion : public Animal {
 public:
 	Lion(Joueur *joueur,Map map):Animal("Lion",joueur,map,1){}
-	virtual ~Lion(){}
+	~Lion(){}
+
+	void check(Case position);
 };
 
 #endif /* SRC_LION_H_ */
