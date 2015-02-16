@@ -17,5 +17,9 @@ void Case::affiche()
 	else{
 		cout<<" "<<secteur;
 	}
-	cout<<
+}
+
+void Case::setTab(int position, bool valeur)
+{
+	tabRiviere[position] = valeur;
 }

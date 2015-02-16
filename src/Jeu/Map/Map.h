@@ -68,20 +68,22 @@ public:
 				{
 					for(int i=0; i<4; i++)
 					{
-					  /*c.getTabRiviere()[i] = tabRiviere[w][i];*/
+					  c.setTab(i,tabRiviere[w][i]);
 					}
 					w++;
 				}
 				tab[i][j] = c;
 			}
-				//Todo : presence rivière ou non
         }
 	}
 
 	/*
 	 * Destructeur
 	 */
-	virtual ~Map(){cout<<"Destruction d'une Map"<<endl;}
+	virtual ~Map(){
+		cout<<"Destruction d'une Map"<<endl;
+		/* LIBERATION  DE LA MEMOIRE */
+	}
 
 	void init();
 

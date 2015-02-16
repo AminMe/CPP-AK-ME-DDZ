@@ -26,8 +26,8 @@ private:
 		bool estOccupe;
 		Pion *pionCase; //= NULL;
 		bool tabRiviere[4];
-public:
 
+public:
 	Case(int posiX, int posiY, int secteurNum) {
 		x=posiX;
 		y=posiY;
@@ -62,7 +62,7 @@ public:
 	void setX(int x) {this->x = x;}
 	int getY() const {return y;}
 	void setY(int y) {this->y = y;}
-
+	void setTab(int position, bool valeur);
 	/*
 	void setPionCase(const Pion*& pionCase) {
 		this->pionCase = pionCase;
