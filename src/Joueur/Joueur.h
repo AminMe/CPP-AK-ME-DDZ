@@ -12,13 +12,12 @@
 #include <string>
 #include <vector>
 
+#include "../Jeu/Map/Map.h"
 #include "../Pion/Effrayant/Crocodile.h"
 #include "../Pion/Effrayant/Lion.h"
 #include "../Pion/Effraye/Gazelle.h"
 #include "../Pion/Effraye/Zebre.h"
-
-
-#include "../Pion/Animal.h"
+#include "../Pion/Invincible/Elephant.h"
 
 using namespace std;
 
@@ -38,9 +37,8 @@ public:
     {
 		/* C'est mieux de faire un Vector ou pas ? */
 		/* Et comme ça on peut directement initialiser chaque liste ici*/
-		Map map(15,15);
-		mesAnimaux.push_back(new Lion(this,map));
-		mesAnimaux.push_back(new Crocodile(this,map));
+		Map& map = Map::Instance();
+
 		for(int i=0;i<6;i++)
 		{
 			mesAnimaux.push_back(new Gazelle(this,map));
@@ -50,6 +48,13 @@ public:
 			mesAnimaux.push_back(new Zebre(this,map));
 		}
 
+		mesAnimaux.push_back(new Elephant(this,map));
+		mesAnimaux.push_back(new Lion(this,map));
+
+		for(int i=0; i<2;i++)
+		{
+			mesAnimaux.push_back(new Crocodile(this,map));
+		}
 	}
 
 	virtual ~Joueur(){};
