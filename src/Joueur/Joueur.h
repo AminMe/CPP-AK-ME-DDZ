@@ -42,20 +42,20 @@ public:
 
 		for(int i=0;i<6;i++)
 		{
-			mesAnimaux.push_back(new Gazelle(this,map));
+			mesAnimaux.push_back(new Gazelle(this));
 		}
 
 		for(int i=0;i<5;i++)
 		{
-			mesAnimaux.push_back(new Zebre(this,map));
+			mesAnimaux.push_back(new Zebre(this));
 		}
 
-		mesAnimaux.push_back(new Elephant(this,map));
-		mesAnimaux.push_back(new Lion(this,map));
+		mesAnimaux.push_back(new Elephant(this));
+		mesAnimaux.push_back(new Lion(this));
 
 		for(int i=0; i<2;i++)
 		{
-			mesAnimaux.push_back(new Crocodile(this,map));
+			mesAnimaux.push_back(new Crocodile(this));
 		}
 	}
 

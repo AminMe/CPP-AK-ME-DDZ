@@ -14,7 +14,7 @@
 
 class Crocodile : public Animal {
 public:
-	Crocodile(Joueur *joueur,Map map):Animal("Crocodile",joueur,map,0){}
+	Crocodile(Joueur *joueur):Animal("Crocodile",joueur,0){}
 	~Crocodile(){}
 
 	void check(Case position);

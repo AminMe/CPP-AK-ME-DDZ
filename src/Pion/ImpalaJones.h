@@ -12,7 +12,7 @@
 
 class ImpalaJones : public Pion {
 public:
-	ImpalaJones(int x, int y, Map map):Pion("Impala Jones",0,0,map){};
+	ImpalaJones(int x, int y):Pion("Impala Jones",0,0){};
 	virtual ~ImpalaJones(){}
 };
 

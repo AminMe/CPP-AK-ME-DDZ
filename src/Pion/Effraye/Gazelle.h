@@ -12,7 +12,7 @@
 
 class Gazelle : public Animal {
 public:
-	Gazelle(Joueur *joueur,Map map):Animal("Gazelle",joueur,map,2){}
+	Gazelle(Joueur *joueur):Animal("Gazelle",joueur,2){}
 	~Gazelle(){}
 
 	void check(Case position);

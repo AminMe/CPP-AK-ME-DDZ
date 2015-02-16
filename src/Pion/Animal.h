@@ -19,8 +19,8 @@ protected:
 	int valeur;
 public:
 
-	Animal(string name, Joueur *joueur, Map map, int val) :
-			Pion(name, -1, -1, map), id(idGen++), joueur(joueur), estCache(
+	Animal(string name, Joueur *joueur, int val) :
+			Pion(name, -1, -1), id(idGen++), joueur(joueur), estCache(
 					false), valeur(val) {
 	}
 
