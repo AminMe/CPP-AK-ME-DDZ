@@ -47,8 +47,6 @@ public:
 
 	void affiche();
 	string getAffiche();
-	string getPionAffiche();
-
 	Case& operator = (const Case&& other) // copy assignment
 	{
 	    return *this;

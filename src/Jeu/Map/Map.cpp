@@ -62,87 +62,108 @@ void Map::affiche()
 	//cout<<endl;
 	//cout<<"------------";cout<<"------------";
 	//cout<<endl;
-
+	for(int k = 0; k<COLONNE;k++)
+	{
+		cout<<"     "<<k<<"     ";
+	}
+	cout<<endl;
 	for(i = 0; i<LIGNE;i++)
 	{
+		cout<<" |";
 		for(int k = 0; k<COLONNE; k++)
 		{
-			if(!tab[i][k].getTabRiviere()[RIVIERE_HAUT])
+			if(tab[i][k].getTabRiviere()[RIVIERE_HAUT])
+				cout<<"§§§§§§§§§§§";
+			else if(i==0 || k==0 || i==LIGNE-1 || k==COLONNE-1 || i==1)
 			{
-				cout<<"----"<<tab[i][k].getTabRiviere()[RIVIERE_HAUT]<<"------";
+					cout<<"-----------";
+			}
+			else
+			{
+				if(tab[i][k].getTabRiviere()[RIVIERE_DROITE])
+					cout<<"          §";
+				else
+					cout<<"           ";
 			}
 		}
+
 		cout<<endl;
-		cout<<"|";
-		for(int k = 0; k<COLONNE; k++){cout<<"          |";}
+		cout<<" |";
+		for(int k = 0; k<COLONNE; k++)
+		{
+			if(tab[i][k].getTabRiviere()[RIVIERE_DROITE])
+				cout<<"          §";
+			else if(i==0 || k==0 || i==LIGNE-1 || k==COLONNE-1 || k==COLONNE-2)
+				cout<<"          |";
+			else
+				cout<<"           ";
+		}
 
 		cout<<endl;
 		for(j = 0; j<COLONNE; j++)
 		{
+			if(j==0)
+			{
+				cout<<i;
+				cout<<"|";
+			}
 			message = tab[i][j].getAffiche();
-			if(j==0)
+			if(tab[i][j].getTabRiviere()[RIVIERE_DROITE])
 			{
-				cout<<"|";
-				cout<<message;
-				cout<<"|";
-			}
-			else if(j<COLONNE-1 && j>0)
-			{
-				if(j>0 && i>0 && i<LIGNE-2)
-				{
-					cout<<message<<"|";
-				}
-				else
-				{
-					cout<<message;cout<<"|";
-				}
-			}
-			else
-			{
-				cout<<message;cout<<"|";
-			}
-			//cout<<" ";
-		}
 
-		cout<<endl;
-		for(j = 0; j<COLONNE; j++)
-		{
-			message = tab[i][j].getPionAffiche();
-			if(j==0)
-			{
-				cout<<"|";
 				cout<<message;
-				cout<<"|";
-			}
-			else if(j<COLONNE-1 && j>0)
-			{
-				if(j>0 && i>0 && i<LIGNE-2)
-				{
-					cout<<message<<"|";
-				}
-				else
-				{
-					cout<<message;
-					cout<<"|";
-				}
+				cout<<"§";
 			}
 			else
 			{
-				cout<<message;cout<<"|";
+
+
+				if(i==0 || j==0 || i==LIGNE-1 || j==COLONNE-1)
+					cout<<"          |";
+				else
+				{
+					cout<<message<<" ";
+				}
 			}
 			//cout<<" ";
 		}
 
 
+
+
 		cout<<endl;
-		cout<<"|";
-		for(int k = 0; k<COLONNE; k++){cout<<"          |";}
-		cout<<endl;
-		for(int k = 0; k<COLONNE; k++)
+		if(i==LIGNE-1)
 		{
-			if(!tab[i][k].getTabRiviere()[RIVIERE_BAS])
+			cout<<" |";
+			for(int k = 0; k<COLONNE; k++)
 			{
-				cout<<"-----------";
+				cout<<"          |";
+			}
+			cout<<endl;
+			for(int k = 0; k<COLONNE; k++)
+			{
+				if(tab[i][k].getTabRiviere()[RIVIERE_BAS])
+					cout<<"§§§§§§§§§§";
+				else if(i==0 || k==0 || i==LIGNE-1 || k==COLONNE-1 || k==COLONNE-2)
+					cout<<"----------";
+				else
+					cout<<"           ";
+
+				if(k==COLONNE-1)
+					cout<<"----------";
+			}
+		}
+		else
+		{
+			cout<<" |";
+			for(int k = 0; k<COLONNE; k++)
+			{
+				if(tab[i][k].getTabRiviere()[RIVIERE_DROITE])
+					cout<<"          §";
+				else if(i==0 || k==0 || i==LIGNE-1 || k==COLONNE-1 || k==COLONNE-2)
+					cout<<"          |";
+				else
+					cout<<"           ";
 			}
 		}
 		cout<<endl;

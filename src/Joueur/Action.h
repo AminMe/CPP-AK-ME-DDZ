@@ -25,8 +25,8 @@ public:
 	void affiche();
 	void controlDeplacement(Pion * p);
 
-	bool deplacementImpala(ImpalaJones *impala);
-	bool estPossibleDeplacement(ImpalaJones *impala);
+	/*bool deplacementImpala(ImpalaJones *impala);
+	bool estPossibleDeplacement(ImpalaJones *impala);*/
 	bool caseDisponible(bool etat,int x);
 	/*
     bool deplacerImpalaPossible ?

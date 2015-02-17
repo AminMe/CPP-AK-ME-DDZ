@@ -8,7 +8,10 @@
 #include "Case.h"
 
 #include <sstream>
+#include <utility>
 
+#include "../../Joueur/Joueur.h"
+#include "../../Pion/Animal.h"
 #include "../../Pion/Pion.h"
 #include "Map.h"
 
@@ -28,9 +31,10 @@ void Case::affiche()
 	}
 }
 
-<<<<<<< HEAD
 string Case::getAffiche()
 {
+	Map &map = Map::Instance();
+
 	string message = "";
 	if(secteur==-1){
 		return "    o     ";
@@ -42,44 +46,25 @@ string Case::getAffiche()
 	else{
 		//message = "("+"a"+","+getY()+") s ="+secteur;
 		ostringstream m;
-		if(x>=10 || y>=10)
+		Map& map = Map::Instance();
+		pair<int, int> index(x,y);
+
+		Animal *p = dynamic_cast<Animal*>(map[index].pionCase);
+		if (p == NULL)
 		{
-			if(x>=10 && y>=10)
-			{
-				m<<"("<<getX()<<","<<getY()<<")s="<<secteur;
-			}
-			else
-			{
-				m<<"("<<getX()<<","<<getY()<<") s="<<secteur;
-			}
+			m<<"          ";
 		}
 		else
 		{
-			m<<"("<<getX()<<","<<getY()<<") s= "<<secteur;
+			m<<"("<<p->getJoueur()->getNum()<<","<<p->getName()[0];
 		}
+
 		message = m.str();
 	}
 	return message;
 }
 
-
-string Case::getPionAffiche()
-{
-	string message = "";
-	if(pionCase==NULL)
-	{
-		return "   Vide   ";
-	}
-	else{
-		//message = "("+"a"+","+getY()+") s ="+secteur;
-		ostringstream m;
-		m<<"("<<pionCase->getName()<<")";
-		message = m.str();
-	}
-	return message;
-=======
 void Case::setTab(int position, bool valeur)
 {
 	tabRiviere[position] = valeur;
->>>>>>> branch 'master' of https://github.com/AminMe/CPP-AK-ME-DDZ.git
 }

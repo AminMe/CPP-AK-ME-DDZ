@@ -6,9 +6,8 @@
 
 #include "Case.h"
 
-
-
 using namespace std;
+
 class Map {
 private:
 	Case **tab;
@@ -34,9 +33,9 @@ public:
 		/* A CHANGER SUREMENT */
 		int tabSecteur[LIGNE][COLONNE]={{0,-1,-1,-1,-1,-1,-1,0},{-1,1,2,3,3,3,3,-1},{-1,1,2,2,3,4,4,-1},{-1,1,1,2,3,3,4,-1},{-1,5,2,3,3,3,6,-1},{-1,5,5,6,6,6,6,-1},{0,-1,-1,-1,-1,-1,-1,0}};
 		bool tabRiviere[30][4] = {{false,true,false,false},{true,true,false,false},{true,false,false,true},{false,false,false,false},{false,false,false,true},{false,false,false,true},
-								  {false,true,false,false},{true,true,false,true},{false,true,true,false},{true,true,false,false},{true,false,true,true},{false,false,true,false},
+								  {false,true,false,false},{true,false,false,true},{false,true,true,false},{true,true,false,false},{true,false,true,true},{false,false,true,false},
 								  {false,false,false,true},{false,true,true,false},{true,true,false,false},{true,false,false,true},{false,true,true,true},{true,false,false,true},
-								  {false,true,true,false},{true,false,false,true},{true,false,false,true},{false,false,true,true},{false,true,true,true},{true,false,true,false},
+								  {false,true,true,false},{true,true,false,true},{true,false,false,true},{false,false,true,true},{false,true,true,true},{true,false,true,false},
 								  {false,false,false,false},{false,true,true,false},{true,false,true,false},{false,false,true,false},{false,false,true,false},{false,false,false,false}};
 		/* Faire init des rivieres */
 		tab = new Case*[LIGNE];
@@ -65,10 +64,16 @@ public:
 
 				if(i!=0 && j!=0 && i!=LIGNE-1 && j!=COLONNE-1)
 				{
-					for(int i=0; i<4; i++)
+					for(int i=0; i<4; i++){
 					  c.setTab(i,tabRiviere[w][i]);
 					}
 					w++;
+				}
+				else
+				{
+					for(int i=0; i<4; i++){
+						c.setTab(i,false);
+					}
 				}
 				tab[i][j] = c;
 			}
@@ -101,9 +106,7 @@ public:
 	int getColonne() const {return COLONNE;}
 	int getLigne() const {return LIGNE;}
 
-	const Case**& getTab() const {
-		return tab;
-	}
+
 };
 
 #endif /* MAP_H_ */
