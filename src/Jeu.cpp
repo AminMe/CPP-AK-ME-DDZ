@@ -128,11 +128,20 @@ int main(int argc, char **argv) {
 			joueur2.affiche();
 
 			Map& map = Map::Instance();
-			pair<int, int> index(1,1);
+			pair<int, int> index(1,2);
+
 
 
 			map[index]->setPion(joueur1.getMesAnimaux()[1]);
 			cout<<map[index]->getPionCase()->getName()<<endl;
+
+			vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
+
+			for(Case *c : vec)
+			{
+				c->affiche();
+			}
+			cout<<endl;
 		}
 
 

@@ -3,8 +3,13 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <utility>
+#include <vector>
 
 #include "Case.h"
+
+#define LIGNE 7
+#define COLONNE 8
 
 using namespace std;
 
@@ -107,6 +112,7 @@ public:
 	int getColonne() const {return COLONNE;}
 	int getLigne() const {return LIGNE;}
 
+	vector<Case*> proposeCases(Case* impala);
 
 };
 

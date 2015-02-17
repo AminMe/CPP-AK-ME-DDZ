@@ -10,13 +10,12 @@
 
 #include <iostream>
 
+
 #define RIVIERE_GAUCHE 0
 #define RIVIERE_DROITE 1
 #define RIVIERE_HAUT 2
 #define RIVIERE_BAS 3
 
-#define LIGNE 7
-#define COLONNE 8
 
 #include <cstdlib>
 #include <string>
@@ -34,6 +33,17 @@ private:
 		bool tabRiviere[4];
 
 public:
+
+	Case(Case * const c):x(c->x),y(c->y),secteur(c->secteur),estOccupe(c->estOccupe)
+	{
+		//pionCase(new Pion(c->getPionCase()))
+
+		for(int i =0;i<4;i++)
+		{
+			tabRiviere[i] = c->tabRiviere[i];
+		}
+	}
+
 	Case(int posiX, int posiY, int secteurNum) {
 		x=posiX;
 		y=posiY;
@@ -63,6 +73,8 @@ public:
 	void setX(int x) {this->x = x;}
 	int getY() const {return y;}
 	void setY(int y) {this->y = y;}
+	int getI() const {return x;}
+	int getJ() const {return y;}
 	void setTab(int position, bool valeur);
 	/*
 	void setPionCase(const Pion*& pionCase) {
