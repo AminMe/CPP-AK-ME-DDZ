@@ -8,6 +8,8 @@
 #ifndef CASE_H_
 #define CASE_H_
 
+#include <iostream>
+
 #define RIVIERE_GAUCHE 0
 #define RIVIERE_DROITE 1
 #define RIVIERE_HAUT 2
@@ -17,6 +19,8 @@
 #define COLONNE 8
 
 #include <cstdlib>
+#include <string>
+using namespace std;
 
 class Pion;
 
@@ -42,19 +46,14 @@ public:
 	 ~Case(){}
 
 	void affiche();
-
+	string getAffiche();
 	Case& operator = (const Case&& other) // copy assignment
 	{
 	    return *this;
 	}
 
-	void setPion(Pion *p){
-		if(p!=NULL){
-			pionCase = p;
-			estOccupe=true;
-		}
-	}
-	Pion*& getPionCase() {return pionCase;}
+	void setPion(Pion *p);
+	Pion* getPionCase() const;
 
 	bool isEstOccupe() const {return estOccupe;}
 	void setEstOccupe(bool estOccupe) {this->estOccupe = estOccupe;}

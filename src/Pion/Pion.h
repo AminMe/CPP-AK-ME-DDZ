@@ -25,14 +25,16 @@ protected:
 	Case c;
 public:
 
+	Pion(const Pion* copie):name(copie->name),c(copie->c){}
+
 	Pion(string name, int x, int y):name(name)
 	{
 		//return tab[x][y]
 		Map& map = Map::Instance();
 		pair<int, int> index(x,y);
-		if(x>=0 && y>=0 && !map[index].isEstOccupe())
+		if(x>=0 && y>=0 && !map[index]->isEstOccupe())
 		{
-			c = map[index];
+			c = *map[index];
 		}
 	}
 
@@ -45,8 +47,8 @@ public:
 
 	}
 
-	const string& getName() const {
-		return name;
+	string getName() const {
+		return this->name;
 	}
 
 	void setName(const string& name) {

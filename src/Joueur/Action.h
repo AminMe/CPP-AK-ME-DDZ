@@ -1,6 +1,6 @@
 #ifndef SRC_ACTION_H_
 #define SRC_ACTION_H_
-
+#include <vector>
 #include "../Jeu/Map/Case.h"
 #include "../Jeu/Map/Map.h"
 #include "../Pion/ImpalaJones.h"
@@ -20,7 +20,10 @@ public:
 	void controlDeplacement(Pion * p);
 
 	bool deplacementImpala(ImpalaJones *impala);
-	Case * estPossibleDeplacement(ImpalaJones *impala);
+	vector<Case> estPossibleDeplacement(ImpalaJones *impala);
+	bool deplacementImpalaPremiereFois(ImpalaJones *impala, Case c);
+	/*bool deplacementImpala(ImpalaJones *impala);
+	bool estPossibleDeplacement(ImpalaJones *impala);*/
 	bool caseDisponible(bool etat,int x);
 
 };

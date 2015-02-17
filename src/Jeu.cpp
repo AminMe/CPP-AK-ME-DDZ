@@ -7,17 +7,16 @@
 
 #include "Jeu.h"
 
-#include <stdio.h>
 #include <iostream>
-#include <string>
+#include <utility>
 
+#include "Jeu/Map/Case.h"
 #include "Jeu/Map/Map.h"
+#include "Joueur/Action.h"
 #include "Joueur/Humain/Humain.h"
-#include "Pion/Effrayant/Crocodile.h"
-#include "Pion/Effrayant/Lion.h"
-#include "Pion/Effraye/Gazelle.h"
-#include "Pion/Effraye/Zebre.h"
-#include "Pion/Invincible/Elephant.h"
+#include "Joueur/Joueur.h"
+#include "Pion/ImpalaJones.h"
+#include "Pion/Pion.h"
 
 using namespace std;
 
@@ -32,9 +31,30 @@ Jeu::~Jeu() {
 
 
 int main(int argc, char **argv) {
+
+	/*string message = "   o  ";
+	cout<<"------------";cout<<"------------";
+	cout<<endl<<"|";cout<<"          |";cout<<"          |";
+	cout<<endl;
+	cout<<"|  ";cout<<message;cout<<"  |";cout<<"  ";cout<<message;cout<<"  |";
+	cout<<endl;
+	cout<<"|";cout<<"          |";cout<<"          |";
+	cout<<endl;
+	cout<<"------------";cout<<"------------";
+	cout<<endl;*/
+
+
+	/*
+	 *
+	string message = "   o  ";
+	cout<<"------------";
+	cout<<endl<<"|";cout<<"          |"<<endl;
+	cout<<"|  ";cout<<message;cout<<"  |";
+	cout<<endl<<"|";cout<<"          |";
+	cout<<endl<<"------------"<<endl;
+	 */
 	cout<<"Debut"<<endl;
 
-	Map map();
 	/*map.init();*/
 
 	Map& ptr = Map::Instance();
@@ -111,6 +131,8 @@ int main(int argc, char **argv) {
 		}
 		if(resultat==1)
 		{
+			/*ImpalaJones impala= ImpalaJones(0,0);*/
+			ImpalaJones impala =ImpalaJones(0,0);
 			cout<<"Veuillez saisir le nom du premier joueur "<<endl;
 			string name;
 			cin>>name;
@@ -120,13 +142,27 @@ int main(int argc, char **argv) {
 			Humain joueur2(2,name);
 			/* Faire fonction affiche */
 
-			/*joueur1.affiche();
+			joueur1.affiche();
 			joueur2.affiche();
-			*/
+			int x,y;
+			cout<<"Joueur 1 => choisisez une case pour poser impala"<<endl;
+			cout<<"Ligne :"<<endl;
+			cin >>x;
+			cout<<"Colonne :"<<endl;
+			cin >>y;
+
+			Map& map = Map::Instance();
+			pair<int, int> index(x,y);
+			joueur1.getAction().deplacementImpalaPremiereFois(&impala,*map[index]);
+
+			cout<<"IMPALA EST ICI : "<<impala.getC().getX()<<"et :"<<impala.getC().getY();
+			joueur2.getAction().deplacementImpala(&impala);
+			cout<<"IMPALA EST ICI : "<<impala.getC().getX()<<"et :"<<impala.getC().getY();
+
+
 
 		}
-
-
+		ptr.affiche();
 
 
 	}

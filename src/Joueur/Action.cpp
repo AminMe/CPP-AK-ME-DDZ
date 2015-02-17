@@ -7,6 +7,8 @@
 
 #include "Action.h"
 
+
+
 Action::Action() {
 	// TODO Auto-generated constructor stub
 
@@ -36,77 +38,74 @@ bool Action::put(Pion *a, Case c, Case impala)
 	return false;
 }
 
+bool Action::deplacementImpalaPremiereFois(ImpalaJones *impala,Case c)
+{
+	Map& map = Map::Instance();
+	if(c.getSecteur()==-1)
+	{
+		impala->setC(c);
+		return true;
+	}
+	else
+	{
+		int x,y;
+
+		while(c.getSecteur()!=-1)
+		{
+			cout<<" Veuillez positionner impala sur une bonne case"<<endl;
+			cout<< "Veuillez saisir la ligne : "<<endl;
+			cin >>x;
+			cout<<"Veuillez saisir la colonne : "<<endl;
+			cin>>y;
+			pair<int, int> index(x,y);
+			c=*map[index];
+		}
+		return false;
+	}
+}
+
 bool Action::deplacementImpala(ImpalaJones *impala)
 {
-	Case *possible;
-	possible = new Case[3];
-	possible = estPossibleDeplacement(impala);
-	Case *choix;
-
-	int cpt = 0;
-	for(int i=0; i<3;i++)
+	vector<Case> choix = estPossibleDeplacement(impala);
+	if(choix.empty())
 	{
-		if(!possible[i].getX()!=-1)
-			cpt++;
+		/* AUTOMATIQUE */
 	}
-
-	if(cpt!=0)
+	else
 	{
-		choix= new Case[cpt];
-		int j=0;
-		for(int i=0; i<3;i++)
-		{
-			if(possible[i].getX()!=-1)
-			{
-				choix[j] = possible[i];
-				j++;
-			}
-		}
-
-		if(cpt==1)
+		if(choix.size()==1)
 		{
 			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
 			impala->setC(choix[0]);
 		}
 		else
 		{
+			cout<<"Vous avez "<<choix.size()<< "possibilite pour le deplacement de Impala";
 			int resultat;
-			cout<<"Vous avez "<<cpt<< "possibilite pour le deplacement de Impala";
-			for(int i=0;i<j;i++)
+			for(int i=0;i<choix.size();i++)
 			{
-				cout<<j+1<<". La case x: "<<choix[i].getX()<<"y: "<<choix[i].getY();
+				cout<<i+1<<". La case i: "<<choix[i].getX()<<"j: "<<choix[i].getY();
 			}
 
 			cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala";
 			cin>>resultat;
-			while(resultat>j || resultat<1)
+			while(resultat>choix.size() || resultat<1)
 			{
 				cout<<"Veuiller choisir une variable correcte";
+				for(int i=0;i<choix.size();i++)
+				{
+					cout<<i+1<<". La case i: "<<choix[i].getX()<<"j: "<<choix[i].getY();
+				}
 				cin>>resultat;
 			}
 			impala->setC(choix[resultat-1]);
 		}
 	}
-	else
-	{
-		cout<<"Recherche automatique de la prochaine case disponible";
-		/* Parcours de la map
-		 * On garde en memoire le x et le y
-		 * Si on parcours, et qu'on ne trouve rien
-		 */
-	}
-	return true;
 }
-
-Case* Action::estPossibleDeplacement(ImpalaJones *impala)
+vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 {
-	/* On commencer par regarder les 3 cases apres la postion de Impala*/
-	/* Si on est sur x, et qu'on switch sur y FAUT GERER ÇA */
 	Map& map = Map::Instance();
-	/*Case *possibilite;
-	possibilite = new Case[3];
-	*/
-	Case possibilite[3];
+	vector<Case> possibilite;
 	bool dispo;
 	for(int i=0;i<3;i++)
 	{
@@ -115,35 +114,20 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 		{
 			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()+1)==0)
 			{
-				/*On est sur une case interdite
-				* on test sur le y+1, et on incremettant x aussi
-				*/
-				/* y doit bouher*/
 				dispo = caseDisponible(false,impala->getC().getX()+1);
 				if(dispo)
 				{
-					/* Peut être faire l'affichage directement ici */
 					pair<int, int> index(impala->getC().getX()+1,impala->getC().getY());
-					possibilite[i] = map[index];
+					possibilite.push_back(*map[index]);
 				}
-				else
-				{
-					possibilite[i]=Case();
-				}
-
 			}
 			else
 			{
-				/* true => on regarde la ligne , false, on regarde la colonne*/
 				dispo = caseDisponible(true,impala->getC().getY()+1);
 				if(dispo)
 				{
-					pair<int, int> index(impala->getC().getX(),impala->getC().getY());
-
-				}
-				else
-				{
-					possibilite[i]=Case();
+					pair<int, int> index(impala->getC().getX(),impala->getC().getY()+1);
+					possibilite.push_back(*map[index]);
 				}
 			}
 
@@ -157,11 +141,7 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(LIGNE-1,COLONNE-2);
-					possibilite[i] =  map[index];
-				}
-				else
-				{
-					possibilite[i]=Case();
+					possibilite.push_back(*map[index]);
 				}
 			}
 			else
@@ -170,11 +150,7 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				 if(dispo)
 				 {
 					 pair<int, int> index(impala->getC().getX()+1,impala->getC().getY());
-					 possibilite[i] =  map[index];
-				 }
-				 else
-				 {
-					possibilite[i]=Case();
+					 possibilite.push_back(*map[index]);
 				 }
 
 			}
@@ -188,11 +164,7 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(LIGNE-2,0);
-					possibilite[i] =  map[index];
-				}
-				else
-				{
-					possibilite[i]=Case();
+					possibilite.push_back(*map[index]);
 				}
 			}
 			else
@@ -201,11 +173,7 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(impala->getC().getX(),impala->getC().getY()-1);
-					possibilite[i] =  map[index];
-				}
-				else
-				{
-					possibilite[i]=Case();
+					possibilite.push_back(*map[index]);
 				}
 			}
 		}
@@ -218,31 +186,23 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(0,1);
-					possibilite[i] =  map[index];
-				}
-				else
-				{
-					possibilite[i]= Case();
+					possibilite.push_back(*map[index]);
 				}
 			}
-
 			else
 			{
 				dispo = caseDisponible(false,impala->getC().getX()-1);
 				if(dispo)
 				{
 					pair<int, int> index(impala->getC().getX()-1,impala->getC().getY());
-					possibilite[i] = map[index];
-				}
-				else
-				{
-					possibilite[i]= Case();
+					possibilite.push_back(*map[index]);
 				}
 			}
 		}
 	}
 	return possibilite;
 }
+
 
 bool Action::caseDisponible(bool etat,int x)
 {
@@ -252,7 +212,7 @@ bool Action::caseDisponible(bool etat,int x)
 		for(int i=1;i<COLONNE-1;i++)
 		{
 			pair<int, int> index(i,x);
-			if(!map[index].isEstOccupe())
+			if(!map[index]->isEstOccupe())
 				return true;
 		}
 	}
@@ -261,7 +221,7 @@ bool Action::caseDisponible(bool etat,int x)
 		for(int i=1;i<LIGNE-1;i++)
 		{
 			pair<int, int> index(x,i);
-			if(!map[index].isEstOccupe())
+			if(!map[index]->isEstOccupe())
 				return true;
 		}
 	}
