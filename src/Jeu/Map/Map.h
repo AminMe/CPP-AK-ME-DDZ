@@ -6,8 +6,7 @@
 
 #include "Case.h"
 
-#define LIGNE 7
-#define COLONNE 8
+
 
 using namespace std;
 class Map {
@@ -67,15 +66,12 @@ public:
 				if(i!=0 && j!=0 && i!=LIGNE-1 && j!=COLONNE-1)
 				{
 					for(int i=0; i<4; i++)
-					{
-					  /*c.getTabRiviere()[i] = tabRiviere[w][i];*/
-
+					  c.setTab(i,tabRiviere[w][i]);
 					}
 					w++;
 				}
 				tab[i][j] = c;
 			}
-				//Todo : presence rivière ou non
         }
         //m_instance = this;
 	}
@@ -83,7 +79,10 @@ public:
 	/*
 	 * Destructeur
 	 */
-	virtual ~Map(){cout<<"Destruction d'une Map"<<endl;}
+	virtual ~Map(){
+		cout<<"Destruction d'une Map"<<endl;
+		/* LIBERATION  DE LA MEMOIRE */
+	}
 
 	void init();
 
@@ -93,10 +92,18 @@ public:
 	{
 		return tab[Index.first][Index.second];
 	}
+    /* solution provisoire */
+	int getSecteur(int x, int y)
+	{
+		return tab[x][y].getSecteur();
+	}
 
 	int getColonne() const {return COLONNE;}
 	int getLigne() const {return LIGNE;}
 
+	const Case**& getTab() const {
+		return tab;
+	}
 };
 
 #endif /* MAP_H_ */

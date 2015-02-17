@@ -28,6 +28,7 @@ void Case::affiche()
 	}
 }
 
+<<<<<<< HEAD
 string Case::getAffiche()
 {
 	string message = "";
@@ -76,4 +77,9 @@ string Case::getPionAffiche()
 		message = m.str();
 	}
 	return message;
+=======
+void Case::setTab(int position, bool valeur)
+{
+	tabRiviere[position] = valeur;
+>>>>>>> branch 'master' of https://github.com/AminMe/CPP-AK-ME-DDZ.git
 }

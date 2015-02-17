@@ -54,6 +54,14 @@ public:
 	}
 
 	virtual void affiche();
+
+	const Case& getC() const {
+		return c;
+	}
+
+	void setC(const Case& c) {
+		this->c = c;
+	}
 };
 
 #endif /* SRC_PION_H_ */

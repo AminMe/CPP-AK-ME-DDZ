@@ -15,6 +15,9 @@
 #define RIVIERE_HAUT 2
 #define RIVIERE_BAS 3
 
+#define LIGNE 7
+#define COLONNE 8
+
 #include <cstdlib>
 #include <string>
 using namespace std;
@@ -29,8 +32,8 @@ private:
 		bool estOccupe;
 		Pion *pionCase; //= NULL;
 		bool tabRiviere[4];
-public:
 
+public:
 	Case(int posiX, int posiY, int secteurNum) {
 		x=posiX;
 		y=posiY;
@@ -67,7 +70,7 @@ public:
 	void setX(int x) {this->x = x;}
 	int getY() const {return y;}
 	void setY(int y) {this->y = y;}
-
+	void setTab(int position, bool valeur);
 	/*
 	void setPionCase(const Pion*& pionCase) {
 		this->pionCase = pionCase;

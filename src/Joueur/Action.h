@@ -25,9 +25,21 @@ public:
 	void affiche();
 	void controlDeplacement(Pion * p);
 
+	bool deplacementImpala(ImpalaJones *impala);
+	bool estPossibleDeplacement(ImpalaJones *impala);
+	bool caseDisponible(bool etat,int x);
 	/*
-    void deplacerImpala(ImpalaJones *impala, Case c);
-    void deplacerImpala(ImpalaJones *impala);
+    bool deplacerImpalaPossible ?
+    si TRUE :
+    On regarde les possibilites
+    Sinon
+    On le fait automatiquement jusqu'a trouver un endroit libre
+    	Si aucun endroit trouver, FIN DU JEU TOUT EST FINIS
+
+    Methode 1 : lorsque deplacement possible
+    bool deplacerImpala(ImpalaJones *impala, Case c);
+    Methode 2 : lorsque le deplacement n'est pas possible
+    bool deplacerImpala(ImpalaJones *impala);
     */
 };
 

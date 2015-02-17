@@ -30,7 +30,6 @@ protected:
 	int num;
 	string name;
 	vector<Animal*> mesAnimaux;
-	/*Animal *mesAnimaux;*/
 	int point;
 	bool bonus;
 	/* Chnagement de *mesAnimaux à Vecteur*/
