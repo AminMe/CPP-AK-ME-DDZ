@@ -6,8 +6,7 @@
 
 #include "Case.h"
 
-#define LIGNE 7
-#define COLONNE 8
+
 
 using namespace std;
 class Map {
@@ -93,10 +92,18 @@ public:
 	{
 		return tab[Index.first][Index.second];
 	}
+    /* solution provisoire */
+	int getSecteur(int x, int y)
+	{
+		return tab[x][y].getSecteur();
+	}
 
 	int getColonne() const {return COLONNE;}
 	int getLigne() const {return LIGNE;}
 
+	const Case**& getTab() const {
+		return tab;
+	}
 };
 
 #endif /* MAP_H_ */

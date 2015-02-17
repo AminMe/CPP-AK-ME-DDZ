@@ -13,6 +13,8 @@
 #define RIVIERE_HAUT 2
 #define RIVIERE_BAS 3
 
+#define LIGNE 7
+#define COLONNE 8
 
 #include <cstdlib>
 

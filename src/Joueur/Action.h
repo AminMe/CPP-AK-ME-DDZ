@@ -25,6 +25,9 @@ public:
 	void affiche();
 	void controlDeplacement(Pion * p);
 
+	bool deplacementImpala(ImpalaJones *impala);
+	bool estPossibleDeplacement(ImpalaJones *impala);
+	bool lignePlein(bool etat,int x);
 	/*
     bool deplacerImpalaPossible ?
     si TRUE :
