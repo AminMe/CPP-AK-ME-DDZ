@@ -76,6 +76,7 @@ public:
 			}
 				//Todo : presence rivière ou non
         }
+        m_instance = this;
 	}
 
 	/*

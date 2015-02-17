@@ -32,6 +32,28 @@ Jeu::~Jeu() {
 
 
 int main(int argc, char **argv) {
+
+	/*string message = "   o  ";
+	cout<<"------------";cout<<"------------";
+	cout<<endl<<"|";cout<<"          |";cout<<"          |";
+	cout<<endl;
+	cout<<"|  ";cout<<message;cout<<"  |";cout<<"  ";cout<<message;cout<<"  |";
+	cout<<endl;
+	cout<<"|";cout<<"          |";cout<<"          |";
+	cout<<endl;
+	cout<<"------------";cout<<"------------";
+	cout<<endl;*/
+
+
+	/*
+	 *
+	string message = "   o  ";
+	cout<<"------------";
+	cout<<endl<<"|";cout<<"          |"<<endl;
+	cout<<"|  ";cout<<message;cout<<"  |";
+	cout<<endl<<"|";cout<<"          |";
+	cout<<endl<<"------------"<<endl;
+	 */
 	cout<<"Debut"<<endl;
 
 	Map map();
@@ -103,11 +125,8 @@ int main(int argc, char **argv) {
 			Humain joueur2(2,name);
 			/* Faire fonction affiche */
 
-			/*joueur1.affiche();
+			joueur1.affiche();
 			joueur2.affiche();
-			*/
-
-
 
 		}
 

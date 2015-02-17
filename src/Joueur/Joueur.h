@@ -32,11 +32,12 @@ protected:
 	vector<Animal*> mesAnimaux;
 	/*Animal *mesAnimaux;*/
 	int point;
+	bool bonus;
 	/* Chnagement de *mesAnimaux à Vecteur*/
 
 public:
 
-	Joueur(int num, string name):num(num),name(name),point(0)
+	Joueur(int num, string name):num(num),name(name),point(0),bonus(false)
     {
 		Map& map = Map::Instance();
 
@@ -58,6 +59,8 @@ public:
 			mesAnimaux.push_back(new Crocodile(this));
 		}
 	}
+
+	void affiche();
 
 	virtual ~Joueur(){};
 
@@ -81,6 +84,8 @@ public:
 	void setPoint(int point) {
 		this->point = point;
 	}
+private:
+	int contains(string *animaux,string key);
 };
 
 #endif /* SRC_JOUEUR_H_ */
