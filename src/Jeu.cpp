@@ -70,6 +70,23 @@ int main(int argc, char **argv) {
 	Humain gishan(2,"Gishan",NULL);
 	delete listeanimaux;
 	*/
+	int res;
+	cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala";
+	cin>>res;
+	/*for(int i=1;i<j;i++)*/
+	int j=3;
+	while(res>j || res<1)
+	{
+		cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala";
+		cin>>res;
+	}
+
+
+
+
+
+
+
 	int resultat;
 	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 	cout<<"-----------------------------"<<endl;
@@ -106,8 +123,6 @@ int main(int argc, char **argv) {
 			/*joueur1.affiche();
 			joueur2.affiche();
 			*/
-
-
 
 		}
 

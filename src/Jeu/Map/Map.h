@@ -101,9 +101,6 @@ public:
 	int getColonne() const {return COLONNE;}
 	int getLigne() const {return LIGNE;}
 
-	const Case**& getTab() const {
-		return tab;
-	}
 };
 
 #endif /* MAP_H_ */

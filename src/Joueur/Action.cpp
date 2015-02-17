@@ -7,8 +7,6 @@
 
 #include "Action.h"
 
-#include "../Jeu/Map/Case.h"
-
 Action::Action() {
 	// TODO Auto-generated constructor stub
 
@@ -40,15 +38,64 @@ bool Action::put(Pion *a, Case c, Case impala)
 
 bool Action::deplacementImpala(ImpalaJones *impala)
 {
-	bool possible = estPossibleDeplacement(impala);
-	if(possible)
+	Case *possible;
+	possible = new Case[3];
+	possible = estPossibleDeplacement(impala);
+	Case *choix;
+
+	int cpt = 0;
+	for(int i=0; i<3;i++)
 	{
-		std::cout<< "Vous avez le choix entre la case positio"<<;
+		if(!possible[i].getX()!=-1)
+			cpt++;
+	}
+
+	if(cpt!=0)
+	{
+		choix= new Case[cpt];
+		int j=0;
+		for(int i=0; i<3;i++)
+		{
+			if(possible[i].getX()!=-1)
+			{
+				choix[j] = possible[i];
+				j++;
+			}
+		}
+
+		if(cpt==1)
+		{
+			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
+			impala->setC(choix[0]);
+		}
+		else
+		{
+			int resultat;
+			cout<<"Vous avez "<<cpt<< "possibilite pour le deplacement de Impala";
+			for(int i=0;i<j;i++)
+			{
+				cout<<j+1<<". La case x: "<<choix[i].getX()<<"y: "<<choix[i].getY();
+			}
+
+			cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala";
+			cin>>resultat;
+			while(resultat>j || resultat<1)
+			{
+				cout<<"Veuiller choisir une variable correcte";
+				cin>>resultat;
+			}
+			impala->setC(choix[resultat-1]);
+		}
 	}
 	else
 	{
-
+		cout<<"Recherche automatique de la prochaine case disponible";
+		/* Parcours de la map
+		 * On garde en memoire le x et le y
+		 * Si on parcours, et qu'on ne trouve rien
+		 */
 	}
+	return true;
 }
 
 Case* Action::estPossibleDeplacement(ImpalaJones *impala)
@@ -56,10 +103,14 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 	/* On commencer par regarder les 3 cases apres la postion de Impala*/
 	/* Si on est sur x, et qu'on switch sur y FAUT GERER ÇA */
 	Map& map = Map::Instance();
+	/*Case *possibilite;
+	possibilite = new Case[3];
+	*/
 	Case possibilite[3];
 	bool dispo;
 	for(int i=0;i<3;i++)
 	{
+		/* Impala se situe au niveau de la premiere ligne */
 		if(impala->getC().getX()==0 && impala->getC().getY()>0)
 		{
 			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()+1)==0)
@@ -72,7 +123,12 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					/* Peut être faire l'affichage directement ici */
-					possibilite[i] = map[impala->getC().getX()+1][impala->getC().getY()>0];
+					pair<int, int> index(impala->getC().getX()+1,impala->getC().getY());
+					possibilite[i] = map[index];
+				}
+				else
+				{
+					possibilite[i]=Case();
 				}
 
 			}
@@ -82,12 +138,17 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				dispo = caseDisponible(true,impala->getC().getY()+1);
 				if(dispo)
 				{
-					possibilite[i] = map[impala->getC().getX()][impala->getC().getY()+1];
+					pair<int, int> index(impala->getC().getX(),impala->getC().getY());
 
+				}
+				else
+				{
+					possibilite[i]=Case();
 				}
 			}
 
 		}
+		/*Impala se sotue au niveau de la derniere colonne */
 		else if(impala->getC().getY()==COLONNE-1 && impala->getC().getX()>0)
 		{
 			if(map.getSecteur(impala->getC().getX()+1,impala->getC().getY())==0)
@@ -95,7 +156,12 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				dispo = caseDisponible(true,COLONNE-2);
 				if(dispo)
 				{
-					possibilite[i] =  map[LIGNE-1][COLONNE-2];
+					pair<int, int> index(LIGNE-1,COLONNE-2);
+					possibilite[i] =  map[index];
+				}
+				else
+				{
+					possibilite[i]=Case();
 				}
 			}
 			else
@@ -103,11 +169,17 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				 dispo = caseDisponible(false,impala->getC().getX()+1);
 				 if(dispo)
 				 {
-					 possibilite[i] =  map[impala->getC().getX()+1][impala->getC().getY()];
+					 pair<int, int> index(impala->getC().getX()+1,impala->getC().getY());
+					 possibilite[i] =  map[index];
+				 }
+				 else
+				 {
+					possibilite[i]=Case();
 				 }
 
 			}
 		}
+		/* Impala se situe au niveau de la derniere ligne */
 		else if(impala->getC().getX()==LIGNE-1 && impala->getC().getX()>0)
 		{
 			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()-1)==0)
@@ -115,35 +187,61 @@ Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 				dispo = caseDisponible(false,LIGNE-2);
 				if(dispo)
 				{
-					possibilite[i] =  map[LIGNE-2][0];
+					pair<int, int> index(LIGNE-2,0);
+					possibilite[i] =  map[index];
+				}
+				else
+				{
+					possibilite[i]=Case();
 				}
 			}
 			else
 			{
-				dispo = caseDisponible(false,impala->getC().getY()-1);
+				dispo = caseDisponible(true,impala->getC().getY()-1);
 				if(dispo)
 				{
+					pair<int, int> index(impala->getC().getX(),impala->getC().getY()-1);
+					possibilite[i] =  map[index];
+				}
+				else
+				{
+					possibilite[i]=Case();
 				}
 			}
 		}
-		else if(impala->getC().getX()>0 && impala->getC().getX()==0)
+		/* Impala se situe au niveau de la premiere colonne */
+		else if(impala->getC().getX()>0 && impala->getC().getY()==0)
 		{
-			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()+1)==0)
+			if(map.getSecteur(impala->getC().getX()-1,impala->getC().getY())==0)
 			{
-							/* On avance suivant y */
+				dispo = caseDisponible(true,1);
+				if(dispo)
+				{
+					pair<int, int> index(0,1);
+					possibilite[i] =  map[index];
+				}
+				else
+				{
+					possibilite[i]= Case();
+				}
 			}
+
 			else
 			{
-			/*On regarde si la ligne est pleine ou non */
-			/* true => on regarde la ligne , false, on regarde la colonne*/
-			dispo = caseDisponible(false,impala->getC().getY());
-			if(dispo)
-			{
-
+				dispo = caseDisponible(false,impala->getC().getX()-1);
+				if(dispo)
+				{
+					pair<int, int> index(impala->getC().getX()-1,impala->getC().getY());
+					possibilite[i] = map[index];
+				}
+				else
+				{
+					possibilite[i]= Case();
+				}
 			}
 		}
-		}
 	}
+	return possibilite;
 }
 
 bool Action::caseDisponible(bool etat,int x)
@@ -153,7 +251,8 @@ bool Action::caseDisponible(bool etat,int x)
 	{
 		for(int i=1;i<COLONNE-1;i++)
 		{
-			if(!map.getTab()[i][x].isEstOccupe())
+			pair<int, int> index(i,x);
+			if(!map[index].isEstOccupe())
 				return true;
 		}
 	}
@@ -161,7 +260,8 @@ bool Action::caseDisponible(bool etat,int x)
 	{
 		for(int i=1;i<LIGNE-1;i++)
 		{
-			if(!map.getTab()[x][i].isEstOccupe())
+			pair<int, int> index(x,i);
+			if(!map[index].isEstOccupe())
 				return true;
 		}
 	}
