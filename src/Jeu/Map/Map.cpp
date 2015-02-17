@@ -65,7 +65,13 @@ void Map::affiche()
 
 	for(i = 0; i<LIGNE;i++)
 	{
-		for(int k = 0; k<COLONNE; k++){cout<<"-----------";}
+		for(int k = 0; k<COLONNE; k++)
+		{
+			if(!tab[i][k].getTabRiviere()[RIVIERE_HAUT])
+			{
+				cout<<"----"<<tab[i][k].getTabRiviere()[RIVIERE_HAUT]<<"------";
+			}
+		}
 		cout<<endl;
 		cout<<"|";
 		for(int k = 0; k<COLONNE; k++){cout<<"          |";}
@@ -132,7 +138,13 @@ void Map::affiche()
 		cout<<"|";
 		for(int k = 0; k<COLONNE; k++){cout<<"          |";}
 		cout<<endl;
-		for(int k = 0; k<COLONNE; k++){cout<<"-----------";}
+		for(int k = 0; k<COLONNE; k++)
+		{
+			if(!tab[i][k].getTabRiviere()[RIVIERE_BAS])
+			{
+				cout<<"-----------";
+			}
+		}
 		cout<<endl;
 	}
 

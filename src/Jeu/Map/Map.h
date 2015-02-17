@@ -69,6 +69,7 @@ public:
 					for(int i=0; i<4; i++)
 					{
 					  /*c.getTabRiviere()[i] = tabRiviere[w][i];*/
+
 					}
 					w++;
 				}
@@ -76,7 +77,7 @@ public:
 			}
 				//Todo : presence rivière ou non
         }
-        m_instance = this;
+        //m_instance = this;
 	}
 
 	/*
