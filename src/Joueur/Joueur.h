@@ -83,6 +83,11 @@ public:
 	void setPoint(int point) {
 		this->point = point;
 	}
+
+	 vector<Animal*> getMesAnimaux() const {
+		return mesAnimaux;
+	}
+
 private:
 	int contains(string *animaux,string key);
 };

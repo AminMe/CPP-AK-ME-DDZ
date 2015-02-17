@@ -56,7 +56,6 @@ int main(int argc, char **argv) {
 	 */
 	cout<<"Debut"<<endl;
 
-	Map map();
 	/*map.init();*/
 
 	Map& ptr = Map::Instance();
@@ -128,10 +127,16 @@ int main(int argc, char **argv) {
 			joueur1.affiche();
 			joueur2.affiche();
 
+			Map& map = Map::Instance();
+			pair<int, int> index(1,1);
+
+
+			map[index]->setPion(joueur1.getMesAnimaux()[1]);
+			cout<<map[index]->getPionCase()->getName()<<endl;
 		}
 
 
-
+		ptr.affiche();
 
 	}
 

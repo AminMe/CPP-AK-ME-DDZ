@@ -19,7 +19,7 @@ bool Etat::isFinished()
 		for (int j = 1; i<COLONNE-1; i++)
 		{
 			pair<int, int> index(i,j);
-			if(!map[index].isEstOccupe())
+			if(!map[index]->isEstOccupe())
 			{
 				return false;
 			}

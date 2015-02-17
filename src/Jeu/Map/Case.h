@@ -52,13 +52,8 @@ public:
 	    return *this;
 	}
 
-	void setPion(Pion *p){
-		if(p!=NULL){
-			pionCase = p;
-			estOccupe=true;
-		}
-	}
-	Pion*& getPionCase() {return pionCase;}
+	void setPion(Pion *p);
+	Pion* getPionCase() const;
 
 	bool isEstOccupe() const {return estOccupe;}
 	void setEstOccupe(bool estOccupe) {this->estOccupe = estOccupe;}

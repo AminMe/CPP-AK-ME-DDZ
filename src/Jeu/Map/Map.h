@@ -81,6 +81,7 @@ public:
         //m_instance = this;
 	}
 
+
 	/*
 	 * Destructeur
 	 */
@@ -93,9 +94,9 @@ public:
 
 	void affiche();
 
-	Case operator[](const std::pair<int,int>& Index)
+	Case * operator[](const std::pair<int,int>& Index)
 	{
-		return tab[Index.first][Index.second];
+		return &tab[Index.first][Index.second];
 	}
     /* solution provisoire */
 	int getSecteur(int x, int y)

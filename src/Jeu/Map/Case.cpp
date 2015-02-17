@@ -49,14 +49,14 @@ string Case::getAffiche()
 		Map& map = Map::Instance();
 		pair<int, int> index(x,y);
 
-		Animal *p = dynamic_cast<Animal*>(map[index].pionCase);
+		Animal *p = dynamic_cast<Animal*>(map[index]->pionCase);
 		if (p == NULL)
 		{
 			m<<"          ";
 		}
 		else
 		{
-			m<<"("<<p->getJoueur()->getNum()<<","<<p->getName()[0];
+			m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<")  ";
 		}
 
 		message = m.str();
@@ -67,4 +67,19 @@ string Case::getAffiche()
 void Case::setTab(int position, bool valeur)
 {
 	tabRiviere[position] = valeur;
+}
+
+void Case::setPion(Pion *p){
+
+	if(p!=NULL && pionCase==NULL){
+
+		pionCase = p;
+
+		estOccupe=true;
+	}
+}
+
+Pion* Case::getPionCase() const
+{
+	return pionCase;
 }
