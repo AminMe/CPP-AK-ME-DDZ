@@ -43,7 +43,7 @@ bool Action::deplacementImpala(ImpalaJones *impala)
 	bool possible = estPossibleDeplacement(impala);
 	if(possible)
 	{
-		cout<< "Vous avez le choix entre la case positio"<<;
+		std::cout<< "Vous avez le choix entre la case positio"<<;
 	}
 	else
 	{
@@ -51,57 +51,77 @@ bool Action::deplacementImpala(ImpalaJones *impala)
 	}
 }
 
-bool Action::estPossibleDeplacement(ImpalaJones *impala)
+Case* Action::estPossibleDeplacement(ImpalaJones *impala)
 {
 	/* On commencer par regarder les 3 cases apres la postion de Impala*/
 	/* Si on est sur x, et qu'on switch sur y FAUT GERER ÇA */
 	Map& map = Map::Instance();
-
+	Case possibilite[3];
+	bool dispo;
 	for(int i=0;i<3;i++)
 	{
 		if(impala->getC().getX()==0 && impala->getC().getY()>0)
 		{
-			bool plein;
 			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()+1)==0)
 			{
 				/*On est sur une case interdite
 				* on test sur le y+1, et on incremettant x aussi
 				*/
-				plein = lignePlein(false,impala->getC().getX()+1);
+				/* y doit bouher*/
+				dispo = caseDisponible(false,impala->getC().getX()+1);
+				if(dispo)
+				{
+					/* Peut être faire l'affichage directement ici */
+					possibilite[i] = map[impala->getC().getX()+1][impala->getC().getY()>0];
+				}
+
 			}
 			else
 			{
-                /*On regarde si la ligne est pleine ou non */
 				/* true => on regarde la ligne , false, on regarde la colonne*/
-				plein = lignePlein(false,impala->getC().getY());
-				if(!plein)
+				dispo = caseDisponible(true,impala->getC().getY()+1);
+				if(dispo)
 				{
-					/* On ne prendra pa enconsideration cette case */
+					possibilite[i] = map[impala->getC().getX()][impala->getC().getY()+1];
+
 				}
 			}
+
 		}
 		else if(impala->getC().getY()==COLONNE-1 && impala->getC().getX()>0)
 		{
-			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()+1)==0)
+			if(map.getSecteur(impala->getC().getX()+1,impala->getC().getY())==0)
 			{
+				dispo = caseDisponible(true,COLONNE-2);
+				if(dispo)
+				{
+					possibilite[i] =  map[LIGNE-1][COLONNE-2];
+				}
 			}
 			else
 			{
-				bool plein = lignePlein(false,impala->getC().getY());
-				if(!plein)
-				{
-				}
+				 dispo = caseDisponible(false,impala->getC().getX()+1);
+				 if(dispo)
+				 {
+					 possibilite[i] =  map[impala->getC().getX()+1][impala->getC().getY()];
+				 }
+
 			}
 		}
 		else if(impala->getC().getX()==LIGNE-1 && impala->getC().getX()>0)
 		{
-			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()+1)==0)
+			if(map.getSecteur(impala->getC().getX(),impala->getC().getY()-1)==0)
 			{
+				dispo = caseDisponible(false,LIGNE-2);
+				if(dispo)
+				{
+					possibilite[i] =  map[LIGNE-2][0];
+				}
 			}
 			else
 			{
-				bool plein = lignePlein(false,impala->getC().getY());
-				if(!plein)
+				dispo = caseDisponible(false,impala->getC().getY()-1);
+				if(dispo)
 				{
 				}
 			}
@@ -116,17 +136,17 @@ bool Action::estPossibleDeplacement(ImpalaJones *impala)
 			{
 			/*On regarde si la ligne est pleine ou non */
 			/* true => on regarde la ligne , false, on regarde la colonne*/
-			bool plein = lignePlein(false,impala->getC().getY());
-			if(!plein)
+			dispo = caseDisponible(false,impala->getC().getY());
+			if(dispo)
 			{
-				/* On ne prendra pas en consideration cette case */
+
 			}
 		}
 		}
 	}
 }
 
-bool Action::lignePlein(bool etat,int x)
+bool Action::caseDisponible(bool etat,int x)
 {
 	Map& map = Map::Instance();
 	if(etat)
@@ -134,7 +154,7 @@ bool Action::lignePlein(bool etat,int x)
 		for(int i=1;i<COLONNE-1;i++)
 		{
 			if(!map.getTab()[i][x].isEstOccupe())
-				return false;
+				return true;
 		}
 	}
 	else
@@ -142,8 +162,8 @@ bool Action::lignePlein(bool etat,int x)
 		for(int i=1;i<LIGNE-1;i++)
 		{
 			if(!map.getTab()[x][i].isEstOccupe())
-				return false;
+				return true;
 		}
 	}
-	return true;
+	return false;
 }

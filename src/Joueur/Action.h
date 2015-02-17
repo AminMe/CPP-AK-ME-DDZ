@@ -27,7 +27,7 @@ public:
 
 	bool deplacementImpala(ImpalaJones *impala);
 	bool estPossibleDeplacement(ImpalaJones *impala);
-	bool lignePlein(bool etat,int x);
+	bool caseDisponible(bool etat,int x);
 	/*
     bool deplacerImpalaPossible ?
     si TRUE :
