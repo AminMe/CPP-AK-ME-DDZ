@@ -9,8 +9,10 @@
 #define SRC_PION_H_
 
 #include <iostream>
+#include <string>
 #include <utility>
 
+#include "../Jeu/Map/Case.h"
 #include "../Jeu/Map/Map.h"
 
 class Map;
