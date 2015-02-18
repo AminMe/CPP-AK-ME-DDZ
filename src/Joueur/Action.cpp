@@ -148,6 +148,7 @@ bool Action::deplacementImpala()
 		if(choix.size()==1)
 		{
 			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
+			impala.getC()->setPion(NULL);
 			impala.setC(choix[0]);
 			choix[0]->setPion(&impala);
 			return true;

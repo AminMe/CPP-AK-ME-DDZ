@@ -41,7 +41,7 @@ string Case::getAffiche()
 		else
 			return "          ";
 
-		return "    o     ";
+		return "    C     ";
 	}
 	else if((x==0 && y==0) || (x==0 && y==COLONNE-1) || (x==LIGNE-1 && y==0) || (x==LIGNE-1 && y==COLONNE-1))
 	{
