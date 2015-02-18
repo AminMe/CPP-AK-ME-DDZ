@@ -62,6 +62,11 @@ public:
 	}
 	;
 
+	void addPoint(int point)
+	{
+		this->point+=point;
+	}
+
 	virtual void play()=0;
 
 	const string& getName() const {
@@ -83,7 +88,8 @@ public:
 		this->point = point;
 	}
 
-
+	void setBonus(bool bonus) {this->bonus = bonus;}
+	bool getBonus() { return this->bonus;}
 	 vector<Animal*> getMesAnimaux() {
 		return mesAnimaux;
 	}

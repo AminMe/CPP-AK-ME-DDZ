@@ -7,16 +7,7 @@
 
 #include "Jeu.h"
 
-#include <iostream>
-#include <utility>
 
-#include "Jeu/Map/Case.h"
-#include "Jeu/Map/Map.h"
-#include "Joueur/Action.h"
-#include "Joueur/Humain/Humain.h"
-#include "Joueur/Joueur.h"
-#include "Pion/ImpalaJones.h"
-#include "Pion/Pion.h"
 
 using namespace std;
 

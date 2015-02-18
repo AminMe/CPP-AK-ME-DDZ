@@ -8,6 +8,9 @@
 
 #include "Case.h"
 
+class Jeu;
+class Joueur;
+
 #define LIGNE 7
 #define COLONNE 8
 
@@ -116,6 +119,14 @@ public:
 
 	vector<Case*> proposeCases(Case* impala);
 
+	void gainBonus(Jeu j);
+	void chercheBonus(Jeu j, int secteur);
+
+	bool estComplete(Jeu j);
+	void chercheJoueurEnMajorite(Jeu j, int secteur);
+	vector<Case*> getCaseSecteur(int secteur);
+	vector<int> getListJoueur(vector<Case*> caseSecteur);
+	int getPoint(vector<Case*> caseSecteur);
 };
 
 #endif /* MAP_H_ */

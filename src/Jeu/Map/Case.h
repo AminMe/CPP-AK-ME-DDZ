@@ -10,7 +10,8 @@
 
 #include <iostream>
 
-#include "../../Pion/Pion.h"
+class Pion;
+
 
 
 #define RIVIERE_GAUCHE 0
