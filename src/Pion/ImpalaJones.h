@@ -12,12 +12,13 @@
 
 class ImpalaJones : public Pion {
 private:
+	static ImpalaJones j_instance;
 	ImpalaJones(int x, int y):Pion("Impala Jones",0,0){}
-	ImpalaJones():Pion("Impala Jones",0,0){}
+	ImpalaJones(){}
 	virtual ~ImpalaJones(){}
 	ImpalaJones& operator =(const ImpalaJones&){}
 	ImpalaJones (const ImpalaJones&):Pion("Impala Jones",0,0){}
-	static ImpalaJones m_instance;
+
 public :
 	static ImpalaJones& Instance();
 };

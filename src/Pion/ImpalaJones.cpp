@@ -5,17 +5,11 @@
  *      Author: Amin
  */
 
-#include<iostream>
-#include<stdio.h>
-
 #include "ImpalaJones.h"
 
-using namespace std;
-
-ImpalaJones ImpalaJones::m_instance=ImpalaJones();
-
+ImpalaJones ImpalaJones::j_instance=ImpalaJones();
 
 ImpalaJones& ImpalaJones::Instance()
 {
-	return m_instance;
+	return j_instance;
 }
