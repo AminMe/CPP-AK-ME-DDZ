@@ -8,10 +8,26 @@
 #ifndef SRC_SAUVEGARDE_XML_H_
 #define SRC_SAUVEGARDE_XML_H_
 
+#include <string>
+
+using namespace std;
+
 class XML {
+private:
+	string name;
 public:
-	XML();
-	virtual ~XML();
+
+	XML(){}
+
+	XML(string name):name(name)
+	{
+
+	}
+	virtual ~XML(){}
+
+	string getName() const {
+		return name;
+	}
 };
 
 #endif /* SRC_SAUVEGARDE_XML_H_ */

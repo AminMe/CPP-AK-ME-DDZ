@@ -7,12 +7,4 @@
 
 #include "XML.h"
 
-XML::XML() {
-	// TODO Auto-generated constructor stub
-
-}
-
-XML::~XML() {
-	// TODO Auto-generated destructor stub
-}
 
