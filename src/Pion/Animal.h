@@ -2,8 +2,9 @@
 #define ANIMAL_H_
 
 #include <iostream>
+#include <vector>
 
-#include "../Jeu/Map/Map.h"
+#include "../Jeu/Map/Case.h"
 #include "Pion.h"
 
 class Joueur;
@@ -28,6 +29,10 @@ public:
 
 	void setEstCache(bool etatAnimal) {
 		estCache = etatAnimal;
+		if(estCache)
+		{
+			valeur = 0;
+		}
 	}
 
 	bool isEstCache() const {
@@ -52,7 +57,9 @@ public:
 		return *this;
 	}
 
+	vector<Case*> checkAlentour(Case position,string animalRecherche);
 
+	void switchPosition(Animal *first,Animal *second);
 
 	virtual void check(Case position)=0;
 };

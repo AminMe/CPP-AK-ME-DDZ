@@ -11,7 +11,6 @@
 #include <iostream>
 #include <utility>
 
-#include "../Jeu/Map/Case.h"
 #include "../Jeu/Map/Map.h"
 
 class Map;
@@ -57,8 +56,8 @@ public:
 
 	virtual void affiche();
 
-	const Case& getC() const {
-		return c;
+	Case* getC() {
+		return &c;
 	}
 
 	void setC(const Case& c) {

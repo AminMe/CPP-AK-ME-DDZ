@@ -25,6 +25,8 @@ public:
 	/*bool deplacementImpala(ImpalaJones *impala);
 	bool estPossibleDeplacement(ImpalaJones *impala);*/
 	bool caseDisponible(bool etat,int x);
+	Case* parcourir(int x, int y);
+
 
 };
 

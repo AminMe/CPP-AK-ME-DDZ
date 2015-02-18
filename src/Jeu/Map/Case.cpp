@@ -47,7 +47,7 @@ string Case::getAffiche()
 		//message = "("+"a"+","+getY()+") s ="+secteur;
 		ostringstream m;
 		Map& map = Map::Instance();
-		pair<int, int> index(x,y);
+		pair<int, int> index(getI(),getJ());
 
 		Animal *p = dynamic_cast<Animal*>(map[index]->pionCase);
 		if (p == NULL)

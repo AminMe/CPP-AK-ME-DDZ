@@ -14,7 +14,7 @@ class Gazelle : public Animal {
 public:
 	Gazelle(Joueur *joueur):Animal("Gazelle",joueur,2){}
 	~Gazelle(){}
-
+	void fuit();
 	void check(Case position);
 };
 

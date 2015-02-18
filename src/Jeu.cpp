@@ -155,12 +155,20 @@ int main(int argc, char **argv) {
 			pair<int, int> index(x,y);
 			joueur1.getAction().deplacementImpalaPremiereFois(&impala,*map[index]);
 
-			cout<<"IMPALA EST ICI : "<<impala.getC().getX()<<"et :"<<impala.getC().getY();
+			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
 			joueur2.getAction().deplacementImpala(&impala);
-			cout<<"IMPALA EST ICI : "<<impala.getC().getX()<<"et :"<<impala.getC().getY();
+			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
+			/*cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY();*/
 
+			/*
+			vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
 
-
+			for(Case *c : vec)
+			{
+				c->affiche();
+			}
+			cout<<endl;
+			*/
 		}
 		ptr.affiche();
 

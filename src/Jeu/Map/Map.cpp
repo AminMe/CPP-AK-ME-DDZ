@@ -7,6 +7,8 @@
 
 #include "Map.h"
 
+#include <string>
+
 
 Map Map::m_instance=Map();
 
@@ -169,4 +171,42 @@ void Map::affiche()
 		cout<<endl;
 	}
 
+}
+
+vector<Case*> Map::proposeCases(Case* impala)
+{
+	int i = impala->getX();
+	int j = impala->getY();
+	vector<Case*> retour;
+
+	/*
+	 * Dans ce cas on renvoi une ligne entiere
+	 */
+	if(i>0)
+	{
+		/*Seules les cases du jeu nous interesse
+		 * Celles de l'impala ne servent a rien
+		 */
+		for(int k = 1;k<COLONNE-1;k++)
+		{
+			if(tab[i][k].getPionCase()==NULL)
+				retour.push_back(&tab[i][k]);
+		}
+	}
+	/*
+	 * Dans ce cas on renvoi une colonne entiere
+	 */
+	else
+	{
+		/*Seules les cases du jeu nous interesse
+		 * Celles de l'impala ne servent a rien
+		 */
+		for(int k = 1;k<LIGNE-1;k++)
+		{
+			if(tab[k][j].getPionCase()==NULL)
+				retour.push_back(&tab[k][j]);
+		}
+
+	}
+	return retour;
 }

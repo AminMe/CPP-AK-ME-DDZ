@@ -83,7 +83,8 @@ public:
 		this->point = point;
 	}
 
-	vector<Animal*> getMesAnimaux() const {
+
+	 vector<Animal*> getMesAnimaux() {
 		return mesAnimaux;
 	}
 
