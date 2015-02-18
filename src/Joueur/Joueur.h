@@ -13,12 +13,13 @@
 #include <vector>
 
 #include "../Jeu/Map/Map.h"
+#include "../Pion/Animal.h"
 #include "../Pion/Effrayant/Crocodile.h"
 #include "../Pion/Effrayant/Lion.h"
 #include "../Pion/Effraye/Gazelle.h"
 #include "../Pion/Effraye/Zebre.h"
 #include "../Pion/Invincible/Elephant.h"
-
+#include "Action.h"
 
 class Animal;
 
@@ -32,36 +33,34 @@ protected:
 	vector<Animal*> mesAnimaux;
 	int point;
 	bool bonus;
-	/* Chnagement de *mesAnimaux à Vecteur*/
-
+	Action action;
 public:
 
-	Joueur(int num, string name):num(num),name(name),point(0),bonus(false)
-    {
+	Joueur(int num, string name) :
+			num(num), name(name), point(0), bonus(false) {
 		Map& map = Map::Instance();
 
-		for(int i=0;i<6;i++)
-		{
+		for (int i = 0; i < 6; i++) {
 			mesAnimaux.push_back(new Gazelle(this));
 		}
 
-		for(int i=0;i<5;i++)
-		{
+		for (int i = 0; i < 5; i++) {
 			mesAnimaux.push_back(new Zebre(this));
 		}
 
 		mesAnimaux.push_back(new Elephant(this));
 		mesAnimaux.push_back(new Lion(this));
 
-		for(int i=0; i<2;i++)
-		{
+		for (int i = 0; i < 2; i++) {
 			mesAnimaux.push_back(new Crocodile(this));
 		}
 	}
 
 	void affiche();
 
-	virtual ~Joueur(){};
+	virtual ~Joueur() {
+	}
+	;
 
 	virtual void play()=0;
 
@@ -84,12 +83,17 @@ public:
 		this->point = point;
 	}
 
+
 	 vector<Animal*> getMesAnimaux() {
 		return mesAnimaux;
 	}
 
+	Action getAction() {
+		return action;
+	}
+
 private:
-	int contains(string *animaux,string key);
+	int contains(string *animaux, string key);
 };
 
 #endif /* SRC_JOUEUR_H_ */

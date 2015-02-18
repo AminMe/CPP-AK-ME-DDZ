@@ -1,46 +1,33 @@
-/*
- * Action.h
- *
- *  Created on: 27 janv. 2015
- *      Author: Amin
- */
-
 #ifndef SRC_ACTION_H_
 #define SRC_ACTION_H_
-
-class Animal;
-class Case;
-class Joueur;
-class Pion;
+#include <vector>
+#include "../Jeu/Map/Case.h"
+#include "../Jeu/Map/Map.h"
+#include "../Pion/ImpalaJones.h"
+#include "../Pion/Pion.h"
+class ImpalaJones;
 
 class Action {
+
 public:
 	Action();
 	virtual ~Action();
 
 	void update();
-	/* Changement de Animal à Pion, on met case dans le deuxième caractère ? ou x et y ?  */
-	// on utilisera ton [] pour récupérer la map
+
 	bool put(Pion *a, Case c, Case impala);
 	void affiche();
 	void controlDeplacement(Pion * p);
 
+	bool deplacementImpala(ImpalaJones *impala);
+	vector<Case> estPossibleDeplacement(ImpalaJones *impala);
+	bool deplacementImpalaPremiereFois(ImpalaJones *impala, Case c);
 	/*bool deplacementImpala(ImpalaJones *impala);
 	bool estPossibleDeplacement(ImpalaJones *impala);*/
 	bool caseDisponible(bool etat,int x);
-	/*
-    bool deplacerImpalaPossible ?
-    si TRUE :
-    On regarde les possibilites
-    Sinon
-    On le fait automatiquement jusqu'a trouver un endroit libre
-    	Si aucun endroit trouver, FIN DU JEU TOUT EST FINIS
+	Case* parcourir(int x, int y);
 
-    Methode 1 : lorsque deplacement possible
-    bool deplacerImpala(ImpalaJones *impala, Case c);
-    Methode 2 : lorsque le deplacement n'est pas possible
-    bool deplacerImpala(ImpalaJones *impala);
-    */
+
 };
 
 #endif /* SRC_ACTION_H_ */

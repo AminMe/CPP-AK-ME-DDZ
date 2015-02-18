@@ -7,17 +7,16 @@
 
 #include "Jeu.h"
 
-#include <stdio.h>
 #include <iostream>
-#include <string>
+#include <utility>
 
+#include "Jeu/Map/Case.h"
 #include "Jeu/Map/Map.h"
+#include "Joueur/Action.h"
 #include "Joueur/Humain/Humain.h"
-#include "Pion/Effrayant/Crocodile.h"
-#include "Pion/Effrayant/Lion.h"
-#include "Pion/Effraye/Gazelle.h"
-#include "Pion/Effraye/Zebre.h"
-#include "Pion/Invincible/Elephant.h"
+#include "Joueur/Joueur.h"
+#include "Pion/ImpalaJones.h"
+#include "Pion/Pion.h"
 
 using namespace std;
 
@@ -91,6 +90,23 @@ int main(int argc, char **argv) {
 	Humain gishan(2,"Gishan",NULL);
 	delete listeanimaux;
 	*/
+	int res;
+	cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala";
+	cin>>res;
+	/*for(int i=1;i<j;i++)*/
+	int j=3;
+	while(res>j || res<1)
+	{
+		cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala";
+		cin>>res;
+	}
+
+
+
+
+
+
+
 	int resultat;
 	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 	cout<<"-----------------------------"<<endl;
@@ -115,6 +131,8 @@ int main(int argc, char **argv) {
 		}
 		if(resultat==1)
 		{
+			/*ImpalaJones impala= ImpalaJones(0,0);*/
+			ImpalaJones impala =ImpalaJones(0,0);
 			cout<<"Veuillez saisir le nom du premier joueur "<<endl;
 			string name;
 			cin>>name;
@@ -126,15 +144,23 @@ int main(int argc, char **argv) {
 
 			joueur1.affiche();
 			joueur2.affiche();
+			int x,y;
+			cout<<"Joueur 1 => choisisez une case pour poser impala"<<endl;
+			cout<<"Ligne :"<<endl;
+			cin >>x;
+			cout<<"Colonne :"<<endl;
+			cin >>y;
 
 			Map& map = Map::Instance();
-			pair<int, int> index(1,2);
+			pair<int, int> index(x,y);
+			joueur1.getAction().deplacementImpalaPremiereFois(&impala,*map[index]);
 
+			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
+			joueur2.getAction().deplacementImpala(&impala);
+			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
+			/*cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY();*/
 
-
-			map[index]->setPion(joueur1.getMesAnimaux()[1]);
-			cout<<map[index]->getPionCase()->getName()<<endl;
-
+			/*
 			vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
 
 			for(Case *c : vec)
@@ -142,10 +168,10 @@ int main(int argc, char **argv) {
 				c->affiche();
 			}
 			cout<<endl;
+			*/
 		}
-
-
 		ptr.affiche();
+
 
 	}
 

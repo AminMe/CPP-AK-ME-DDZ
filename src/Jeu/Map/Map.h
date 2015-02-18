@@ -69,7 +69,8 @@ public:
 
 				if(i!=0 && j!=0 && i!=LIGNE-1 && j!=COLONNE-1)
 				{
-					for(int i=0; i<4; i++){
+					for(int i=0; i<4; i++)
+					{
 					  c.setTab(i,tabRiviere[w][i]);
 					}
 					w++;
@@ -111,6 +112,7 @@ public:
 
 	int getColonne() const {return COLONNE;}
 	int getLigne() const {return LIGNE;}
+
 
 	vector<Case*> proposeCases(Case* impala);
 

@@ -20,9 +20,8 @@ protected:
 	int valeur;
 public:
 
-	Animal(string name, Joueur *joueur, int val) :
-			Pion(name, -1, -1), id(idGen++), joueur(joueur), estCache(
-					false), valeur(val) {
+	Animal(string name, Joueur *joueur, int val) :Pion(name, -1, -1), id(idGen++),
+												joueur(joueur), estCache(false), valeur(val) {
 	}
 
 	virtual ~Animal() {
@@ -54,7 +53,7 @@ public:
 	}
 
 	Animal& operator =(const Animal& other) // copy assignment
-			{
+	{
 		return *this;
 	}
 
