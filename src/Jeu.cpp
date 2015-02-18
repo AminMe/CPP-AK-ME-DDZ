@@ -8,6 +8,15 @@
 #include "Jeu.h"
 
 #include <iostream>
+#include <vector>
+
+#include "Jeu/Map/Case.h"
+#include "Jeu/Map/Map.h"
+#include "Joueur/Action.h"
+#include "Joueur/Humain/Humain.h"
+#include "Joueur/Joueur.h"
+#include "Pion/ImpalaJones.h"
+#include "Pion/Pion.h"
 
 
 using namespace std;
@@ -16,9 +25,9 @@ int main(int argc, char **argv) {
 	cout<<"MAP"<<endl;
 	/*map.init();*/
 
-		/*Map& ptr = Map::Instance();
-		ptr.affiche();*/
-		/*
+		Map& ptr = Map::Instance();
+		ptr.affiche();
+
 		int resultat;
 		cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 		cout<<"-----------------------------"<<endl;
@@ -31,6 +40,7 @@ int main(int argc, char **argv) {
 			cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
 			cin>>resultat;
 		}
+
 		if(resultat==1){
 			cout<<"Mode Jeu "<<endl;
 			cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
@@ -43,9 +53,8 @@ int main(int argc, char **argv) {
 			}
 			if(resultat==1)
 			{
-				/*ImpalaJones impala= ImpalaJones(0,0);*/
-				/*ImpalaJones impala =ImpalaJones(0,0);*/
-		/*		ImpalaJones& impala = ImpalaJones::Instance();
+
+				ImpalaJones& impala = ImpalaJones::Instance();
 				cout<<"Veuillez saisir le nom du premier joueur "<<endl;
 				string name;
 				cin>>name;
@@ -53,9 +62,9 @@ int main(int argc, char **argv) {
 				cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
 				cin>>name;
 				Humain joueur2(2,name);
-				/* Faire fonction affiche */
 
-			/*	joueur1.affiche();
+
+				joueur1.affiche();
 				joueur2.affiche();
 
 
@@ -66,12 +75,15 @@ int main(int argc, char **argv) {
 				joueur1.getAction().deplacementImpalaPremiereFois();
 
 				cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
-				joueur2.getAction().choixPion(&joueur2);
-				joueur2.getAction().deplacementImpala();
-				cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
-				/*cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY();*/
 
-				/*
+				joueur2.getAction().choixPion(&joueur2);
+
+				joueur2.getAction().deplacementImpala();
+
+				cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
+
+
+
 				vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
 
 				for(Case *c : vec)
@@ -79,12 +91,13 @@ int main(int argc, char **argv) {
 					c->affiche();
 				}
 				cout<<endl;
-				*/
-		/*	}
+
+			}
 			ptr.affiche();
 
 
 		}
-	*/
+
+
 }
 
