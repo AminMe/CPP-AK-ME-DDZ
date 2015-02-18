@@ -29,23 +29,23 @@ bool Action::choixPion(Joueur * j)
 
 	for(int i=0; i<j->getMesAnimaux().size();i++)
 	{
-		cout<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
+		cout<<i<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
 	}
 	cin>>resultat;
 
-	while(resultat>j->getMesAnimaux().size() || resultat<1)
+	while(resultat>j->getMesAnimaux().size() || resultat<0)
 	{
 		cout<<"Veuiller choisir un numero correct"<<endl;
 		for(int i=0; i<j->getMesAnimaux().size();i++)
 		{
-			cout<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
+			cout<<i<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
 		}
 	}
 
 	vector<Case*> possibilite = map.proposeCases(impala.getC());
 	cout<<"Les differentes possibilite de placement du pion sont :"<<endl;
 
-	int i=1;
+	int i=0;
 	int resultat2;
 	for(Case* c : possibilite)
 	{
@@ -54,10 +54,10 @@ bool Action::choixPion(Joueur * j)
 	}
 	cout<<"Selectionner la case "<<endl;
 	cin>>resultat2;
-	while(resultat2>possibilite.size() || resultat2<1)
+	while(resultat2>possibilite.size() || resultat2<0)
 	{
 		cout<<"Veuiller selectionner un numero correspondant au proposition"<<endl;
-		int i=1;
+		int i=0;
 		for(Case* c : possibilite)
 		{
 			cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
@@ -66,22 +66,20 @@ bool Action::choixPion(Joueur * j)
 		cout<<"Selectionner la case "<<endl;
 		cin>>resultat2;
 	}
-
-	int idChoix = j->getMesAnimaux().at(resultat-1)->getId();
+	cout<<"Resultat"<<resultat<<endl;
+	int idChoix = j->getMesAnimaux().at(resultat)->getId();
 	vector<Animal*>::iterator it = j->getMesAnimaux().begin();
+
 	for(int iterateur=0;iterateur<j->getMesAnimaux().size();iterateur++)
 	{
+
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
-		j->getMesAnimaux().erase(it+iterateur);
-		iterateur=j->getMesAnimaux().size();
+			put(j->getMesAnimaux().at(resultat), possibilite[resultat2]);
+			j->getMesAnimaux().erase(it+iterateur);
+			iterateur=j->getMesAnimaux().size();
 		}
 	}
-
-	j->affiche();
-
-	put(j->getMesAnimaux().at(resultat-1), possibilite[resultat2-1]);
-
 	return true;
 }
 
@@ -182,14 +180,8 @@ bool Action::deplacementImpala()
 				map[index]->setPion(NULL);
 			}
 			 */
-
-			cout<<"VALE X IMPALA :"<<impala.getC()->getX()<<endl;
-			cout<<"VALE Y IMPALA :"<<impala.getC()->getY()<<endl;
-
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);
-			cout<<"VALE X IMPALA :"<<impala.getC()->getX()<<endl;
-			cout<<"VALE Y IMPALA :"<<impala.getC()->getY()<<endl;
 			return true;
 		}
 	}

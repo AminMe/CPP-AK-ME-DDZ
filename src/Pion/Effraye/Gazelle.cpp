@@ -22,5 +22,6 @@ void Gazelle::check(Case position)
 
 void Gazelle::fuit()
 {
+	/*joueur->getMesAnimaux().push_back(this);*/
 	joueur->getMesAnimaux().push_back(this);
 }
