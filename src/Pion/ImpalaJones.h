@@ -17,7 +17,7 @@ private:
 	virtual ~ImpalaJones(){}
 	ImpalaJones& operator =(const ImpalaJones&){}
 	ImpalaJones (const ImpalaJones&):Pion("Impala Jones",0,0){}
-	static ImpalaJones m_instance;
+	static ImpalaJones m_inst;
 public :
 	static ImpalaJones& Instance();
 };
