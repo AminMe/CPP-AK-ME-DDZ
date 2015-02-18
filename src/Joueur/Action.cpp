@@ -50,18 +50,15 @@ bool Action::choixPion(Joueur * j)
 	for(Case* c : possibilite)
 	{
 		cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
-		i++;
 	}
 	cout<<"Selectionner la case "<<endl;
 	cin>>resultat2;
 	while(resultat2>possibilite.size() || resultat2<1)
 	{
 		cout<<"Veuiller selectionner un numero correspondant au proposition"<<endl;
-		int i=1;
 		for(Case* c : possibilite)
 		{
 			cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
-			i++;
 		}
 		cout<<"Selectionner la case "<<endl;
 		cin>>resultat2;
@@ -73,14 +70,11 @@ bool Action::choixPion(Joueur * j)
 	{
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
-		cout<<"mon id"<<endl;
+
 		j->getMesAnimaux().erase(it+iterateur);
 		iterateur=j->getMesAnimaux().size();
 		}
 	}
-
-	j->affiche();
-
 	put(j->getMesAnimaux().at(resultat-1), possibilite[resultat2-1]);
 
 	return true;
@@ -131,13 +125,11 @@ bool Action::deplacementImpala()
 		if(parcourir(impala.getC()->getX(),impala.getC()->getY()) == NULL)
 		{
 			cout<<"Aucune disponibilte"<<endl;
-			impala.getC()->setPion(NULL);
 			return false;
 		}
 		else
 		{
 			Case * caseImp = parcourir(impala.getC()->getX(),impala.getC()->getY());
-			impala.getC()->setPion(NULL);
 			impala.setC(caseImp);
 			caseImp->setPion(&impala);
 			return true;
@@ -148,7 +140,6 @@ bool Action::deplacementImpala()
 		if(choix.size()==1)
 		{
 			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
-			impala.getC()->setPion(NULL);
 			impala.setC(choix[0]);
 			choix[0]->setPion(&impala);
 			return true;
@@ -173,7 +164,6 @@ bool Action::deplacementImpala()
 				}
 				cin>>resultat;
 			}
-			impala.getC()->setPion(NULL);
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);
 			return true;
