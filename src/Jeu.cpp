@@ -11,15 +11,6 @@
 
 using namespace std;
 
-Jeu::Jeu() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Jeu::~Jeu() {
-	// TODO Auto-generated destructor stub
-}
-
 
 int main(int argc, char **argv) {
 

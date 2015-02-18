@@ -295,7 +295,7 @@ void Map::chercheBonus(Jeu j, int secteur)
 
 }
 
-bool Map::estComplete(Jeu j)
+bool Map::estComplete(Jeu jo)
 {
 
 	for(int i = 1; i<LIGNE-1; i++)
@@ -310,7 +310,7 @@ bool Map::estComplete(Jeu j)
 
 	for(int secteur = 1; secteur<7; secteur++)
 	{
-		chercheJoueurEnMajorite(j,secteur);
+		chercheJoueurEnMajorite(jo,secteur);
 	}
 
 	return true;

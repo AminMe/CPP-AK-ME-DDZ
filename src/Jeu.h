@@ -30,10 +30,10 @@ private:
 	vector<Joueur*> joueurs;
 
 public:
-	Map map = Map::Instance();
+	Map& map = Map::Instance();
 
-	Jeu();
-	virtual ~Jeu();
+	Jeu(){}
+	virtual ~Jeu(){}
 
 	void init();
 

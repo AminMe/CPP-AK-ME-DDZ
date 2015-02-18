@@ -35,7 +35,7 @@ protected:
 	bool bonus;
 	Action action;
 public:
-
+	Joueur() : num(-1), name("testErreur"), point(0), bonus(false) {}
 	Joueur(int num, string name) :
 			num(num), name(name), point(0), bonus(false) {
 		Map& map = Map::Instance();
