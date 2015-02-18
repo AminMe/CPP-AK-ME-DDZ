@@ -254,6 +254,8 @@ void Map::chercheBonus(Jeu j, int secteur)
 	 */
 	vector<int> idJoueur = getListJoueur(caseSecteur);
 
+	if(idJoueur.size()==0)
+		return;
 	/*
 	 * Si on arrive la toute les case du secteur sont bien occupe
 	 * Le but est de cherche quel joueur a la majorite
@@ -290,7 +292,7 @@ void Map::chercheBonus(Jeu j, int secteur)
 			idMax = k;
 		}
 	}
-
+    cout<<"Le joueur "<<idMax<<" gagne le bonus sur le secteur "<<secteur<<endl;
 	j.getJoueur()[idMax]->setBonus(true);
 
 }
@@ -326,7 +328,8 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 	caseSecteur = getCaseSecteur(secteur);
 
 	vector<int> idJoueur = getListJoueur(caseSecteur);
-
+	if(idJoueur.size()==0)
+			return;
 	int occurence[j.getJoueur().size()];
 
 	int cpt = 0;
@@ -385,12 +388,17 @@ vector<int> Map::getListJoueur(vector<Case*> caseSecteur)
 	{
 		if(c->getPionCase()==NULL)
 		{
+			idJoueur.clear();
 			return idJoueur;
 		}
 
 		Animal *p = dynamic_cast<Animal*>(c->getPionCase());
 		if (p == NULL)
+		{
+			idJoueur.clear();
 			return idJoueur;
+		}
+
 
 		idJoueur.push_back(p->getJoueur()->getNum());
 	}

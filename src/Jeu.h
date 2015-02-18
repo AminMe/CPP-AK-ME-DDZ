@@ -37,6 +37,7 @@ public:
 	vector<Joueur*> getJoueur(){return this->joueurs;}
 	bool launchGame();
 	void loadXML(string name);
+	static int testSaisie(string message, int min, int max, string error);
 };
 
 #endif /* SRC_JEU_H_ */
