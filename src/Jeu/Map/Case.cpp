@@ -83,11 +83,15 @@ void Case::setTab(int position, bool valeur)
 
 void Case::setPion(Pion *p){
 
-	if(p!=NULL && pionCase==NULL){
-
+	if(p!=NULL && pionCase==NULL)
+	{
 		pionCase = p;
-
 		estOccupe=true;
+	}
+	else
+	{
+		pionCase = p;
+		estOccupe = false;
 	}
 }
 
