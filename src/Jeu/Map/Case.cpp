@@ -19,16 +19,8 @@ using namespace std;
 
 void Case::affiche()
 {
-	if(secteur==-1){
-		cout<<"       o       ";
-	}
-	else if((x==0 && y==0) || (x==0 && y==COLONNE-1) || (x==LIGNE-1 && y==0) || (x==LIGNE-1 && y==COLONNE-1))
-	{
-		cout<<" --------> ";
-	}
-	else{
-		cout<<"Case : "<<getX()<<","<<getY()<<" s ="<<secteur;
-	}
+
+	cout<<"Case : "<<getX()<<","<<getY()<<" s ="<<secteur;
 }
 
 string Case::getAffiche()
@@ -40,8 +32,6 @@ string Case::getAffiche()
 			return "    o     ";
 		else
 			return "          ";
-
-		return "    C     ";
 	}
 	else if((x==0 && y==0) || (x==0 && y==COLONNE-1) || (x==LIGNE-1 && y==0) || (x==LIGNE-1 && y==COLONNE-1))
 	{

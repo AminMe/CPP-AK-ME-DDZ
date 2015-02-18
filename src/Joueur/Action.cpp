@@ -66,7 +66,6 @@ bool Action::choixPion(Joueur * j)
 		cout<<"Selectionner la case "<<endl;
 		cin>>resultat2;
 	}
-	cout<<"Resultat"<<resultat<<endl;
 	int idChoix = j->getMesAnimaux().at(resultat)->getId();
 	vector<Animal*>::iterator it = j->getMesAnimaux().begin();
 
@@ -78,6 +77,7 @@ bool Action::choixPion(Joueur * j)
 			put(j->getMesAnimaux().at(resultat), possibilite[resultat2]);
 			j->getMesAnimaux().erase(it+iterateur);
 			iterateur=j->getMesAnimaux().size();
+
 		}
 	}
 	return true;
@@ -128,13 +128,11 @@ bool Action::deplacementImpala()
 		if(parcourir(impala.getC()->getX(),impala.getC()->getY()) == NULL)
 		{
 			cout<<"Aucune disponibilte"<<endl;
-			impala.getC()->setPion(NULL);
 			return false;
 		}
 		else
 		{
 			Case * caseImp = parcourir(impala.getC()->getX(),impala.getC()->getY());
-			impala.getC()->setPion(NULL);
 			impala.setC(caseImp);
 			caseImp->setPion(&impala);
 			return true;
@@ -145,7 +143,6 @@ bool Action::deplacementImpala()
 		if(choix.size()==1)
 		{
 			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
-			impala.getC()->setPion(NULL);
 			impala.setC(choix[0]);
 			choix[0]->setPion(&impala);
 			return true;
@@ -170,18 +167,10 @@ bool Action::deplacementImpala()
 				}
 				cin>>resultat;
 			}
-
-			pair<int, int> index(impala.getC()->getX(),impala.getC()->getY());
 			impala.getC()->setPion(NULL);
-
-			/*Map& map = Map::Instance();
-			if(map[index]->getPionCase()!= NULL)
-			{
-				map[index]->setPion(NULL);
-			}
-			 */
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);
+
 			return true;
 		}
 	}
