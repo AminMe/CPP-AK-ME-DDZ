@@ -6,7 +6,11 @@
  */
 
 #include "Action.h"
-
+#include "../Joueur/Joueur.h"
+#include <sys/_types/_null.h>
+#include <iostream>
+#include <utility>
+#include <iterator>
 
 
 Action::Action() {
@@ -19,38 +23,95 @@ Action::~Action() {
 
 }
 
-bool Action::put(Pion *a, Case c, Case impala)
+bool Action::put(Pion *a, Case* c)
 {
-	if(!c.isEstOccupe())
-	{
-	   if(impala.getX()>0 && c.getX()==impala.getX())
-	   {
-		   c.setPion(a);
-		   return true;
-	   }
-	   else if(impala.getY()>0  && c.getY()==impala.getY())
-	   {
-		   c.setPion(a);
-		   return true;
-	   }
-	}
-
-	return false;
+   c->setPion(a);
+   return true;
 }
 
-bool Action::deplacementImpalaPremiereFois(ImpalaJones *impala,Case c)
+
+bool Action::choixPion(Joueur * j)
+{
+	int resultat;
+	j->affiche();
+	Map& map = Map::Instance();
+	cout<<"Veuillez choisir l'animal que vous voulez placer sur la map"<<endl;
+
+	for(int i=0; i<j->getMesAnimaux().size();i++)
+	{
+		cout<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
+	}
+	cin>>resultat;
+
+	while(resultat>j->getMesAnimaux().size() || resultat<1)
+	{
+		cout<<"Veuiller choisir un numero correct"<<endl;
+		for(int i=0; i<j->getMesAnimaux().size();i++)
+		{
+			cout<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
+		}
+	}
+
+	vector<Case*> possibilite = map.proposeCases(impala.getC());
+	cout<<"Les differentes possibilite de placement du pion sont :"<<endl;
+
+	int i=1;
+	int resultat2;
+	for(Case* c : possibilite)
+	{
+		cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
+	}
+	cout<<"Selectionner la case "<<endl;
+	cin>>resultat2;
+	while(resultat2>possibilite.size() || resultat2<1)
+	{
+		cout<<"Veuiller selectionner un numero correspondant au proposition"<<endl;
+		for(Case* c : possibilite)
+		{
+			cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
+		}
+		cout<<"Selectionner la case "<<endl;
+		cin>>resultat2;
+	}
+
+	int idChoix = j->getMesAnimaux().at(resultat-1)->getId();
+	vector<Animal*>::iterator it = j->getMesAnimaux().begin();
+	for(int iterateur=0;iterateur<j->getMesAnimaux().size();iterateur++)
+	{
+		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
+		{
+
+		j->getMesAnimaux().erase(it+iterateur);
+		iterateur=j->getMesAnimaux().size();
+		}
+	}
+	put(j->getMesAnimaux().at(resultat-1), possibilite[resultat2-1]);
+
+	return true;
+}
+
+
+bool Action::deplacementImpalaPremiereFois()
 {
 	Map& map = Map::Instance();
-	if(c.getSecteur()==-1)
+
+	int x,y;
+	cout<<"Joueur 1 => choisisez une case pour poser impala"<<endl;
+	cout<<"Ligne :"<<endl;
+	cin >>x;
+	cout<<"Colonne :"<<endl;
+	cin >>y;
+	pair<int, int> index(x,y);
+	Case * c = map[index];
+	if(c->getSecteur()==-1)
 	{
-		impala->setC(c);
+		impala.setC(c);
+		c->setPion(&impala);
 		return true;
 	}
 	else
 	{
-		int x,y;
-
-		while(c.getSecteur()!=-1)
+		while(c->getSecteur()!=-1)
 		{
 			cout<<" Veuillez positionner impala sur une bonne case"<<endl;
 			cout<< "Veuillez saisir la ligne : "<<endl;
@@ -58,26 +119,30 @@ bool Action::deplacementImpalaPremiereFois(ImpalaJones *impala,Case c)
 			cout<<"Veuillez saisir la colonne : "<<endl;
 			cin>>y;
 			pair<int, int> index(x,y);
-			c=*map[index];
+			c=map[index];
 		}
-		impala->setC(c);
+		impala.setC(c);
+		c->setPion(&impala);
 		return false;
 	}
 }
 
-bool Action::deplacementImpala(ImpalaJones *impala)
+bool Action::deplacementImpala()
 {
-	vector<Case> choix = estPossibleDeplacement(impala);
+	vector<Case*> choix = estPossibleDeplacement();
 	if(choix.empty())
 	{
-		if(parcourir(impala->getC()->getX(),impala->getC()->getY()) == NULL)
+		if(parcourir(impala.getC()->getX(),impala.getC()->getY()) == NULL)
 		{
 			cout<<"Aucune disponibilte"<<endl;
 			return false;
 		}
 		else
 		{
-			impala->setC(*parcourir(impala->getC()->getX(),impala->getC()->getY()));
+			Case * caseImp = parcourir(impala.getC()->getX(),impala.getC()->getY());
+			impala.setC(caseImp);
+			caseImp->setPion(&impala);
+			return true;
 		}
 	}
 	else
@@ -85,7 +150,9 @@ bool Action::deplacementImpala(ImpalaJones *impala)
 		if(choix.size()==1)
 		{
 			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
-			impala->setC(choix[0]);
+			impala.setC(choix[0]);
+			choix[0]->setPion(&impala);
+			return true;
 		}
 		else
 		{
@@ -93,7 +160,7 @@ bool Action::deplacementImpala(ImpalaJones *impala)
 			int resultat;
 			for(int i=0;i<choix.size();i++)
 			{
-				cout<<i+1<<". La case i: "<<choix[i].getX()<<"j: "<<choix[i].getY();
+				cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
 			}
 
 			cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
@@ -103,38 +170,35 @@ bool Action::deplacementImpala(ImpalaJones *impala)
 				cout<<"Veuiller choisir une variable correcte";
 				for(int i=0;i<choix.size();i++)
 				{
-					cout<<i+1<<". La case i: "<<choix[i].getX()<<"j: "<<choix[i].getY()<<endl;
+					cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
 				}
 				cin>>resultat;
 			}
-			impala->setC(choix[resultat-1]);
+			impala.setC(choix[resultat-1]);
+			choix[resultat-1]->setPion(&impala);
+			return true;
 		}
 	}
 }
-vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
+vector<Case*> Action::estPossibleDeplacement()
 {
 	Map& map = Map::Instance();
-	vector<Case> possibilite;
+	vector<Case*> possibilite;
 	bool dispo;
-	int x = impala->getC()->getX();
-	int y = impala->getC()->getY();
+	int x = impala.getC()->getX();
+	int y = impala.getC()->getY();
 	for(int i=1;i<4;i++)
 	{
-		cout<<"boucle for"<<endl;
 		/* Impala se situe au niveau de la premiere ligne */
 		if(x==0)
 		{
-			cout<<"PREMIERE LIGNE"<<endl;
 			if(map.getSecteur(x,y+1)==0)
 			{
-				cout<<"il y a bine un GROS 0"<<endl;
-				cout<<"bug ici"<<endl;
 				dispo = caseDisponible(false,x+1);
-				cout<<"je passe pas"<<endl;
 				if(dispo)
 				{
 					pair<int, int> index(x+1,y+1);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				x=x+1;
 				y=y+1;
@@ -145,7 +209,7 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(x,y+1);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				y=y+1;
 			}
@@ -154,14 +218,13 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 		/*Impala se sotue au niveau de la derniere colonne */
 		else if(y==COLONNE-1)
 		{
-			cout<<"DERNIERE COLONNE"<<endl;
 			if(map.getSecteur(x+1,y)==0)
 			{
 				dispo = caseDisponible(true,COLONNE-2);
 				if(dispo)
 				{
 					pair<int, int> index(LIGNE-1,COLONNE-2);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				x = LIGNE-1;
 				y = COLONNE-2;
@@ -172,7 +235,7 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 				 if(dispo)
 				 {
 					 pair<int, int> index(x+1,y);
-					 possibilite.push_back(*map[index]);
+					 possibilite.push_back(map[index]);
 				 }
 				 x = x+1;
 
@@ -181,15 +244,13 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 		/* Impala se situe au niveau de la derniere ligne */
 		else if(x==LIGNE-1)
 		{
-			cout<<"derniere LIGNE"<<endl;
 			if(map.getSecteur(x,y-1)==0)
 			{
-				cout<<"0 ICI"<<endl;
 				dispo = caseDisponible(false,LIGNE-2);
 				if(dispo)
 				{
 					pair<int, int> index(LIGNE-2,0);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				x = LIGNE-2;
 				y = 0;
@@ -200,7 +261,7 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(x,y-1);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				y=y-1;
 			}
@@ -208,14 +269,13 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 		/* Impala se situe au niveau de la premiere colonne */
 		else if(y==0)
 		{
-			cout<<"PREMIERE COLONNE"<<endl;
 			if(map.getSecteur(x-1,y)==0)
 			{
 				dispo = caseDisponible(true,1);
 				if(dispo)
 				{
 					pair<int, int> index(0,1);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				x=0;
 				y=1;
@@ -226,7 +286,7 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 				if(dispo)
 				{
 					pair<int, int> index(x-1,y);
-					possibilite.push_back(*map[index]);
+					possibilite.push_back(map[index]);
 				}
 				x = x-1;
 			}
@@ -238,7 +298,6 @@ vector<Case> Action::estPossibleDeplacement(ImpalaJones *impala)
 
 bool Action::caseDisponible(bool etat,int x)
 {
-	cout<<"je suis ici"<<x<<endl;
 	Map& map = Map::Instance();
 	if(etat)
 	{
@@ -270,8 +329,7 @@ Case* Action::parcourir(int x, int y)
 {
 	/* Parcours du plateau */
 	/* On sait qu'il y a au plus : 26 */
-	int xBis = x;
-	int yBis = y;
+
 	Map& map = Map::Instance();
 	bool dispo = false;
 

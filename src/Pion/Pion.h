@@ -60,8 +60,9 @@ public:
 		return &c;
 	}
 
-	void setC(const Case& c) {
-		this->c = c;
+	void setC(Case* c) {
+		if(c==NULL) return;
+		this->c = *c;
 	}
 };
 

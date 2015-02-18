@@ -33,8 +33,6 @@ void Case::affiche()
 
 string Case::getAffiche()
 {
-	Map &map = Map::Instance();
-
 	string message = "";
 	if(secteur==-1){
 		return "    o     ";

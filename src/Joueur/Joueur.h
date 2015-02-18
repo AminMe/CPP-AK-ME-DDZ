@@ -12,7 +12,6 @@
 #include <string>
 #include <vector>
 
-#include "../Jeu/Map/Map.h"
 #include "../Pion/Animal.h"
 #include "../Pion/Effrayant/Crocodile.h"
 #include "../Pion/Effrayant/Lion.h"
@@ -20,6 +19,7 @@
 #include "../Pion/Effraye/Zebre.h"
 #include "../Pion/Invincible/Elephant.h"
 #include "Action.h"
+
 
 class Animal;
 
@@ -34,12 +34,12 @@ protected:
 	int point;
 	bool bonus;
 	Action action;
+
+
 public:
 
 	Joueur(int num, string name) :
 			num(num), name(name), point(0), bonus(false) {
-		Map& map = Map::Instance();
-
 		for (int i = 0; i < 6; i++) {
 			mesAnimaux.push_back(new Gazelle(this));
 		}
