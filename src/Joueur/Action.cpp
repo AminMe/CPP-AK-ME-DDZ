@@ -6,11 +6,16 @@
  */
 
 #include "Action.h"
-#include "../Joueur/Joueur.h"
+
 #include <sys/_types/_null.h>
-#include <iostream>
+#include <iostream>     // std::cout
+#include <iterator>     // std::ostream_iterator
 #include <utility>
-#include <iterator>
+
+#include "../Jeu/Map/Map.h"
+#include "../Pion/Animal.h"
+#include "../Pion/Pion.h"
+#include "Joueur.h"
 
 
 bool Action::put(Pion *a, Case* c)
@@ -70,9 +75,11 @@ bool Action::choixPion(Joueur * j)
 	{
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
+			cout<<"Taille AVANT"<<j->getMesAnimaux().size()<<endl;
+			j->getMesAnimaux().erase(it+iterateur);
+			cout<<"Taille APRES"<<j->getMesAnimaux().size()<<endl;
 
-		j->getMesAnimaux().erase(it+iterateur);
-		iterateur=j->getMesAnimaux().size();
+			break;
 		}
 	}
 	put(j->getMesAnimaux().at(resultat-1), possibilite[resultat2-1]);
