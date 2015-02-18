@@ -290,7 +290,7 @@ void Map::chercheBonus(Jeu j, int secteur)
 			idMax = k;
 		}
 	}
-
+    cout<<"Le joueur "<<idMax<<" gagne le bonus sur le secteur "<<secteur<<endl;
 	j.getJoueur()[idMax]->setBonus(true);
 
 }

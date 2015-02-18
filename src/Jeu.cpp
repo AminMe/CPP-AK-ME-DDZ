@@ -21,42 +21,46 @@
 
 using namespace std;
 
+int Jeu::testSaisie(string message, int min, int max, string error)
+{
+	cout<<message<<endl;
+	int resultat=-1;
+	char ligne[100];
+	fgets(ligne, 100, stdin);
+	bool saisiOk = sscanf(ligne,"%d",&resultat);
+	if(saisiOk && (resultat<min || resultat>max))
+	{
+		saisiOk = false;
+	}
+	while(!saisiOk)
+	{
+
+		cout<<error<<endl;
+		cout<<message<<endl;
+		fgets(ligne, 100, stdin);
+		saisiOk = sscanf(ligne,"%d",&resultat);
+		if(saisiOk && (resultat<min || resultat>max))
+		{
+			saisiOk = false;
+		}
+	}
+	return resultat;
+}
+
 bool Jeu::launchGame()
 {
-	Map& ptr = Map::Instance();
-	ptr.affiche();
+	map.affiche();
 
 	int resultat;
 	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 	cout<<"-----------------------------"<<endl;
-	cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
-	/*cin>>resultat;*/
+	resultat = testSaisie("1. Jouer \n2. Charger une sauvegarde", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
 
-	char ligne[100];
-	fgets(ligne, 100, stdin);
-
-	while(!sscanf(ligne,"%d",&resultat) && (resultat==1 || resultat==2))
-	{
-
-		cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
-		cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
-		fgets(ligne, 100, stdin);
-	}
-	cout<<ligne<<endl;
 	if(resultat==1){
 		cout<<"Mode Jeu "<<endl;
-		cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
-		cin>>resultat;
-		while(resultat!=1 && resultat!=2)
-		{
-			cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
-			cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
-			cin>>resultat;
-		}
+		resultat = testSaisie("1. Deux joueurs \n2. Jeu contre IA ", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
 		if(resultat==1)
 		{
-
-			ImpalaJones& impala = ImpalaJones::Instance();
 			cout<<"Veuillez saisir le nom du premier joueur "<<endl;
 			string name;
 			cin>>name;
@@ -64,43 +68,38 @@ bool Jeu::launchGame()
 			cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
 			cin>>name;
 			Humain joueur2(2,name);
-
+			addJoueur(&joueur1);
+			addJoueur(&joueur2);
 
 			joueur1.affiche();
 			joueur2.affiche();
 
-
-			Map& map = Map::Instance();
-
-
-
+			cout<<"Joueur 1 veuillez saisir la position de l'impala"<<endl;
 			joueur1.getAction().deplacementImpalaPremiereFois();
-
-			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
-
-			joueur2.getAction().choixPion(&joueur2);
-
-			joueur2.getAction().deplacementImpala();
-
-			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
-
-
-
-			vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
-
-			for(Case *c : vec)
+			int tour = 1;
+			map.affiche();
+			while(!map.estComplete(*this))
 			{
-				c->affiche();
+				joueurs[tour]->getAction().choixPion(&joueur2);
+				map.gainBonus(*this);
+				map.affiche();
+				joueurs[tour]->getAction().deplacementImpala();
+				map.affiche();
+				/* Menu : sauvegarder , continuer */
+				tour++;
+				if(tour>=joueurs.size())
+				{
+					tour=0;
+				}
 			}
-			cout<<endl;
 
 		}
-		ptr.affiche();
+		map.affiche();
 
 
 	}
 
-}
+	}
 
 
 
