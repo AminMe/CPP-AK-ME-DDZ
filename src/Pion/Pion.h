@@ -26,6 +26,8 @@ protected:
 	Case c;
 public:
 
+	Pion():name("PionErreur"),c(new Case(-1,-1,-1)){}
+
 	Pion(const Pion* copie):name(copie->name),c(copie->c){}
 
 	Pion(string name, int x, int y):name(name)

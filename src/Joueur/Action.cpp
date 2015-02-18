@@ -13,16 +13,6 @@
 #include <iterator>
 
 
-Action::Action() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Action::~Action() {
-	// TODO Auto-generated destructor stub
-
-}
-
 bool Action::put(Pion *a, Case* c)
 {
    c->setPion(a);

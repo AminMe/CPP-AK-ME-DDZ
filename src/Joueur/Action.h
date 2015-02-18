@@ -12,8 +12,8 @@ class Action {
 
 public:
 	ImpalaJones& impala = ImpalaJones::Instance();
-	Action();
-	virtual ~Action();
+	Action(){}
+	virtual ~Action(){}
 
 	void update();
 
