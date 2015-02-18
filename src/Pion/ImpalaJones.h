@@ -14,7 +14,9 @@ class ImpalaJones : public Pion {
 private:
 	static ImpalaJones j_instance;
 	ImpalaJones(int x, int y):Pion("Impala Jones",0,0){}
-	ImpalaJones(){}
+	ImpalaJones(){
+		this->setName("Impala Jones");
+	}
 	virtual ~ImpalaJones(){}
 	ImpalaJones& operator =(const ImpalaJones&){}
 	ImpalaJones (const ImpalaJones&):Pion("Impala Jones",0,0){}
