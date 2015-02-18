@@ -164,8 +164,11 @@ bool Action::deplacementImpala()
 				}
 				cin>>resultat;
 			}
+			impala.getC()->setPion(NULL);
+
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);
+
 			return true;
 		}
 	}
@@ -301,14 +304,13 @@ bool Action::caseDisponible(bool etat,int x)
 	}
 	else
 	{
-		cout<<"FALSE1"<<endl;
 		for(int i=1;i<LIGNE-1;i++)
 		{
 			pair<int, int> index(x,i);
 			if(!map[index]->isEstOccupe())
-				{
-					cout<<"il y a une case de libre"<<endl;return true;
-				}
+			{
+				return true;
+			}
 		}
 	}
 
@@ -327,7 +329,6 @@ Case* Action::parcourir(int x, int y)
 	{
 		if(x==0)
 		{
-			cout<<"PREMIERE LIGNE"<<endl;
 			if(map.getSecteur(x,y+1)==0)
 			{
 
@@ -380,10 +381,8 @@ Case* Action::parcourir(int x, int y)
 		/* Impala se situe au niveau de la derniere ligne */
 		else if(x==LIGNE-1)
 		{
-			cout<<"derniere LIGNE"<<endl;
 			if(map.getSecteur(x,y-1)==0)
 			{
-				cout<<"0 ICI"<<endl;
 				dispo = caseDisponible(false,LIGNE-2);
 				if(dispo)
 				{
@@ -407,7 +406,6 @@ Case* Action::parcourir(int x, int y)
 		/* Impala se situe au niveau de la premiere colonne */
 		else if(y==0)
 		{
-			cout<<"PREMIERE COLONNE"<<endl;
 			if(map.getSecteur(x-1,y)==0)
 			{
 				dispo = caseDisponible(true,1);

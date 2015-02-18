@@ -23,7 +23,7 @@ class Pion {
 
 protected:
 	string name;
-	Case c;
+	Case* c;
 public:
 
 	Pion():name("PionErreur"),c(new Case(-1,-1,-1)){}
@@ -37,11 +37,12 @@ public:
 		pair<int, int> index(x,y);
 		if(x>=0 && y>=0 && !map[index]->isEstOccupe())
 		{
-			c = *map[index];
+			/*c = *map[index];*/
+			c = map[index];
 		}
 	}
 
-	Pion(Case c):c(c){}
+	Pion(Case* c):c(c){}
 
 	virtual ~Pion(){}
 
@@ -61,12 +62,14 @@ public:
 	virtual void affiche();
 
 	Case* getC() {
-		return &c;
+		/*return &c;*/
+		return c;
 	}
 
 	void setC(Case* c) {
 		if(c==NULL) return;
-		this->c = *c;
+		/*this->c = *c;*/
+		this->c = c;
 	}
 };
 
