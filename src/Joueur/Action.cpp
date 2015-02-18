@@ -73,8 +73,9 @@ bool Action::choixPion(Joueur * j)
 	{
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
-		cout<<"mon id"<<endl;
 		j->getMesAnimaux().erase(it+iterateur);
+		j->affiche();
+		exit(0);
 		iterateur=j->getMesAnimaux().size();
 		}
 	}
@@ -148,6 +149,7 @@ bool Action::deplacementImpala()
 		if(choix.size()==1)
 		{
 			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
+			impala.getC()->setPion(NULL);
 			impala.setC(choix[0]);
 			choix[0]->setPion(&impala);
 			return true;
@@ -173,6 +175,7 @@ bool Action::deplacementImpala()
 				cin>>resultat;
 			}
 			impala.getC()->setPion(NULL);
+			/*impala.setC(NULL);*/
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);
 			return true;
