@@ -21,8 +21,8 @@ private:
 	static Map m_instance;
 
 	/*
-		 * Constructeur par defaut
-		 */
+	 * Constructeur par defaut
+	 */
 
 
 		 Map& operator= (const Map& m){

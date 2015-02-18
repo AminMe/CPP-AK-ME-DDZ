@@ -61,11 +61,11 @@ string Case::getAffiche()
 		{
 			if(p->isEstCache())
 			{
-				m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<") #C ";
+				m<<" ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")#C ";
 			}
 			else
 			{
-				m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")  ";
+				m<<"  ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")  ";
 			}
 		}
 
