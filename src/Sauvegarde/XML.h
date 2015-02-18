@@ -16,7 +16,7 @@ class XML {
 private:
 	string name;
 public:
-
+	static string datarepertory = "../Data";
 	XML(){}
 
 	XML(string name):name(name)
