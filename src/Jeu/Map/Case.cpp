@@ -90,7 +90,12 @@ void Case::setPion(Pion *p){
 	}
 	else
 	{
+		cout<<"Mon bien est bien NULL ici"<<endl;
 		pionCase = p;
+		if(pionCase==NULL)
+		{
+			cout<<"TOUT SE PASSE BIEN"<<endl;
+		}
 		estOccupe = false;
 	}
 }
