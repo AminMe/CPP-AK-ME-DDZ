@@ -36,10 +36,12 @@ string Case::getAffiche()
 	string message = "";
 
 	if(secteur==-1){
-		/*
-		 * if(impala.getCase().x = this->x ....) -> return "    o     "; else return "          ";
-		 */
-		return "    o     ";
+		if(pionCase!=NULL && pionCase->getName()=="Impala Jones")
+			return "    o     ";
+		else
+			return "          ";
+
+		return "    C     ";
 	}
 	else if((x==0 && y==0) || (x==0 && y==COLONNE-1) || (x==LIGNE-1 && y==0) || (x==LIGNE-1 && y==COLONNE-1))
 	{
@@ -61,11 +63,11 @@ string Case::getAffiche()
 		{
 			if(p->isEstCache())
 			{
-				m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<") #C ";
+				m<<" ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")#C ";
 			}
 			else
 			{
-				m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")  ";
+				m<<"  ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")  ";
 			}
 		}
 
