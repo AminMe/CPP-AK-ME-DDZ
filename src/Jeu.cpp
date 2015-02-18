@@ -21,83 +21,95 @@
 
 using namespace std;
 
-int main(int argc, char **argv) {
-	cout<<"MAP"<<endl;
-	/*map.init();*/
+bool Jeu::launchGame()
+{
+	Map& ptr = Map::Instance();
+	ptr.affiche();
 
-		Map& ptr = Map::Instance();
-		ptr.affiche();
+	int resultat;
+	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
+	cout<<"-----------------------------"<<endl;
+	cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
+	/*cin>>resultat;*/
 
-		int resultat;
-		cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
-		cout<<"-----------------------------"<<endl;
+	char ligne[100];
+	fgets(ligne, 100, stdin);
+
+	while(!sscanf(ligne,"%d",&resultat) && (resultat==1 || resultat==2))
+	{
+
+		cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
 		cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
+		fgets(ligne, 100, stdin);
+	}
+	cout<<ligne<<endl;
+	if(resultat==1){
+		cout<<"Mode Jeu "<<endl;
+		cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
 		cin>>resultat;
-
 		while(resultat!=1 && resultat!=2)
 		{
 			cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
-			cout<<"1. Jouer " << "\n" << "2. Charger une sauvegarde"<<endl;
-			cin>>resultat;
-		}
-
-		if(resultat==1){
-			cout<<"Mode Jeu "<<endl;
 			cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
 			cin>>resultat;
-			while(resultat!=1 && resultat!=2)
+		}
+		if(resultat==1)
+		{
+
+			ImpalaJones& impala = ImpalaJones::Instance();
+			cout<<"Veuillez saisir le nom du premier joueur "<<endl;
+			string name;
+			cin>>name;
+			Humain joueur1(1,name);
+			cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
+			cin>>name;
+			Humain joueur2(2,name);
+
+
+			joueur1.affiche();
+			joueur2.affiche();
+
+
+			Map& map = Map::Instance();
+
+
+
+			joueur1.getAction().deplacementImpalaPremiereFois();
+
+			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
+
+			joueur2.getAction().choixPion(&joueur2);
+
+			joueur2.getAction().deplacementImpala();
+
+			cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
+
+
+
+			vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
+
+			for(Case *c : vec)
 			{
-				cout<<"Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee"<<endl;
-				cout<<"1. Deux joueurs " << "\n" << "2. Jeu contre IA "<<endl;
-				cin>>resultat;
+				c->affiche();
 			}
-			if(resultat==1)
-			{
-
-				ImpalaJones& impala = ImpalaJones::Instance();
-				cout<<"Veuillez saisir le nom du premier joueur "<<endl;
-				string name;
-				cin>>name;
-				Humain joueur1(1,name);
-				cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
-				cin>>name;
-				Humain joueur2(2,name);
-
-
-				joueur1.affiche();
-				joueur2.affiche();
-
-
-				Map& map = Map::Instance();
-
-
-
-				joueur1.getAction().deplacementImpalaPremiereFois();
-
-				cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
-
-				joueur2.getAction().choixPion(&joueur2);
-
-				joueur2.getAction().deplacementImpala();
-
-				cout<<"IMPALA EST ICI : "<<impala.getC()->getX()<<"et :"<<impala.getC()->getY()<<endl;
-
-
-
-				vector<Case*> vec = map.proposeCases(new Case(0,2,-1));
-
-				for(Case *c : vec)
-				{
-					c->affiche();
-				}
-				cout<<endl;
-
-			}
-			ptr.affiche();
-
+			cout<<endl;
 
 		}
+		ptr.affiche();
 
 
+	}
+
+}
+
+
+
+
+
+
+int main(int argc, char **argv) {
+	cout<<"MAP"<<endl;
+	Jeu j = Jeu();
+	j.launchGame();
 }
 
