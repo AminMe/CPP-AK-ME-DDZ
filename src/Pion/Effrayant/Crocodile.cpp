@@ -23,7 +23,7 @@ void Crocodile::check(Case position)
 		{
 			Gazelle *p = dynamic_cast<Gazelle*>(c->getPionCase());
 			bool choix = false;
-			if(p!=NULL)
+			if(p!=NULL && !p->estCache)
 			{
 				cout<<"Souhaitez vous changez la position entre : ";
 				cin>>choix;

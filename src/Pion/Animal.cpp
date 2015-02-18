@@ -25,7 +25,7 @@ vector<Case*> Animal::checkAlentour(Case position, string animalRecherche)
 
 	if(h.first>=0 && h.second>=0 && h.first<map.getLigne() && h.second<map.getColonne() && map[h]->isEstOccupe())
 	{
-		if(map[h]->getPionCase()->getName()==animalRecherche)
+		if(map[h]->getPionCase()->getName()==animalRecherche && map[h]->getPionCase())
 			resultat.push_back(map[h]);
 	}
 
