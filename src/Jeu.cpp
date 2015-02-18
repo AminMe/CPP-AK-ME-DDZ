@@ -80,7 +80,7 @@ bool Jeu::launchGame()
 			map.affiche();
 			while(!map.estComplete(*this))
 			{
-				joueurs[tour]->getAction().choixPion(&joueur2);
+				joueurs[tour]->getAction().choixPion(joueurs[tour]);
 				map.gainBonus(*this);
 				map.affiche();
 				joueurs[tour]->getAction().deplacementImpala();
