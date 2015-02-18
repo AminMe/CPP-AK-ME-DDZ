@@ -7,27 +7,9 @@
 
 #include "Jeu.h"
 
-#include <iostream>
-#include <utility>
 
-#include "Jeu/Map/Case.h"
-#include "Jeu/Map/Map.h"
-#include "Joueur/Action.h"
-#include "Joueur/Humain/Humain.h"
-#include "Joueur/Joueur.h"
-#include "Pion/ImpalaJones.h"
-#include "Pion/Pion.h"
 
 using namespace std;
-
-Jeu::Jeu() {
-	// TODO Auto-generated constructor stub
-
-}
-
-Jeu::~Jeu() {
-	// TODO Auto-generated destructor stub
-}
 
 int main(int argc, char **argv) {
 	cout<<"MAP"<<endl;

@@ -37,7 +37,7 @@ protected:
 
 
 public:
-
+	Joueur() : num(-1), name("testErreur"), point(0), bonus(false) {}
 	Joueur(int num, string name) :
 			num(num), name(name), point(0), bonus(false) {
 		for (int i = 0; i < 6; i++) {
@@ -62,6 +62,11 @@ public:
 	}
 	;
 
+	void addPoint(int point)
+	{
+		this->point+=point;
+	}
+
 	virtual void play()=0;
 
 	const string& getName() const {
@@ -83,7 +88,8 @@ public:
 		this->point = point;
 	}
 
-
+	void setBonus(bool bonus) {this->bonus = bonus;}
+	bool getBonus() { return this->bonus;}
 	 vector<Animal*> getMesAnimaux() {
 		return mesAnimaux;
 	}

@@ -22,12 +22,17 @@ void Crocodile::check(Case position)
 		for(Case *c : retour)
 		{
 			Gazelle *p = dynamic_cast<Gazelle*>(c->getPionCase());
+			bool choix = false;
 			if(p!=NULL)
 			{
 				cout<<"Souhaitez vous changez la position entre : ";
-
-
+				cin>>choix;
 			}
+			if(choix)
+			{
+				Animal::switchPosition(this,p);
+			}
+
 		}
 	}
 }

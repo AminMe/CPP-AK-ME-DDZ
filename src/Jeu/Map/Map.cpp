@@ -9,6 +9,10 @@
 
 #include <string>
 
+#include "../../Jeu.h"
+#include "../../Joueur/Joueur.h"
+#include "../../Pion/Animal.h"
+
 
 Map Map::m_instance=Map();
 
@@ -119,9 +123,8 @@ void Map::affiche()
 			else
 			{
 
-
 				if(i==0 || j==0 || i==LIGNE-1 || j==COLONNE-1)
-					cout<<"          |";
+					cout<<message<<"|" /*"          |"*/;
 				else
 				{
 					cout<<message<<" ";
@@ -145,7 +148,7 @@ void Map::affiche()
 			for(int k = 0; k<COLONNE; k++)
 			{
 				if(tab[i][k].getTabRiviere()[RIVIERE_BAS])
-					cout<<"§§§§§§§§§§";
+					cout<<"~~~~~~~~~~";
 				else if(i==0 || k==0 || i==LIGNE-1 || k==COLONNE-1 || k==COLONNE-2)
 					cout<<"----------";
 				else
@@ -209,4 +212,208 @@ vector<Case*> Map::proposeCases(Case* impala)
 
 	}
 	return retour;
+}
+
+void Map::gainBonus(Jeu j)
+{
+	for(Joueur *joueur : j.getJoueur())
+	{
+		if(joueur->getBonus())
+		{
+			return;
+		}
+	}
+
+	/*
+	 * Si on est la aucun joueur n'a encore eu de bonus
+	 * On cherche si un joueur a eu le bonus
+	 */
+	for(int secteur = 1; secteur<7; secteur++)
+	{
+		chercheBonus(j,secteur);
+	}
+
+}
+
+void Map::chercheBonus(Jeu j, int secteur)
+{
+	if(secteur<1)
+		return;
+
+	vector<Case*> caseSecteur;
+
+	/*
+	 * On cherche les cases de ce secteur
+	 */
+	caseSecteur = getCaseSecteur(secteur);
+
+	/*
+	 * On a toutes les cases du secteur
+	 * On recupere la liste de joueur dessus
+	 * (1,1,2) signigie que le joueur 1 est present 2 fois et le joueur 2 est present 1 fois
+	 */
+	vector<int> idJoueur = getListJoueur(caseSecteur);
+
+	/*
+	 * Si on arrive la toute les case du secteur sont bien occupe
+	 * Le but est de cherche quel joueur a la majorite
+	 */
+	int occurence[j.getJoueur().size()];
+
+	int cpt = 0;
+
+	for(Joueur *joueur : j.getJoueur())
+	{
+		cpt = 0;
+		for(int id : idJoueur)
+		{
+			if(id == joueur->getNum())
+			{
+				cpt++;
+			}
+		}
+		occurence[joueur->getNum()] = cpt;
+	}
+
+
+
+	/*
+	 * On cherche le max
+	 */
+	int max = 0;
+	int idMax = 0;
+	for(int k = 0; k<j.getJoueur().size(); k++)
+	{
+		if(max<occurence[k])
+		{
+			max = occurence[k];
+			idMax = k;
+		}
+	}
+
+	j.getJoueur()[idMax]->setBonus(true);
+
+}
+
+bool Map::estComplete(Jeu jo)
+{
+
+	for(int i = 1; i<LIGNE-1; i++)
+	{
+		for(int j = 1; j<COLONNE-1; j++)
+		{
+			Animal *p = dynamic_cast<Animal*>(tab[i][j].getPionCase());
+			if(p==NULL)
+				return false;
+		}
+	}
+
+	for(int secteur = 1; secteur<7; secteur++)
+	{
+		chercheJoueurEnMajorite(jo,secteur);
+	}
+
+	return true;
+}
+
+void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
+{
+	vector<Case*> caseSecteur;
+
+   /*
+	* On cherche les cases de ce secteur
+	*/
+	caseSecteur = getCaseSecteur(secteur);
+
+	vector<int> idJoueur = getListJoueur(caseSecteur);
+
+	int occurence[j.getJoueur().size()];
+
+	int cpt = 0;
+
+	for(Joueur *joueur : j.getJoueur())
+	{
+		cpt = 0;
+		for(int id : idJoueur)
+		{
+			if(id == joueur->getNum())
+			{
+				cpt++;
+			}
+		}
+		occurence[joueur->getNum()] = cpt;
+	}
+
+	/*
+	 * On cherche le max
+	 */
+	int max = 0;
+	int idMax = 0;
+	for(int k = 0; k<j.getJoueur().size(); k++)
+	{
+		if(max<occurence[k])
+		{
+			max = occurence[k];
+			idMax = k;
+		}
+	}
+
+	j.getJoueur()[idMax]->addPoint(getPoint(caseSecteur));
+
+}
+
+vector<Case*> Map::getCaseSecteur(int secteur)
+{
+	vector<Case*> caseSecteur;
+	for(int i = 1; i<LIGNE-1; i++)
+	{
+		for(int j = 1; j<COLONNE-1; j++)
+		{
+			if(tab[i][j].getSecteur()==secteur)
+			{
+				caseSecteur.push_back(&tab[i][j]);
+			}
+		}
+	}
+	return caseSecteur;
+}
+
+vector<int> Map::getListJoueur(vector<Case*> caseSecteur)
+{
+	vector<int> idJoueur;
+	for(Case *c : caseSecteur)
+	{
+		if(c->getPionCase()==NULL)
+		{
+			return idJoueur;
+		}
+
+		Animal *p = dynamic_cast<Animal*>(c->getPionCase());
+		if (p == NULL)
+			return idJoueur;
+
+		idJoueur.push_back(p->getJoueur()->getNum());
+	}
+	return idJoueur;
+}
+
+int Map::getPoint(vector<Case*> caseSecteur)
+{
+	int point = 0;
+
+	for(Case * c : caseSecteur)
+	{
+		if(c->getPionCase()==NULL)
+		{
+			return 0;
+		}
+
+		Animal *p = dynamic_cast<Animal*>(c->getPionCase());
+		if (p == NULL)
+			return 0;
+
+		point+=p->getValeur();
+	}
+
+	return point;
 }

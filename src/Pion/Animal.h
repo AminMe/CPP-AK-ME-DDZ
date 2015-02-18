@@ -59,9 +59,13 @@ public:
 
 	vector<Case*> checkAlentour(Case position,string animalRecherche);
 
-	void switchPosition(Animal *first,Animal *second);
+	static void switchPosition(Animal *first,Animal *second);
 
 	virtual void check(Case position)=0;
+
+	int getValeur() const {
+		return valeur;
+	}
 };
 
 #endif /* ANIMAL_H_ */

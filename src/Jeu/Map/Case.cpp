@@ -34,14 +34,19 @@ void Case::affiche()
 string Case::getAffiche()
 {
 	string message = "";
+
 	if(secteur==-1){
+		/*
+		 * if(impala.getCase().x = this->x ....) -> return "    o     "; else return "          ";
+		 */
 		return "    o     ";
 	}
 	else if((x==0 && y==0) || (x==0 && y==COLONNE-1) || (x==LIGNE-1 && y==0) || (x==LIGNE-1 && y==COLONNE-1))
 	{
 		return "    ->    ";
 	}
-	else{
+	else
+	{
 		//message = "("+"a"+","+getY()+") s ="+secteur;
 		ostringstream m;
 		Map& map = Map::Instance();
@@ -54,7 +59,14 @@ string Case::getAffiche()
 		}
 		else
 		{
-			m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<")  ";
+			if(p->isEstCache())
+			{
+				m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<") #C ";
+			}
+			else
+			{
+				m<<"   ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")  ";
+			}
 		}
 
 		message = m.str();

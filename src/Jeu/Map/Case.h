@@ -10,6 +10,9 @@
 
 #include <iostream>
 
+class Pion;
+
+
 
 #define RIVIERE_GAUCHE 0
 #define RIVIERE_DROITE 1
@@ -20,8 +23,6 @@
 #include <cstdlib>
 #include <string>
 using namespace std;
-
-class Pion;
 
 class Case {
 private:
@@ -37,7 +38,8 @@ public:
 	Case(Case * const c):x(c->x),y(c->y),secteur(c->secteur),estOccupe(c->estOccupe)
 	{
 		//pionCase(new Pion(c->getPionCase()))
-
+		Pion *copie(c->getPionCase());
+		pionCase = copie;
 		for(int i =0;i<4;i++)
 		{
 			tabRiviere[i] = c->tabRiviere[i];
