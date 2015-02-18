@@ -24,7 +24,7 @@ void Lion::check(Case position)
 		for(Case *c : retour)
 		{
 			Gazelle *p = dynamic_cast<Gazelle*>(c->getPionCase());
-			if(p!=NULL)
+			if(p!=NULL && !p->estCache)
 			{
 				p->fuit();
 			}
@@ -36,7 +36,7 @@ void Lion::check(Case position)
 		for(Case *c : retour)
 		{
 			Zebre *p = dynamic_cast<Zebre*>(c->getPionCase());
-			if(p!=NULL)
+			if(p!=NULL && !p->estCache)
 			{
 				p->setEstCache(true);
 			}
