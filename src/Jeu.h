@@ -8,10 +8,12 @@
 #ifndef SRC_JEU_H_
 #define SRC_JEU_H_
 
+#include <iostream>
 #include <vector>
 
 #include "Jeu/Map/Map.h"
 #include "Joueur/Joueur.h"
+#include "Pion/ImpalaJones.h"
 
 using namespace std;
 
@@ -22,6 +24,7 @@ private:
 
 public:
 	Map& map = Map::Instance();
+	ImpalaJones& impala = ImpalaJones::Instance();
 
 	Jeu(){}
 	virtual ~Jeu(){}
@@ -32,6 +35,8 @@ public:
 	int countNbAnimalLeft();
 	void addJoueur(Joueur* j) {joueurs.push_back(j);}
 	vector<Joueur*> getJoueur(){return this->joueurs;}
+	bool launchGame();
+	void loadXML(string name);
 };
 
 #endif /* SRC_JEU_H_ */
