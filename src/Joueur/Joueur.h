@@ -90,7 +90,8 @@ public:
 
 	void setBonus(bool bonus) {this->bonus = bonus;}
 	bool getBonus() { return this->bonus;}
-	 vector<Animal*> getMesAnimaux() {
+
+	vector<Animal*>& getMesAnimaux() {
 		return mesAnimaux;
 	}
 
