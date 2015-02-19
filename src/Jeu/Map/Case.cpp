@@ -33,9 +33,21 @@ string Case::getAffiche()
 		else
 			return "          ";
 	}
-	else if((x==0 && y==0) || (x==0 && y==COLONNE-1) || (x==LIGNE-1 && y==0) || (x==LIGNE-1 && y==COLONNE-1))
+	else if((x==0 && y==0))
 	{
 		return "    ->    ";
+	}
+	else if((x==0 && y==COLONNE-1))
+	{
+		return "    ->    ";
+	}
+	else if( (x==LIGNE-1 && y==0))
+	{
+		return "    <-    ";
+	}
+	else if((x==LIGNE-1 && y==COLONNE-1))
+	{
+		return "    <-    ";
 	}
 	else
 	{

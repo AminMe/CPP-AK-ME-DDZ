@@ -16,12 +16,18 @@ void Gazelle::check(Case position)
 	if(checkAlentour(position,"Lion").size()>0)
 	{
 		estCache = true;
+		this->valeur=0;
 		return;
 	}
 }
 
-void Gazelle::fuit()
+void Gazelle::fuit(Case position)
 {
 	/*joueur->getMesAnimaux().push_back(this);*/
+
 	joueur->getMesAnimaux().push_back(this);
+	Map& map = Map::Instance();
+	pair<int, int> index(position.getX(),position.getY());
+	map[index]->setPion(NULL);
+
 }

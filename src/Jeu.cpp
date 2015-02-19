@@ -6,7 +6,7 @@
  */
 
 #include "Jeu.h"
-
+#include <string>
 #include <iostream>
 #include <vector>
 
@@ -21,6 +21,14 @@
 
 using namespace std;
 
+int Jeu::menuConfiguration()
+{
+	int resultat;
+    string s = "Que voulez vous faire ? \n 1. Continuer \n 2. Sauvegarder et quitter \n 3. Quitter ";
+    string err = "Vous avez saisi une valeur incorrecte, veuillez saisir une valeur correcte svp\n";
+    testSaisie(s,1,3,err);
+    return 0;
+}
 int Jeu::testSaisie(string message, int min, int max, string error)
 {
 	cout<<message<<endl;
@@ -34,7 +42,6 @@ int Jeu::testSaisie(string message, int min, int max, string error)
 	}
 	while(!saisiOk)
 	{
-
 		cout<<error<<endl;
 		cout<<message<<endl;
 		fgets(ligne, 100, stdin);
@@ -56,7 +63,8 @@ bool Jeu::launchGame()
 	cout<<"-----------------------------"<<endl;
 	resultat = testSaisie("1. Jouer \n2. Charger une sauvegarde", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
 
-	if(resultat==1){
+	if(resultat==1)
+	{
 		cout<<"Mode Jeu "<<endl;
 		resultat = testSaisie("1. Deux joueurs \n2. Jeu contre IA ", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
 		if(resultat==1)
@@ -78,6 +86,7 @@ bool Jeu::launchGame()
 			joueur1.getAction().deplacementImpalaPremiereFois();
 			int tour = 1;
 			map.affiche();
+			//menuConfiguration();
 			while(!map.estComplete(*this))
 			{
 				joueurs[tour]->getAction().choixPion(joueurs[tour]);
@@ -85,7 +94,7 @@ bool Jeu::launchGame()
 				map.affiche();
 				joueurs[tour]->getAction().deplacementImpala();
 				map.affiche();
-				/* Menu : sauvegarder , continuer */
+			//	menuConfiguration();
 				tour++;
 				if(tour>=joueurs.size())
 				{
@@ -99,7 +108,7 @@ bool Jeu::launchGame()
 
 	}
 
-	}
+}
 
 
 

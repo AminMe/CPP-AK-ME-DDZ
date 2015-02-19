@@ -23,25 +23,25 @@ vector<Case*> Animal::checkAlentour(Case position, string animalRecherche)
 
 	vector<Case*> resultat;
 
-	if(h.first>=0 && h.second>=0 && h.first<map.getLigne() && h.second<map.getColonne() && map[h]->isEstOccupe())
+	if(h.first>=1 && h.second>=1 && h.first<map.getLigne()-1 && h.second<map.getColonne()-1 && map[h]->isEstOccupe())
 	{
 		if(map[h]->getPionCase()->getName()==animalRecherche && map[h]->getPionCase())
 			resultat.push_back(map[h]);
 	}
 
-	if(g.first>=0 && g.second>=0 && g.first<map.getLigne() && g.second<map.getColonne() && map[g]->isEstOccupe())
+	if(g.first>=1 && g.second>=1 && g.first<map.getLigne()-1 && g.second<map.getColonne()-1 && map[g]->isEstOccupe())
 	{
 		if(map[g]->getPionCase()->getName()==animalRecherche)
 			resultat.push_back(map[g]);
 	}
 
-	if(b.first>=0 && b.second>=0 && b.first<map.getLigne() && b.second<map.getColonne() && map[b]->isEstOccupe())
+	if(b.first>=1 && b.second>=1 && b.first<map.getLigne()-1 && b.second<map.getColonne()-1 && map[b]->isEstOccupe())
 	{
 		if(map[b]->getPionCase()->getName()==animalRecherche)
 			resultat.push_back(map[b]);
 	}
 
-	if(d.first>=0 && d.second>=0 && d.first<map.getLigne() && d.second<map.getColonne() && map[d]->isEstOccupe())
+	if(d.first>=1 && d.second>=1 && d.first<map.getLigne()-1 && d.second<map.getColonne()-1 && map[d]->isEstOccupe())
 	{
 		if(map[d]->getPionCase()->getName()==animalRecherche)
 			resultat.push_back(map[d]);
@@ -51,12 +51,15 @@ vector<Case*> Animal::checkAlentour(Case position, string animalRecherche)
 	return resultat;
 }
 
-void Animal::switchPosition(Animal *first, Animal*second)
+void Animal::switchPosition(Case *first, Case*second)
 {
-	Case *firstC(first->getC());
+	Pion * animal1 = first->getPionCase();
+	Pion * animal2 = second->getPionCase();
 
-	Case *secondC(second->getC());
+	animal2->setC(first);
 
-	second->setC(firstC);
-	first->setC(secondC);
+	second->setPion(NULL);
+	second->setPion(animal1);
+	first->setPion(NULL);
+	first->setPion(animal2);
 }

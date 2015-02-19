@@ -185,25 +185,24 @@ vector<Case*> Map::proposeCases(Case* impala)
 	/*
 	 * Dans ce cas on renvoi une ligne entiere
 	 */
-	if(i>0)
+	if(i==0)
 	{
-		/*Seules les cases du jeu nous interesse
-		 * Celles de l'impala ne servent a rien
-		 */
+		for(int k = 1;k<LIGNE-1;k++)
+		{
+			if(tab[k][j].getPionCase()==NULL)
+				retour.push_back(&tab[k][j]);
+		}
+	}
+	else if(j==COLONNE-1)
+	{
 		for(int k = 1;k<COLONNE-1;k++)
 		{
 			if(tab[i][k].getPionCase()==NULL)
 				retour.push_back(&tab[i][k]);
 		}
 	}
-	/*
-	 * Dans ce cas on renvoi une colonne entiere
-	 */
-	else
+	else if(i==LIGNE-1)
 	{
-		/*Seules les cases du jeu nous interesse
-		 * Celles de l'impala ne servent a rien
-		 */
 		for(int k = 1;k<LIGNE-1;k++)
 		{
 			if(tab[k][j].getPionCase()==NULL)
@@ -211,6 +210,15 @@ vector<Case*> Map::proposeCases(Case* impala)
 		}
 
 	}
+	else if(j==0)
+	{
+		for(int k = 1;k<COLONNE-1;k++)
+		{
+			if(tab[i][k].getPionCase()==NULL)
+				retour.push_back(&tab[i][k]);
+		}
+	}
+
 	return retour;
 }
 
@@ -292,9 +300,9 @@ void Map::chercheBonus(Jeu j, int secteur)
 			idMax = k;
 		}
 	}
-    cout<<"Le joueur "<<idMax<<" gagne le bonus sur le secteur "<<secteur<<endl;
+    cout<<"------------------ Le joueur "<<idMax<<" gagne le bonus sur le secteur "<<secteur<<"--------"<<endl;
 	j.getJoueur()[idMax]->setBonus(true);
-
+	j.getJoueur()[idMax]->addPoint(5);
 }
 
 bool Map::estComplete(Jeu jo)

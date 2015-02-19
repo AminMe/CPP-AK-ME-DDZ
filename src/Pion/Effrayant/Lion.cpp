@@ -26,7 +26,7 @@ void Lion::check(Case position)
 			Gazelle *p = dynamic_cast<Gazelle*>(c->getPionCase());
 			if(p!=NULL && !p->isEstCache())
 			{
-				p->fuit();
+				p->fuit(*c);
 			}
 		}
 	}

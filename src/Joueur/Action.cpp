@@ -16,6 +16,8 @@
 bool Action::put(Pion *a, Case* c)
 {
    c->setPion(a);
+   Animal *p = dynamic_cast<Animal*>(a);
+   p->check(*c);
    return true;
 }
 
@@ -133,6 +135,7 @@ bool Action::deplacementImpala()
 		else
 		{
 			Case * caseImp = parcourir(impala.getC()->getX(),impala.getC()->getY());
+			impala.getC()->setPion(NULL);
 			impala.setC(caseImp);
 			caseImp->setPion(&impala);
 			return true;
@@ -142,7 +145,8 @@ bool Action::deplacementImpala()
 	{
 		if(choix.size()==1)
 		{
-			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant";
+			cout<<"Il n'y a qu'une seule possibilite, Impala est placer automatiquement, c'est le tour du joueur suivant"<<endl;
+			impala.getC()->setPion(NULL);
 			impala.setC(choix[0]);
 			choix[0]->setPion(&impala);
 			return true;
@@ -170,7 +174,6 @@ bool Action::deplacementImpala()
 			impala.getC()->setPion(NULL);
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);
-
 			return true;
 		}
 	}
@@ -296,8 +299,7 @@ bool Action::caseDisponible(bool etat,int x)
 	Map& map = Map::Instance();
 	if(etat)
 	{
-		cout<<"TRUE"<<endl;
-		for(int i=1;i<COLONNE-1;i++)
+		for(int i=1;i<LIGNE-1;i++)
 		{
 			pair<int, int> index(i,x);
 			if(!map[index]->isEstOccupe())
@@ -306,7 +308,7 @@ bool Action::caseDisponible(bool etat,int x)
 	}
 	else
 	{
-		for(int i=1;i<LIGNE-1;i++)
+		for(int i=1;i<COLONNE-1;i++)
 		{
 			pair<int, int> index(x,i);
 			if(!map[index]->isEstOccupe())

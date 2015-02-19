@@ -38,6 +38,7 @@ public:
 	bool launchGame();
 	void loadXML(string name);
 	static int testSaisie(string message, int min, int max, string error);
+	static int menuConfiguration();
 };
 
 #endif /* SRC_JEU_H_ */

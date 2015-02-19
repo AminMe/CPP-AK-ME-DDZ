@@ -9,11 +9,13 @@
 #define SRC_CROCODILE_H_
 
 #include <iostream>
-
+#include <vector>
 #include "../Animal.h"
+
 
 class Crocodile : public Animal {
 public:
+	vector<Animal*> listeAnimaux;
 	Crocodile(Joueur *joueur):Animal("Crocodile",joueur,0){}
 	~Crocodile(){}
 

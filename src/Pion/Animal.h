@@ -49,7 +49,6 @@ public:
 
 	void setJoueur(Joueur *joueur) {
 		this->joueur = joueur;
-		//cout << "Mon joueur est " << this->joueur->getName() << endl;
 	}
 
 	Animal& operator =(const Animal& other) // copy assignment
@@ -59,7 +58,7 @@ public:
 
 	vector<Case*> checkAlentour(Case position,string animalRecherche);
 
-	static void switchPosition(Animal *first,Animal *second);
+	static void switchPosition(Case *first,Case *second);
 
 	virtual void check(Case position)=0;
 
