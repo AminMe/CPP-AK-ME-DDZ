@@ -7,7 +7,17 @@
 
 #include "Humain.h"
 
-void Humain::play()
-{
+#include "../../Jeu/Map/Map.h"
+#include "../../Jeu.h"
 
+void Humain::play(Jeu *jeu, int tour)
+{
+	if(getMesAnimaux().size()==0)
+		return;
+	Map& map = Map::Instance();
+	jeu->getJoueur()[tour]->getAction().choixPion(jeu->getJoueur()[tour],false);
+	map.gainBonus(*jeu);
+	map.affiche();
+	jeu->getJoueur()[tour]->getAction().deplacementImpala(false);
+	map.affiche();
 }

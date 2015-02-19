@@ -13,6 +13,7 @@
 
 #include "Joueur/Action.h"
 #include "Joueur/Humain/Humain.h"
+#include "Joueur/Ordinateur/Novice.h"
 #include "Sauvegarde/Parser.h"
 
 
@@ -67,50 +68,64 @@ bool Jeu::launchGame()
 	{
 		cout<<"Mode Jeu "<<endl;
 		resultat = testSaisie("1. Deux joueurs \n2. Jeu contre IA ", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
+
+		cout<<"Veuillez saisir le nom du premier joueur "<<endl;
+		string name;
+		cin>>name;
+
+		Joueur* joueur1 = NULL;
+		joueur1 = new Humain(1,name);
+		cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
+		cin>>name;
+
+		Joueur* joueur2 = NULL;
+
 		if(resultat==1)
 		{
-			cout<<"Veuillez saisir le nom du premier joueur "<<endl;
-			string name;
-			cin>>name;
-			Humain joueur1(1,name);
-			cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
-			cin>>name;
-			Humain joueur2(2,name);
-			addJoueur(&joueur1);
-			addJoueur(&joueur2);
-
-			joueur1.affiche();
-			joueur2.affiche();
-
-
-
-			cout<<"Joueur 1 veuillez saisir la position de l'impala"<<endl;
-			joueur1.getAction().deplacementImpalaPremiereFois();
-			int tour = 1;
-			map.affiche();
-			//menuConfiguration();
-			while(!map.estComplete(*this))
-			{
-				joueurs[tour]->getAction().choixPion(joueurs[tour]);
-				map.gainBonus(*this);
-				map.affiche();
-				joueurs[tour]->getAction().deplacementImpala();
-				map.affiche();
-			//	menuConfiguration();
-				tour++;
-				if(tour>=joueurs.size())
-				{
-					tour=0;
-				}
-			}
-
-			cout<<"Sauvegarde en cours ..."<<endl;
-			Parser xml("sauvegarde.xml");
-			xml.save(*this);
-			cout<<"Sauvegarde terminee"<<endl;
-
-			xml.parse(this);
+			joueur2 = new Humain(1,name);
 		}
+		else if(resultat==2)
+		{
+			joueur2 = new Novice(1,name);
+		}
+		else
+		{
+			//Inutile mais roue de secours
+			joueur2 = new Humain(1,name);
+		}
+
+		addJoueur(joueur1);
+		addJoueur(joueur2);
+
+		joueur1->affiche();
+		joueur2->affiche();
+
+		cout<<"Joueur 1 : " << joueur1->getName() <<"veuillez saisir la position de l'impala"<<endl;
+		joueur1->getAction().deplacementImpalaPremiereFois();
+		int tour = 1;
+		map.affiche();
+		//menuConfiguration();
+		while(!map.estComplete(*this))
+		{
+			joueurs[tour]->play(this,tour);
+			map.affiche();
+			tour++;
+			if(tour>=joueurs.size())
+			{
+				tour=0;
+			}
+		}
+
+		cout<<"Point Joueur 1 "<<joueur1->getPoint()<<endl;
+		cout<<"Point Joueur 2 "<<joueur2->getPoint()<<endl;
+
+
+		cout<<"Sauvegarde en cours ..."<<endl;
+		Parser xml("sauvegarde.xml");
+		xml.save(*this);
+		cout<<"Sauvegarde terminee"<<endl;
+
+		xml.parse(this);
 		map.affiche();
 	}
 

@@ -76,7 +76,7 @@ public:
 		this->point+=point;
 	}
 
-	virtual void play()=0;
+	virtual void play(Jeu *jeu, int tour)=0;
 
 	const string& getName() const {
 		return name;

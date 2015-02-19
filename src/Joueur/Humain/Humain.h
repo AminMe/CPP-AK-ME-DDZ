@@ -10,7 +10,7 @@ public:
 	Humain(int num, string name):Joueur(num,name){};
 	~Humain(){};
 
-	void play();
+	void play(Jeu *jeu, int tour);
 
 };
 

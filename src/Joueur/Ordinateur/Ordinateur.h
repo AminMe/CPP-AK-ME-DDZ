@@ -23,7 +23,7 @@ public:
 
 	virtual void algo()=0;
 
-	virtual void play()=0;
+	virtual void play(Jeu *jeu, int tour)=0;
 };
 
 #endif /* SRC_ORDINATEUR_H_ */

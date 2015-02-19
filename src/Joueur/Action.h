@@ -22,16 +22,16 @@ public:
 	void affiche();
 	void controlDeplacement(Pion * p);
 
-	bool deplacementImpala();
+	bool deplacementImpala(bool robot);
 	vector<Case*> estPossibleDeplacement();
 	bool deplacementImpalaPremiereFois();
 	/*bool deplacementImpala(ImpalaJones *impala);
 	bool estPossibleDeplacement(ImpalaJones *impala);*/
-	bool choixPion(Joueur * j);
+	bool choixPion(Joueur * j,bool robot);
 	bool caseDisponible(bool etat,int x);
 	Case* parcourir(int x, int y);
 
 
 };
-
+int tirage_entier(int a,int b);
 #endif /* SRC_ACTION_H_ */

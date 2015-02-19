@@ -7,7 +7,7 @@
 
 #include "Intermediaire.h"
 
-void Intermediaire::play()
+void Intermediaire::play(Jeu *jeu, int tour)
 {
 
 }

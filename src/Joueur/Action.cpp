@@ -28,61 +28,76 @@ bool Action::put(Pion *a, Case* c)
 }
 
 
-bool Action::choixPion(Joueur * j)
+bool Action::choixPion(Joueur * j,bool robot)
 {
-	int resultat;
 	j->affiche();
+	int resultat,resultat2;
 	Map& map = Map::Instance();
-
-	ostringstream m;
-	m << "Veuillez choisir l'animal que vous voulez placer sur la map\n";
-	for(int i=0; i<j->getMesAnimaux().size();i++)
-	{
-		m<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<"\n";
-	}
-	string err = "Veuiller choisir un numero correct";
-
-	resultat = Jeu::testSaisie(m.str(),1,j->getMesAnimaux().size()-1,err);
-
-
-	/*while(resultat>j->getMesAnimaux().size() || resultat<0)
-	{
-		cout<<"Veuiller choisir un numero correct"<<endl;
-		for(int i=0; i<j->getMesAnimaux().size();i++)
-		{
-			cout<<i<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
-		}
-	}
-	*/
 	vector<Case*> possibilite = map.proposeCases(impala.getC());
 
-
-	string message = "Les differentes possibilite de placement du pion sont :\n";
-	err.clear();
-	err="Veuiller selectionner un numero correspondant au proposition \n";
-
-	ostringstream m1;
-	m1<<message;
-
-	int i=1;
-	int resultat2;
-	for(Case* c : possibilite)
+	if(!robot)
 	{
-		m1<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<"\n";
-		i++;
+		ostringstream m;
+		m << "Veuillez choisir l'animal que vous voulez placer sur la map\n";
+		for(int i=0; i<j->getMesAnimaux().size();i++)
+		{
+			m<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<"\n";
+		}
+		string err = "Veuiller choisir un numero correct";
+
+		resultat = Jeu::testSaisie(m.str(),1,j->getMesAnimaux().size(),err);
+
+
+		/*while(resultat>j->getMesAnimaux().size() || resultat<0)
+		{
+			cout<<"Veuiller choisir un numero correct"<<endl;
+			for(int i=0; i<j->getMesAnimaux().size();i++)
+			{
+				cout<<i<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
+			}
+		}
+		*/
+
+		string message = "Les differentes possibilite de placement du pion sont :\n";
+		err.clear();
+		err="Veuiller selectionner un numero correspondant au proposition \n";
+
+		ostringstream m1;
+		m1<<message;
+
+		int i=1;
+		for(Case* c : possibilite)
+		{
+			m1<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<"\n";
+			i++;
+		}
+		m1<<"Selectionner la case ";
+
+		resultat2 = Jeu::testSaisie(m1.str(),1,possibilite.size(),err);
+
+		cout<<"Ok je passe"<<endl;
+
+
 	}
-	m1<<"Selectionner la case ";
+	else
+	{
 
-	resultat2 = Jeu::testSaisie(m1.str(),1,i-1,err);
+		resultat = tirage_entier(1,j->getMesAnimaux().size()+1);
+		/*cout<<"random entre 1 et "<<j->getMesAnimaux().size()<<endl;
 
-	cout<<"Ok je passe"<<endl;
+		for(int i = 0; i< 10000; i++)
+		{
+			cout<<tirage_entier(1,j->getMesAnimaux().size()+1)<<endl;
+		}*/
+
+		resultat2 = tirage_entier(1,possibilite.size()+1);
+	}
 
 	int idChoix = j->getMesAnimaux().at(resultat-1)->getId();
 	vector<Animal*>::iterator it = j->getMesAnimaux().begin();
 
 	for(int iterateur=0;iterateur<j->getMesAnimaux().size();iterateur++)
 	{
-
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
 
@@ -94,6 +109,12 @@ bool Action::choixPion(Joueur * j)
 	return true;
 }
 
+int tirage_entier(int a,int b)
+{
+    int r;
+    r=(rand()/((double)RAND_MAX))*(b-a)+a;
+    return (int)r;
+}
 
 bool Action::deplacementImpalaPremiereFois()
 {
@@ -131,7 +152,7 @@ bool Action::deplacementImpalaPremiereFois()
 	}
 }
 
-bool Action::deplacementImpala()
+bool Action::deplacementImpala(bool robot)
 {
 	vector<Case*> choix = estPossibleDeplacement();
 	if(choix.empty())
@@ -162,23 +183,31 @@ bool Action::deplacementImpala()
 		}
 		else
 		{
-			cout<<"Vous avez "<<choix.size()<< "possibilite pour le deplacement de Impala"<<endl;
 			int resultat;
-			for(int i=0;i<choix.size();i++)
+			if(!robot)
 			{
-				cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
-			}
+				cout<<"Vous avez "<<choix.size()<< "possibilite pour le deplacement de Impala"<<endl;
 
-			cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
-			cin>>resultat;
-			while(resultat>choix.size() || resultat<1)
-			{
-				cout<<"Veuiller choisir une variable correcte";
 				for(int i=0;i<choix.size();i++)
 				{
 					cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
 				}
+
+				cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
 				cin>>resultat;
+				while(resultat>choix.size() || resultat<1)
+				{
+					cout<<"Veuiller choisir une variable correcte";
+					for(int i=0;i<choix.size();i++)
+					{
+						cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
+					}
+					cin>>resultat;
+				}
+			}
+			else
+			{
+				resultat = tirage_entier(1,choix.size()+1);
 			}
 			impala.getC()->setPion(NULL);
 			impala.setC(choix[resultat-1]);
