@@ -101,6 +101,7 @@ bool Jeu::launchGame()
 				if(tour>=joueurs.size())
 				{
 					tour=0;
+					break;
 				}
 			}
 
@@ -111,15 +112,10 @@ bool Jeu::launchGame()
 
 			xml.parse(this);
 		}
-		map.affiche();
+		//map.affiche();
 	}
 
 }
-
-
-
-
-
 
 int main(int argc, char **argv) {
 	cout<<"MAP"<<endl;

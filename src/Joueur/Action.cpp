@@ -41,7 +41,6 @@ bool Action::choixPion(Joueur * j)
 		m<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<"\n";
 	}
 	string err = "Veuiller choisir un numero correct";
-	cout<< " TAILLE ANIMAL "<<j->getMesAnimaux().size();
 	resultat = Jeu::testSaisie(m.str(),1,j->getMesAnimaux().size(),err);
 
 	vector<Case*> possibilite = map.proposeCases(impala.getC());
@@ -64,8 +63,6 @@ bool Action::choixPion(Joueur * j)
 	m1<<"Selectionner la case ";
 
 	resultat2 = Jeu::testSaisie(m1.str(),1,possibilite.size(),err);
-
-	cout<<"Ok je passe"<<endl;
 
 	int idChoix = j->getMesAnimaux().at(resultat-1)->getId();
 	vector<Animal*>::iterator it = j->getMesAnimaux().begin();

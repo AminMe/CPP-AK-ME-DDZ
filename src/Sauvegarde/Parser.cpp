@@ -260,6 +260,7 @@ void Parser::parse(Jeu *jeu)
 						//Categorie
 						else if(cpt==3)
 						{
+							cout<<"RETURN"<<endl;
 							categorie = line;
 							int cat = atoi(categorie.c_str());
 							switch(cat)

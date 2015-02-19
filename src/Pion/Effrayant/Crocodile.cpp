@@ -8,14 +8,14 @@
 #include "Crocodile.h"
 
 #include <stddef.h>
+#include <sstream>
 
 #include "../../Jeu/Map/Case.h"
+#include "../../Jeu.h"
 #include "../Effraye/Gazelle.h"
 
 void Crocodile::check(Case position)
 {
-	cout<<" JE SUIS DANS CHECK CROCODILE "<<endl;
-	cout<< " POSI X : "<<position.getX() << "POSI Y :" <<position.getY()<<endl;
 	vector<Case*> retour = checkAlentour(position,"Gazelle");
 	vector<Case*> tmp;
 	int echange;
@@ -48,11 +48,7 @@ void Crocodile::check(Case position)
 				m<<i+1<<". ligne : "<<tmp.at(i)->getX()<<" colonne : "<<tmp.at(i)->getY()<<"\n";
 			}
 
-
-
-			m<<"Voulez vous effectuer un echange ?  1 : Oui --- 2 : Non"<<endl;
-			echange = Jeu::testSaisie(m.str(),1,2,"Veuillez choisir soit 1(oui) soit non (2)");
-
+			echange = Jeu::testSaisie(m+"Voulez vous effectuer un echange ?  1 : Oui --- 2 : Non\n",1,2,"Veuillez choisir soit 1(oui) soit non (2)\n");
 
 			if(echange==2)
 			{
@@ -61,19 +57,20 @@ void Crocodile::check(Case position)
 			else if(echange==1)
 			{
 				pair<int, int> index(position.getX(),position.getY());
+				/* Il n'y a qu'une seule possibilite */
 				if(tmp.size()==1)
 				{
 					Animal::switchPosition(map[index],tmp.at(0));
 					map.affiche();
-					cout<<"Voulez vous refaire un check pour voir d'autre possibilite   1 : Oui --- 0 : Non"<<endl;
-					cin>>echange;
+					echange = Jeu::testSaisie("Voulez vous refaire un check pour voir d'autre possibilite   1 : Oui --- 2 : Non\n",
+							1,2,"Veuillez choisir soit 1(oui) soit non (2)\n");
 					if(echange==1)
 					{
 						Animal* anim= dynamic_cast<Animal*>(map[index]->getPionCase());
 						listeAnimaux.push_back(anim);
 						check(*tmp.at(0));
 					}
-					else if(echange==0)
+					else if(echange==2)
 					{
 
 						for(int i=0;i<listeAnimaux.size();i++)
@@ -90,21 +87,23 @@ void Crocodile::check(Case position)
 						return;
 					}
 				}
-
 				else
 				{
-					cout<<"Veuillez selectionner la case sur laquelle vous voullez effectuer le changement"<<endl;
-					cin>>caseMap;
-					Animal::switchPosition(map[index],tmp.at(caseMap));
-					cout<<"Voulez vous refaire un check pour voir d'autre possibilite   1 : Oui --- 0 : Non"<<endl;
-					cin>>echange;
+					/* Plusieurs possibilite */
+					m<<"Veuillez selectionner la case sur laquelle vous voullez effectuer le changement";
+					caseMap = Jeu::testSaisie(m.str(),1,tmp.size(),"Veuillez choisir un nombre correcte\n");
+
+
+					Animal::switchPosition(map[index],tmp.at(caseMap-1));
+					echange = Jeu::testSaisie("Voulez vous refaire un check pour voir d'autre possibilite   1 : Oui --- 2 : Non\n",1,2,"Veuillez choisir soit 1(oui) soit non (2)\n");
 					if(echange==1)
 					{
+						cout<<"Je suis ici "<<endl;
 						Animal* anim= dynamic_cast<Animal*>(map[index]->getPionCase());
 						listeAnimaux.push_back(anim);
-						check(*tmp.at(caseMap));
+						check(*tmp.at(caseMap-1));
 					}
-					else if(echange==0)
+					else if(echange==2)
 					{
 						for(int i=0;i<listeAnimaux.size();i++)
 						{
