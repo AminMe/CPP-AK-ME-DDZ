@@ -38,19 +38,23 @@ void Crocodile::check(Case position)
 
 		if(!tmp.empty())
 		{
-			/* AFFICHER LA MAP*/
-			cout<<" LAAALALALALAALALALALALALALALALALALA"<<endl;
 			Map& map = Map::Instance();
 			map.affiche();
-			cout<<"Vous avez "<<tmp.size() <<"possibilite de changement avec "<<endl;
+			ostringstream m;
+			int echange;
+			m<<"Vous avez "<<tmp.size() <<"possibilite de switch avec la case \n";
 			for(int i=0;i<tmp.size();i++)
 			{
-				cout<<i<<". ligne : "<<tmp.at(i)->getX()<<" colonne : "<<tmp.at(i)->getY()<<endl;
+				m<<i+1<<". ligne : "<<tmp.at(i)->getX()<<" colonne : "<<tmp.at(i)->getY()<<"\n";
 			}
-			cout<<"Voulez vous effectuer un echange ?  1 : Oui --- 0 : Non"<<endl;
-			cin>>echange;
 
-			if(echange==0)
+
+
+			m<<"Voulez vous effectuer un echange ?  1 : Oui --- 2 : Non"<<endl;
+			echange = Jeu::testSaisie(m.str(),1,2,"Veuillez choisir soit 1(oui) soit non (2)");
+
+
+			if(echange==2)
 			{
 				return;
 			}
