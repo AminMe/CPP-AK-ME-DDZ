@@ -6,16 +6,17 @@
  */
 
 #include "Action.h"
+#include <sstream>
 
 #include <sys/_types/_null.h>
-#include <iostream>     // std::cout
-#include <iterator>     // std::ostream_iterator
+#include <iostream>
 #include <utility>
 
 #include "../Jeu/Map/Map.h"
 #include "../Pion/Animal.h"
 #include "../Pion/Pion.h"
 #include "Joueur.h"
+#include "../Jeu.h"
 
 
 bool Action::put(Pion *a, Case* c)
@@ -32,15 +33,19 @@ bool Action::choixPion(Joueur * j)
 	int resultat;
 	j->affiche();
 	Map& map = Map::Instance();
-	cout<<"Veuillez choisir l'animal que vous voulez placer sur la map"<<endl;
 
+	ostringstream m;
+	m << "Veuillez choisir l'animal que vous voulez placer sur la map\n";
 	for(int i=0; i<j->getMesAnimaux().size();i++)
 	{
-		cout<<i<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
+		m<<i+1<<". "<<j->getMesAnimaux().at(i)->getName()<<"\n";
 	}
-	cin>>resultat;
+	string err = "Veuiller choisir un numero correct";
 
-	while(resultat>j->getMesAnimaux().size() || resultat<0)
+	resultat = Jeu::testSaisie(m.str(),1,j->getMesAnimaux().size()-1,err);
+
+
+	/*while(resultat>j->getMesAnimaux().size() || resultat<0)
 	{
 		cout<<"Veuiller choisir un numero correct"<<endl;
 		for(int i=0; i<j->getMesAnimaux().size();i++)
@@ -48,32 +53,31 @@ bool Action::choixPion(Joueur * j)
 			cout<<i<<". "<<j->getMesAnimaux().at(i)->getName()<<endl;
 		}
 	}
-
+	*/
 	vector<Case*> possibilite = map.proposeCases(impala.getC());
-	cout<<"Les differentes possibilite de placement du pion sont :"<<endl;
 
-	int i=0;
+
+	string message = "Les differentes possibilite de placement du pion sont :\n";
+	err.clear();
+	err="Veuiller selectionner un numero correspondant au proposition \n";
+
+	ostringstream m1;
+	m1<<message;
+
+	int i=1;
 	int resultat2;
 	for(Case* c : possibilite)
 	{
-		cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
+		m1<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<"\n";
 		i++;
 	}
-	cout<<"Selectionner la case "<<endl;
-	cin>>resultat2;
-	while(resultat2>possibilite.size() || resultat2<0)
-	{
-		cout<<"Veuiller selectionner un numero correspondant au proposition"<<endl;
-		int i=0;
-		for(Case* c : possibilite)
-		{
-			cout<<i<<". "<< " ligne : "<< c->getX()<< " colonne : "<< c->getY()<<endl;
-			i++;
-		}
-		cout<<"Selectionner la case "<<endl;
-		cin>>resultat2;
-	}
-	int idChoix = j->getMesAnimaux().at(resultat)->getId();
+	m1<<"Selectionner la case ";
+
+	resultat2 = Jeu::testSaisie(m1.str(),1,i-1,err);
+
+	cout<<"Ok je passe"<<endl;
+
+	int idChoix = j->getMesAnimaux().at(resultat-1)->getId();
 	vector<Animal*>::iterator it = j->getMesAnimaux().begin();
 
 	for(int iterateur=0;iterateur<j->getMesAnimaux().size();iterateur++)
@@ -82,7 +86,7 @@ bool Action::choixPion(Joueur * j)
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
 
-			put(j->getMesAnimaux().at(resultat), possibilite[resultat2]);
+			put(j->getMesAnimaux().at(resultat-1), possibilite[resultat2-1]);
 			j->getMesAnimaux().erase(it+iterateur);
 			iterateur=j->getMesAnimaux().size();
 		}
