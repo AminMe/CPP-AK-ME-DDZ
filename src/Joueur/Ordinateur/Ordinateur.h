@@ -18,8 +18,10 @@ using namespace std;
 class Ordinateur: public Joueur {
 
 public:
-	Ordinateur(int num, string name):Joueur(num,name){}
-	virtual ~Ordinateur(){};
+	Ordinateur(int num, string name):Joueur(num,name){
+		estRobot=true;
+	}
+	virtual ~Ordinateur(){}
 
 	virtual void algo()=0;
 

@@ -21,12 +21,12 @@ class Jeu {
 
 private:
 	vector<Joueur*> joueurs;
-
+	int tour;
 public:
 	Map& map = Map::Instance();
 	ImpalaJones& impala = ImpalaJones::Instance();
 
-	Jeu(){}
+	Jeu():tour(1){}
 	virtual ~Jeu(){}
 
 	void init();
@@ -39,6 +39,14 @@ public:
 	void loadXML(string name);
 	static int testSaisie(string message, int min, int max, string error);
 	static int menuConfiguration();
+
+	int getTour() const {
+		return tour;
+	}
+
+	void setTour(int tour) {
+		this->tour = tour;
+	}
 };
 
 #endif /* SRC_JEU_H_ */

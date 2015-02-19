@@ -44,6 +44,9 @@ using namespace std;
 #define DELIM_ANIMAL_D "DEBUT_ANIMAL"
 #define DELIM_ANIMAL_F "FIN_ANIMAL"
 
+#define DELIM_TOUR_D "DEBUT_TOUR"
+#define DELIM_TOUR_F "FIN_TOUR"
+
 #define J_HUMAIN 1
 #define J_NOVICE 2
 #define J_INTERMEDIAIRE 3
@@ -81,41 +84,36 @@ void Parser::parse(Jeu *jeu)
 
 	string pion = "";
 
+	bool tourTrouve = false;
+
 	string hashtag = "";
 	int cpt = 0;
 	if(fp.is_open())
 	{
 		while(fp>>line)
 		{
-			{
 				/*
 				 * RESET
 				 */
-				nameA = "";
-				valA = "0";
-				nameJ = "";
-				id = "-1";
-				bonus = "0";
-				categorie = "-1";
-			}
-
 			if(!initCase)
 			{
 				/**/
-				cpt = 0;
 				ccourant = new Case(0,0,0);
 			}
 			if(!initJoueur)
 			{
 				/**/
-				cpt = 0;
-				jcourant = new Humain(-1,"initjoueur");
+				jcourant = new Humain(-1,"ErreurJ");
+
 			}
 			if(!initAnimal)
 			{
-				cpt = 0;
-				/*Animal(string name, Joueur *joueur, int val)*/
-				acourant = new Zebre(NULL);
+				acourant = new Crocodile(jcourant);
+			}
+
+			if(tourTrouve)
+			{
+				jeu->setTour(atoi(line.c_str()));
 			}
 
 			if(line[0]=='|')
@@ -140,7 +138,7 @@ void Parser::parse(Jeu *jeu)
 				}
 				y = position;
 
-				cout<<"Case : "<<x<<","<<y<<" "<<endl;
+				//cout<<"Case : "<<x<<","<<y<<" "<<endl;
 				/*
 				 *
 				 * - Le secteur ainsi que le nom du pion et #NC ne sera connu qu'apres -
@@ -164,12 +162,14 @@ void Parser::parse(Jeu *jeu)
 			}
 			else if(line[0]=='#')
 			{
+				cpt = 0;
 				ccourant = new Case();
 				hashtag = line;
 				initCase = false;
 			}
 			else if(line==DELIM_JOUEUR_D)
 			{
+				cpt = -1;
 				/*
 				 * Creation d'un joueur
 				 */
@@ -186,7 +186,7 @@ void Parser::parse(Jeu *jeu)
 			}
 			else if(line==DELIM_ANIMAL_D)
 			{
-				cout<<"---------------"<<endl;
+				cpt = -1;
 				/*
 				 * Creation d'un animal => ajout a la liste du joueur courant
 				 */
@@ -233,33 +233,45 @@ void Parser::parse(Jeu *jeu)
 
 				initAnimal = false;
 			}
+			else if(line==DELIM_TOUR_D)
+			{
+				tourTrouve = true;
+			}
 			else if(line!=DELIM_L_ANIMAUX_F)
 			{
+
 				if(initJoueur)
 				{
+
 					if(initJoueur && !initAnimal)
 					{
+
 						/*
 						 * On init le joueur
 						 */
 						// ID
 						if(cpt==0)
 						{
+							cout<<"ID joueur ____ "<<line<<endl;
 							id = line;
 						}
 						//Nom
 						else if(cpt==1)
 						{
 							nameJ = line;
+							cout<<"Nom joueur ____ "<<nameJ<<endl;
 						}
 						//Bonus
 						else if(cpt==2)
 						{
 							bonus = line;
+							cout<<"Bonus joueur ____ "<<bonus<<endl;
 						}
 						//Categorie
 						else if(cpt==3)
 						{
+							//cpt = 0;
+							cout<<"Je vais creer le joueur "<<nameJ<<endl;
 							categorie = line;
 							int cat = atoi(categorie.c_str());
 							switch(cat)
@@ -279,6 +291,7 @@ void Parser::parse(Jeu *jeu)
 							if(jcourant!=NULL)
 							{
 								jcourant->setBonus(atoi(bonus.c_str()));
+								jcourant->getMesAnimaux().clear();
 								Joueur *copie(jcourant);
 								jeu->addJoueur(copie);
 							}
@@ -305,34 +318,36 @@ void Parser::parse(Jeu *jeu)
 						else if(cpt==3)
 						{
 							valA = line;
+							//cpt = 0;
 						}
 
 					}
 				}
 				else if(initCase)
 				{
-
-					cout<<endl<<"[][][][][][]D[][][][][][]"<<endl;
 					pion = line;
-
-
 
 				}
 				else
 				{
+
 					if(hashtag!="")
 					{
-						cout<<"Hashtag trouve "<<hashtag<<endl;
+						//cout<<"Hashtag trouve "<<hashtag<<endl;
 						initCase = false;
 						hashtag = "";
-						cout<<"LINE =  "<<line<<endl;
+						//cout<<"LINE =  "<<line<<endl;
 						//Case(int posiX, int posiY, int secteurNum)
 						pair<int, int> index(atoi(x.c_str()),atoi(y.c_str()));
+
+
 						if(pion!="")
 						{
+
 							if(pion=="ImpalaJones")
 							{
 								ImpalaJones& impala = ImpalaJones::Instance();
+								impala.setC(map[index]);
 								map[index]->setPion(&impala);
 							}
 							else
@@ -343,62 +358,64 @@ void Parser::parse(Jeu *jeu)
 
 								/*if(surCarte==NULL)
 									break;*/
+								//cpt = 0;
+								//cout<<"Pion :"<<pion<<endl;
 
-								cout<<"Pion :"<<pion<<endl;
+
 								if(pion=="Gazelle")
 								{
-									map[index]->setPion(new Gazelle(jcourant));
+									map[index]->setPion(new Gazelle(jeu->getJoueur()[atoi(line.c_str())-1]));
 								}
 								else if(pion== "Zebre")
 								{
-									map[index]->setPion(new Zebre(jcourant));
+									map[index]->setPion(new Zebre(jeu->getJoueur()[atoi(line.c_str())-1]));
 								}
 								else if(pion== "Elephant")
 								{
-									map[index]->setPion(new Elephant(jcourant));
+									map[index]->setPion(new Elephant(jeu->getJoueur()[atoi(line.c_str())-1]));
 								}
 								else if(pion== "Lion")
 								{
-									map[index]->setPion(new Lion(jcourant));
+									map[index]->setPion(new Lion(jeu->getJoueur()[atoi(line.c_str())-1]));
 								}
 								else if(pion== "Crocodile")
 								{
-									map[index]->setPion(new Crocodile(jcourant));
+									map[index]->setPion(new Crocodile(jeu->getJoueur()[atoi(line.c_str())-1]));
 								}
 								Pion* pion = map[index]->getPionCase();
 
-								Animal *surCarte = dynamic_cast<Animal*>(pion);
-
-								if(surCarte==NULL)
+								if(pion!=NULL)
 								{
-									return;
-								}
-
-								if(hashtag=="#NC")
-								{
-									surCarte->setEstCache(false);
-									/*
-									 *
-									 * SWITCH
-									 * seVal
-									 */
-								}
-								else if(hashtag=="#C")
-								{
-									surCarte->setEstCache(true);
+									Animal *surCarte = dynamic_cast<Animal*>(pion);
+									if(surCarte==NULL)
+									{
+										return;
+									}
+									if(hashtag=="#NC")
+									{
+										surCarte->setEstCache(false);
+										/*
+										 *
+										 * SWITCH
+										 * seVal
+										 */
+									}
+									else if(hashtag=="#C")
+									{
+										surCarte->setEstCache(true);
+									}
 								}
 							}
 						}
 
 					}
-
-
 				}
-				cpt++;
 			}
-
+			cpt++;
 		}
 	}
+
+	map.affiche();
 
 	cout<<endl<<"[][][][][][]D[][][][][][]"<<endl;
 	for(Joueur*nouv : jeu->getJoueur())
@@ -416,6 +433,11 @@ void Parser::save(Jeu jeu)
 
 	saveJ(jeu.getJoueur(),&fp);
 	saveM(&fp);
+
+	fp<<DELIM_TOUR_D<<endl;
+	fp<<jeu.getTour()<<endl;
+	fp<<DELIM_TOUR_F<<endl;
+
 	fp.close();
 
 }

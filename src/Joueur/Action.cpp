@@ -33,6 +33,7 @@ bool Action::choixPion(Joueur * j,bool robot)
 	j->affiche();
 	int resultat,resultat2;
 	Map& map = Map::Instance();
+
 	vector<Case*> possibilite = map.proposeCases(impala.getC());
 
 	if(!robot)
@@ -81,7 +82,6 @@ bool Action::choixPion(Joueur * j,bool robot)
 	}
 	else
 	{
-
 		resultat = tirage_entier(1,j->getMesAnimaux().size()+1);
 		/*cout<<"random entre 1 et "<<j->getMesAnimaux().size()<<endl;
 
@@ -100,7 +100,6 @@ bool Action::choixPion(Joueur * j,bool robot)
 	{
 		if(j->getMesAnimaux()[iterateur]->getId() == idChoix)
 		{
-
 			put(j->getMesAnimaux().at(resultat-1), possibilite[resultat2-1]);
 			j->getMesAnimaux().erase(it+iterateur);
 			iterateur=j->getMesAnimaux().size();
@@ -128,6 +127,7 @@ bool Action::deplacementImpalaPremiereFois()
 	cin >>y;
 	pair<int, int> index(x,y);
 	Case * c = map[index];
+
 	if(c->getSecteur()==-1)
 	{
 		impala.setC(c);
@@ -184,31 +184,25 @@ bool Action::deplacementImpala(bool robot)
 		else
 		{
 			int resultat;
+
 			if(!robot)
 			{
-				cout<<"Vous avez "<<choix.size()<< "possibilite pour le deplacement de Impala"<<endl;
+				ostringstream m;
+				m<<"Vous avez "<<choix.size()<< "possibilite pour le deplacement de Impala\n";
 
 				for(int i=0;i<choix.size();i++)
 				{
-					cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
+					m<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<"\n";
 				}
+				m<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
+				resultat = Jeu::testSaisie(m.str(),1,choix.size(),"Veuiller choisir une variable correcte");
 
-				cout<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
-				cin>>resultat;
-				while(resultat>choix.size() || resultat<1)
-				{
-					cout<<"Veuiller choisir une variable correcte";
-					for(int i=0;i<choix.size();i++)
-					{
-						cout<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<endl;
-					}
-					cin>>resultat;
-				}
 			}
 			else
 			{
 				resultat = tirage_entier(1,choix.size()+1);
 			}
+
 			impala.getC()->setPion(NULL);
 			impala.setC(choix[resultat-1]);
 			choix[resultat-1]->setPion(&impala);

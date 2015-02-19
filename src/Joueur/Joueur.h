@@ -35,9 +35,11 @@ protected:
 	bool bonus;
 	Action action;
 
+	bool estRobot;
+
 
 public:
-	Joueur() : num(-1), name("testErreur"), point(0), bonus(false) {}
+	Joueur() : num(-1), name("testErreur"), point(0), bonus(false), estRobot(false){}
 	Joueur(int num, string name) :
 			num(num), name(name), point(0), bonus(false) {
 		for (int i = 0; i < 6; i++) {
@@ -106,6 +108,14 @@ public:
 
 	Action getAction() {
 		return action;
+	}
+
+	bool isEstRobot() const {
+		return estRobot;
+	}
+
+	void setEstRobot(bool estRobot) {
+		this->estRobot = estRobot;
 	}
 
 private:

@@ -21,11 +21,9 @@ using namespace std;
 
 int Jeu::menuConfiguration()
 {
-	int resultat;
     string s = "Que voulez vous faire ? \n 1. Continuer \n 2. Sauvegarder et quitter \n 3. Quitter ";
     string err = "Vous avez saisi une valeur incorrecte, veuillez saisir une valeur correcte svp\n";
-    testSaisie(s,1,3,err);
-    return 0;
+    return testSaisie(s,1,3,err);
 }
 int Jeu::testSaisie(string message, int min, int max, string error)
 {
@@ -56,7 +54,7 @@ int Jeu::testSaisie(string message, int min, int max, string error)
 
 bool Jeu::launchGame()
 {
-
+	srand(time(NULL));
 	map.affiche();
 
 	int resultat;
@@ -69,29 +67,29 @@ bool Jeu::launchGame()
 		cout<<"Mode Jeu "<<endl;
 		resultat = testSaisie("1. Deux joueurs \n2. Jeu contre IA ", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
 
-		cout<<"Veuillez saisir le nom du premier joueur "<<endl;
+		cout<<"Veuillez saisir le nom du premier joueur (Humain) "<<endl;
 		string name;
 		cin>>name;
 
 		Joueur* joueur1 = NULL;
 		joueur1 = new Humain(1,name);
-		cout<<"Veuillez saisir le nom du deuxime joueur "<<endl;
+		cout<<"Veuillez saisir le nom du deuxime joueur (Humain ou Robot)"<<endl;
 		cin>>name;
 
 		Joueur* joueur2 = NULL;
 
 		if(resultat==1)
 		{
-			joueur2 = new Humain(1,name);
+			joueur2 = new Humain(2,name);
 		}
 		else if(resultat==2)
 		{
-			joueur2 = new Novice(1,name);
+			joueur2 = new Novice(2,name);
 		}
 		else
 		{
 			//Inutile mais roue de secours
-			joueur2 = new Humain(1,name);
+			joueur2 = new Humain(2,name);
 		}
 
 		addJoueur(joueur1);
@@ -100,12 +98,82 @@ bool Jeu::launchGame()
 		joueur1->affiche();
 		joueur2->affiche();
 
-		cout<<"Joueur 1 : " << joueur1->getName() <<"veuillez saisir la position de l'impala"<<endl;
+		cout<<"Joueur : " << joueur1->getName() <<" veuillez saisir la position de l'impala"<<endl;
 		joueur1->getAction().deplacementImpalaPremiereFois();
-		int tour = 1;
+
 		map.affiche();
-		//menuConfiguration();
-		while(!map.estComplete(*this))
+		int ok = menuConfiguration();
+
+		if(ok==2)
+		{
+			cout<<"Sauvegarde en cours ..."<<endl;
+			Parser xml("sauvegarde.xml");
+			xml.save(*this);
+			cout<<"Sauvegarde terminee"<<endl;
+
+
+			cout<<"Fin du jeu"<<endl;
+			return 0;
+		}
+		else if(ok==3)
+		{
+			cout<<"Fin du jeu"<<endl;
+			return 0;
+		}
+		while(!map.estComplete(*this) && ok==1)
+		{
+			cout<<"TOUR = ===== = ="<<this->tour<<endl;
+			joueurs[tour]->play(this,tour);
+			map.affiche();
+
+
+			cout<<"*******Je suis "<< joueurs[tour]->getName()<<" et mon estRobot = "<<joueurs[tour]->isEstRobot()<<endl;
+
+			if(!joueurs[tour]->isEstRobot())
+			{
+				ok = menuConfiguration();
+
+				if(ok==2)
+				{
+					cout<<"Sauvegarde en cours ..."<<endl;
+					Parser xml("sauvegarde.xml");
+					xml.save(*this);
+					cout<<"Sauvegarde terminee"<<endl;
+
+
+					cout<<"Fin du jeu"<<endl;
+					return 0;
+				}
+				else if(ok==3)
+				{
+					cout<<"Fin du jeu"<<endl;
+					return 0;
+				}
+			}
+			tour++;
+			if(tour>=joueurs.size())
+			{
+				tour=0;
+			}
+		}
+
+		cout<<"Point Joueur : "<<joueur1->getName()<<" "<<joueur1->getPoint()<<endl;
+		cout<<"Point Joueur : "<<joueur2->getName()<<" "<<joueur2->getPoint()<<endl;
+
+
+
+		map.affiche();
+	}
+	else
+	{
+		Parser xml("sauvegarde.xml");
+		xml.parse(this);
+
+		int ok = 1;
+
+		cout<<"Tours au joueur : "<<joueurs[tour]->getName()<<endl;
+
+		while(!map.estComplete(*this) && ok==1)
 		{
 			joueurs[tour]->play(this,tour);
 			map.affiche();
@@ -114,19 +182,28 @@ bool Jeu::launchGame()
 			{
 				tour=0;
 			}
+			ok = menuConfiguration();
+
+			if(ok==2)
+			{
+				cout<<"Sauvegarde en cours ..."<<endl;
+				Parser xml("sauvegarde.xml");
+				xml.save(*this);
+				cout<<"Sauvegarde terminee"<<endl;
+
+
+				cout<<"Fin du jeu"<<endl;
+				return 0;
+			}
+			else if(ok==3)
+			{
+				cout<<"Fin du jeu"<<endl;
+				return 0;
+			}
 		}
 
-		cout<<"Point Joueur 1 "<<joueur1->getPoint()<<endl;
-		cout<<"Point Joueur 2 "<<joueur2->getPoint()<<endl;
-
-
-		cout<<"Sauvegarde en cours ..."<<endl;
-		Parser xml("sauvegarde.xml");
-		xml.save(*this);
-		cout<<"Sauvegarde terminee"<<endl;
-
-		xml.parse(this);
-		map.affiche();
+		cout<<"Point Joueur : "<<joueurs[0]->getName()<<" "<<joueurs[0]->getPoint()<<endl;
+		cout<<"Point Joueur : "<<joueurs[1]->getName()<<" "<<joueurs[1]->getPoint()<<endl;
 	}
 
 }

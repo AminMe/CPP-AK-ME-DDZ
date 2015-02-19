@@ -13,7 +13,7 @@
 class Intermediaire: public Ordinateur{
 public:
 	Intermediaire(int num, string name):Ordinateur(num,name){}
-	~Intermediaire(){};
+	~Intermediaire(){}
 
 	void play(Jeu *jeu, int tour);
 
