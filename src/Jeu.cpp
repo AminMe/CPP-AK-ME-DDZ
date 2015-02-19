@@ -29,26 +29,28 @@ int Jeu::menuConfiguration()
 int Jeu::testSaisie(string message, int min, int max, string error)
 {
 	cout<<message<<endl;
-	int resultat=-1;
-	char ligne[100];
-	fgets(ligne, 100, stdin);
-	bool saisiOk = sscanf(ligne,"%d",&resultat);
-	if(saisiOk && (resultat<min || resultat>max))
+	string resultat="";
+	cin>>resultat;
+	int saisiOk = atoi(resultat.c_str());
+
+	if(saisiOk<min || saisiOk>max)
 	{
-		saisiOk = false;
+		saisiOk = 0;
 	}
-	while(!saisiOk)
+	while(saisiOk==0)
 	{
 		cout<<error<<endl;
 		cout<<message<<endl;
-		fgets(ligne, 100, stdin);
-		saisiOk = sscanf(ligne,"%d",&resultat);
-		if(saisiOk && (resultat<min || resultat>max))
+		cin>>resultat;
+		saisiOk = atoi(resultat.c_str());
+
+		if(saisiOk<min || saisiOk>max)
 		{
-			saisiOk = false;
+			saisiOk = 0;
 		}
+
 	}
-	return resultat;
+	return saisiOk;
 }
 
 bool Jeu::launchGame()
