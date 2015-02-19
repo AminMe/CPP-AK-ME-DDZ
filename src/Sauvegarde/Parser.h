@@ -13,6 +13,8 @@
 #include <iostream>
 #include <vector>
 
+#include "../Jeu/Map/Map.h"
+
 class Joueur;
 using namespace std;
 
@@ -25,7 +27,7 @@ private:
 	string datarepertory = "../Data";
 
 public:
-
+	Map& map = Map::Instance();
 	Parser(){this->name = (char*)calloc(100,sizeof(char));strcpy(name,"");}
 
 	Parser(char* name):name(NULL)
@@ -39,7 +41,7 @@ public:
 		return name;
 	}
 
-	void parse();
+	void parse(Jeu *jeu);
 
 	void save(Jeu jeu);
 

@@ -24,6 +24,8 @@ public:
 												joueur(joueur), estCache(false), valeur(val) {
 	}
 
+	Animal(const Animal* copie):id(copie->id),joueur(copie->joueur),estCache(copie->estCache),valeur(copie->valeur){}
+
 	virtual ~Animal() {
 	}
 
@@ -33,6 +35,11 @@ public:
 		{
 			valeur = 0;
 		}
+	}
+
+	void setId(int id)
+	{
+		this->id = id;
 	}
 
 	bool isEstCache() const {
@@ -65,6 +72,10 @@ public:
 
 	int getValeur() const {
 		return valeur;
+	}
+
+	void setValeur(int valeur) {
+		this->valeur = valeur;
 	}
 };
 

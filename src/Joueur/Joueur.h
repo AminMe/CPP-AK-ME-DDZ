@@ -56,6 +56,15 @@ public:
 		}
 	}
 
+	Joueur(const Joueur *j):num(j->num),name(j->name),point(j->point),bonus(j->bonus)
+	{
+		for(Animal * ajout : j->mesAnimaux)
+		{
+			Animal* copie(ajout);
+			mesAnimaux.push_back(copie);
+		}
+	}
+
 	void affiche();
 
 	virtual ~Joueur() {

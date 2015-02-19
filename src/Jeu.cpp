@@ -76,8 +76,7 @@ bool Jeu::launchGame()
 			joueur1.getAction().deplacementImpalaPremiereFois();
 			int tour = 1;
 			map.affiche();
-			bool ok = false;
-			while(!map.estComplete(*this) && !ok)
+			while(!map.estComplete(*this))
 			{
 				joueurs[tour]->getAction().choixPion(joueurs[tour]);
 				map.gainBonus(*this);
@@ -90,7 +89,6 @@ bool Jeu::launchGame()
 				{
 					tour=0;
 				}
-				ok = true;
 			}
 
 			cout<<"Sauvegarde en cours ..."<<endl;
@@ -98,7 +96,7 @@ bool Jeu::launchGame()
 			xml.save(*this);
 			cout<<"Sauvegarde terminee"<<endl;
 
-			xml.parse();
+			xml.parse(this);
 		}
 		map.affiche();
 	}
