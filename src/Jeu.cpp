@@ -6,17 +6,14 @@
  */
 
 #include "Jeu.h"
-#include <string>
-#include <iostream>
+
 #include <vector>
 
-#include "Jeu/Map/Case.h"
-#include "Jeu/Map/Map.h"
+#include <cstdio>
+
 #include "Joueur/Action.h"
 #include "Joueur/Humain/Humain.h"
-#include "Joueur/Joueur.h"
-#include "Pion/ImpalaJones.h"
-#include "Pion/Pion.h"
+#include "Sauvegarde/Parser.h"
 
 
 using namespace std;
@@ -56,6 +53,7 @@ int Jeu::testSaisie(string message, int min, int max, string error)
 
 bool Jeu::launchGame()
 {
+
 	map.affiche();
 
 	int resultat;
@@ -82,6 +80,8 @@ bool Jeu::launchGame()
 			joueur1.affiche();
 			joueur2.affiche();
 
+
+
 			cout<<"Joueur 1 veuillez saisir la position de l'impala"<<endl;
 			joueur1.getAction().deplacementImpalaPremiereFois();
 			int tour = 1;
@@ -102,10 +102,14 @@ bool Jeu::launchGame()
 				}
 			}
 
+			cout<<"Sauvegarde en cours ..."<<endl;
+			Parser xml("sauvegarde.xml");
+			xml.save(*this);
+			cout<<"Sauvegarde terminee"<<endl;
+
+			xml.parse(this);
 		}
 		map.affiche();
-
-
 	}
 
 }

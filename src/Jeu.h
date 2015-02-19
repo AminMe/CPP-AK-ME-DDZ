@@ -34,7 +34,7 @@ public:
 	bool isFinished();
 	int countNbAnimalLeft();
 	void addJoueur(Joueur* j) {joueurs.push_back(j);}
-	vector<Joueur*> getJoueur(){return this->joueurs;}
+	vector<Joueur*>& getJoueur(){return this->joueurs;}
 	bool launchGame();
 	void loadXML(string name);
 	static int testSaisie(string message, int min, int max, string error);

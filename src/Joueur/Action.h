@@ -1,10 +1,10 @@
 #ifndef SRC_ACTION_H_
 #define SRC_ACTION_H_
+
 #include <vector>
+
 #include "../Jeu/Map/Case.h"
-#include "../Jeu/Map/Map.h"
 #include "../Pion/ImpalaJones.h"
-#include "../Pion/Pion.h"
 
 class Joueur;
 
@@ -12,6 +12,7 @@ class Action {
 
 public:
 	ImpalaJones& impala = ImpalaJones::Instance();
+
 	Action(){}
 	virtual ~Action(){}
 

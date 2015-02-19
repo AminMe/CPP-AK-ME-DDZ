@@ -297,7 +297,7 @@ void Map::chercheBonus(Jeu j, int secteur)
 		if(max<occurence[k])
 		{
 			max = occurence[k];
-			idMax = k;
+			idMax = j.getJoueur()[k]->getNum();
 		}
 	}
     cout<<"------------------ Le joueur "<<idMax<<" gagne le bonus sur le secteur "<<secteur<<"--------"<<endl;
@@ -365,7 +365,7 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 		if(max<occurence[k])
 		{
 			max = occurence[k];
-			idMax = k;
+			idMax = j.getJoueur()[k]->getNum();
 		}
 	}
 
