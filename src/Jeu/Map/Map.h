@@ -40,7 +40,7 @@ public:
 			{
 				//tab = (Case**) calloc(ligne,sizeof(Case*));
 				/* A CHANGER SUREMENT */
-				int tabSecteur[LIGNE][COLONNE]={{0,-1,-1,-1,-1,-1,-1,0},{-1,1,2,3,3,3,3,-1},{-1,1,2,2,3,4,4,-1},{-1,1,1,2,3,3,4,-1},{-1,5,2,3,3,3,6,-1},{-1,5,5,6,6,6,6,-1},{0,-1,-1,-1,-1,-1,-1,0}};
+				int tabSecteur[LIGNE][COLONNE]={{0,-1,-1,-1,-1,-1,-1,0},{-1,1,2,3,3,3,3,-1},{-1,1,2,2,3,4,4,-1},{-1,1,1,2,3,3,4,-1},{-1,5,1,2,2,2,6,-1},{-1,5,5,6,6,6,6,-1},{0,-1,-1,-1,-1,-1,-1,0}};
 				bool tabRiviere[30][4] = {{false,true,false,false},{true,true,false,false},{true,false,false,true},{false,false,false,false},{false,false,false,true},{false,false,false,true},
 										  {false,true,false,false},{true,false,false,true},{false,true,true,false},{true,true,false,false},{true,false,true,true},{false,false,true,false},
 										  {false,false,false,true},{false,true,true,false},{true,true,false,false},{true,false,false,true},{false,true,true,true},{true,false,false,true},
