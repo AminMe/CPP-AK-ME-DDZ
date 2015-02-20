@@ -93,14 +93,48 @@ int tirage_entier(int a,int b)
     return (int)r;
 }
 
+int Action::testSaisiBis(string message, string val)
+{
+	if(val!="x" && val!="y")
+		return -1;
+	bool ok = false;
+	string position;
+	int resultat = -1;
+	int cpt = 0;
+	while(!ok)
+	{
+		if(cpt!=0)
+		{
+			cout<<"Erreur veuillez re-saisir : ";
+		}
+		cout<<message<<endl;
+		cin >>position;
+		if(isInteger(position))
+		{
+			resultat = atoi(position.c_str());
+
+			if(resultat==0 || (val=="y" && resultat<=COLONNE-1 && resultat>=0) || (val=="x" && resultat<=LIGNE-1 && resultat>0))
+			{
+				ok = true;
+			}
+		}
+		if(cpt==0)
+		{
+			cpt ++;
+		}
+	}
+	return resultat;
+}
+
 bool Action::deplacementImpalaPremiereFois()
 {
 	Map& map = Map::Instance();
+
 	int x,y;
-	cout<<"Ligne : "<<endl;
-	cin >>x;
-	cout<<"Colonne : "<<endl;
-	cin >>y;
+
+	x = testSaisiBis("Ligne : ","x");
+	y = testSaisiBis("Colonne : ","y");
+
 	pair<int, int> index(x,y);
 	Case * c = map[index];
 
@@ -115,10 +149,8 @@ bool Action::deplacementImpalaPremiereFois()
 		while(c->getSecteur()!=-1)
 		{
 			cout<<" Veuillez positionner impala sur une bonne case"<<endl;
-			cout<< "Veuillez saisir la ligne : "<<endl;
-			cin >>x;
-			cout<<"Veuillez saisir la colonne : "<<endl;
-			cin>>y;
+			x = testSaisiBis("Ligne : ","x");
+			y = testSaisiBis("Colonne : ","y");
 			pair<int, int> index(x,y);
 			c=map[index];
 		}
@@ -441,4 +473,14 @@ Case* Action::parcourir(int x, int y)
 		}
 	}
 	return NULL;
+}
+
+inline bool isInteger(const std::string & s)
+{
+   if(s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false ;
+
+   char * p ;
+   strtol(s.c_str(), &p, 10) ;
+
+   return (*p == 0) ;
 }

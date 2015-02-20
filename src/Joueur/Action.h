@@ -28,8 +28,10 @@ public:
 	bool choixPion(Joueur * j,bool robot);
 	bool caseDisponible(bool etat,int x);
 	Case* parcourir(int x, int y);
+	static int testSaisiBis(string message, string val);
 
 
 };
 int tirage_entier(int a,int b);
+inline bool isInteger(const std::string & s);
 #endif /* SRC_ACTION_H_ */

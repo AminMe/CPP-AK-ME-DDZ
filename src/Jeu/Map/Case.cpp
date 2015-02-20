@@ -19,7 +19,6 @@ using namespace std;
 
 void Case::affiche()
 {
-
 	cout<<"Case : "<<getX()<<","<<getY()<<" s ="<<secteur;
 }
 
