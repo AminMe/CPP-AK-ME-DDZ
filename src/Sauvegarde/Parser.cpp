@@ -144,13 +144,11 @@ void Parser::parse(Jeu *jeu)
 				std::string token;
 				while ((pos = position.find(delimiter)) != std::string::npos) {
 					token = position.substr(0, pos);
-					//std::cout << token << std::endl;
 					x = token;
 					position.erase(0, pos + delimiter.length());
 				}
 				y = position;
 
-				//cout<<"Case : "<<x<<","<<y<<" "<<endl;
 				/*
 				 *
 				 * - Le secteur ainsi que le nom du pion et #NC ne sera connu qu'apres -
