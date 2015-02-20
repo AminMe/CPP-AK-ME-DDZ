@@ -16,10 +16,8 @@ public:
 	Action():impala(ImpalaJones::Instance()){}
 	virtual ~Action(){}
 
-	void update();
 
 	bool put(Pion *a, Case* c);
-	void affiche();
 	void controlDeplacement(Pion * p);
 
 	bool deplacementImpala(bool robot);
