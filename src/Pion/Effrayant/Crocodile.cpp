@@ -50,6 +50,11 @@ void Crocodile::check(Case position)
 
 			echange = Jeu::testSaisie(m+"Voulez vous effectuer un echange ?  1 : Oui --- 2 : Non\n",1,2,"Veuillez choisir soit 1(oui) soit non (2)\n");
 
+
+			m<<"Voulez vous effectuer un echange ?  1 : Oui --- 2 : Non"<<endl;
+			//echange = Jeu::testSaisie(m.str(),1,2,"Veuillez choisir soit 1(oui) soit non (2)");
+
+
 			if(echange==2)
 			{
 				return;

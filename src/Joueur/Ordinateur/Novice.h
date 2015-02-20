@@ -14,9 +14,10 @@
 class Novice : public Ordinateur{
 public:
 	Novice(int num, string name):Ordinateur(num,name){}
-	~Novice(){};
+	~Novice(){
+	}
 
-	void play();
+	void play(Jeu *jeu, int tour);
 	void algo();
 };
 

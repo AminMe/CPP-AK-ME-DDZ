@@ -178,6 +178,9 @@ void Map::affiche()
 
 vector<Case*> Map::proposeCases(Case* impala)
 {
+
+	cout<<"Avant null pointer ?"<<endl;
+	cout<<"Imapala position ; "<< impala->getX()<<", "<< impala->getY()<<endl;
 	int i = impala->getX();
 	int j = impala->getY();
 	vector<Case*> retour;
@@ -300,7 +303,7 @@ void Map::chercheBonus(Jeu j, int secteur)
 			idMax = j.getJoueur()[k]->getNum();
 		}
 	}
-    cout<<"------------------ Le joueur "<<idMax<<" gagne le bonus sur le secteur "<<secteur<<"--------"<<endl;
+    cout<<"------------------ Le joueur "<<j.getJoueur()[idMax]->getName()<<" gagne le bonus sur le secteur "<<secteur<<"--------"<<endl;
 	j.getJoueur()[idMax]->setBonus(true);
 	j.getJoueur()[idMax]->addPoint(5);
 }
@@ -317,6 +320,10 @@ bool Map::estComplete(Jeu jo)
 				return false;
 		}
 	}
+
+	cout<<"Joueur 1 : "<<jo.getJoueur()[0]->getPoint()<<endl;
+	cout<<"Joueur 2 : "<<jo.getJoueur()[1]->getPoint()<<endl;
+
 
 	for(int secteur = 1; secteur<7; secteur++)
 	{
@@ -342,6 +349,7 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 
 	int cpt = 0;
 
+	int idJ = 0;
 	for(Joueur *joueur : j.getJoueur())
 	{
 		cpt = 0;
@@ -352,9 +360,16 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 				cpt++;
 			}
 		}
-		occurence[joueur->getNum()] = cpt;
+		occurence[idJ] = cpt;
+		idJ++;
 	}
 
+	cout<<"Secteur : "<<secteur<<endl;
+	for(int i = 0; i<j.getJoueur().size(); i++)
+	{
+		cout<<" [][][][][][] "<<j.getJoueur()[i]->getName()<<" est present "<<occurence[i]<<" fois"<<endl;
+	}
+	cout<<endl;
 	/*
 	 * On cherche le max
 	 */
@@ -369,7 +384,7 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 		}
 	}
 
-	j.getJoueur()[idMax]->addPoint(getPoint(caseSecteur));
+	j.getJoueur()[idMax-1]->addPoint(getPoint(caseSecteur));
 
 }
 

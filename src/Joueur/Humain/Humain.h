@@ -7,10 +7,13 @@
 class Humain: public Joueur {
 public:
 
-	Humain(int num, string name):Joueur(num,name){};
-	~Humain(){};
+	Humain(int num, string name):Joueur(num,name)
+	{
+		estRobot=false;
+	}
+	~Humain(){}
 
-	void play();
+	void play(Jeu *jeu, int tour);
 
 };
 

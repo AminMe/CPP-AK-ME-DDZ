@@ -18,12 +18,14 @@ using namespace std;
 class Ordinateur: public Joueur {
 
 public:
-	Ordinateur(int num, string name):Joueur(num,name){}
-	virtual ~Ordinateur(){};
+	Ordinateur(int num, string name):Joueur(num,name){
+		estRobot=true;
+	}
+	virtual ~Ordinateur(){}
 
 	virtual void algo()=0;
 
-	virtual void play()=0;
+	virtual void play(Jeu *jeu, int tour)=0;
 };
 
 #endif /* SRC_ORDINATEUR_H_ */
