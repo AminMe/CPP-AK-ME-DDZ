@@ -1,9 +1,3 @@
-/*
- * Action.cpp
- *
- *  Created on: 27 janv. 2015
- *      Author: Amin
- */
 
 #include "Action.h"
 #include <sstream>
@@ -21,10 +15,16 @@
 
 bool Action::put(Pion *a, Case* c)
 {
+
    c->setPion(a);
    Animal *p = dynamic_cast<Animal*>(a);
+   if(p!=NULL)
+   {
    p->check(*c);
    return true;
+   }
+   else
+	   return false;
 }
 
 
@@ -66,16 +66,12 @@ bool Action::choixPion(Joueur * j,bool robot)
 
 		resultat2 = Jeu::testSaisie(m1.str(),1,possibilite.size(),err);
 
-		cout<<"Ok je passe"<<endl;
-
-
 	}
 	else
 	{
 		resultat = tirage_entier(1,j->getMesAnimaux().size()+1);
 		resultat2 = tirage_entier(1,possibilite.size()+1);
 	}
-
 	int idChoix = j->getMesAnimaux().at(resultat-1)->getId();
 	vector<Animal*>::iterator it = j->getMesAnimaux().begin();
 
@@ -103,7 +99,6 @@ bool Action::deplacementImpalaPremiereFois()
 	Map& map = Map::Instance();
 
 	int x,y;
-	cout<<"Joueur 1 => choisisez une case pour poser impala"<<endl;
 	cout<<"Ligne :"<<endl;
 	cin >>x;
 	cout<<"Colonne :"<<endl;
@@ -175,7 +170,7 @@ bool Action::deplacementImpala(bool robot)
 
 				for(int i=0;i<choix.size();i++)
 				{
-					m<<i+1<<". La case i: "<<choix[i]->getX()<<"j: "<<choix[i]->getY()<<"\n";
+					m<<i+1<<". La case i: "<<choix[i]->getX()<<" j: "<<choix[i]->getY()<<"\n";
 				}
 				m<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
 				resultat = Jeu::testSaisie(m.str(),1,choix.size(),"Veuiller choisir une variable correcte");

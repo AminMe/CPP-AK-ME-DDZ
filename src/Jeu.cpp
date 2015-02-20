@@ -167,9 +167,14 @@ bool Jeu::launchGame()
 	{
 		Parser xml("sauvegarde.xml");
 		xml.parse(this);
-
 		int ok = 1;
-
+		if(joueurs.size()==0)
+		{
+			cout<<"Le fichier que vous tentez de charger est vide"<<endl;
+			cout<<"Veuillez redemarrer le jeu"<<endl;
+			return 0;
+		}
+		cout<< " La valeur de tour est :"<<tour<<endl;
 		cout<<"Tours au joueur : "<<joueurs[tour]->getName()<<endl;
 
 		while(!map.estComplete(*this) && ok==1)
