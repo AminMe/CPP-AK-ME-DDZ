@@ -18,7 +18,6 @@ void Novice::play(Jeu *jeu, int tour)
 	Map& map = Map::Instance();
 	jeu->getJoueur()[tour]->getAction().choixPion(jeu->getJoueur()[tour],true);
 	map.gainBonus(*jeu);
-	map.affiche();
 	jeu->getJoueur()[tour]->getAction().deplacementImpala(true);
 }
 
