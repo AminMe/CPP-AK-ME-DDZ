@@ -422,12 +422,12 @@ void Parser::parse(Jeu *jeu)
 
 	map.affiche();
 
-	cout<<endl<<"[][][][][][]D[][][][][][]"<<endl;
 	for(Joueur*nouv : jeu->getJoueur())
 	{
+		cout<<"Chargement du joueur :";
 		nouv->affiche();
+		cout<<endl;
 	}
-	cout<<"[][][][][][]F[][][][][][]"<<endl<<endl;
 	fp.close();
 }
 

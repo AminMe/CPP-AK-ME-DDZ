@@ -74,7 +74,17 @@ bool Jeu::launchGame()
 		Joueur* joueur1 = NULL;
 		joueur1 = new Humain(1,name);
 		cout<<"Veuillez saisir le nom du deuxieme joueur (Humain ou Robot)"<<endl;
-		cin>>name;
+
+		do
+		{
+			cin>>name;
+
+			if(name==joueur1->getName())
+			{
+				cout<<"Saisir un nom different du joueur precedent !"<<endl;
+			}
+		}
+		while(name==joueur1->getName());
 
 		Joueur* joueur2 = NULL;
 
@@ -161,12 +171,8 @@ bool Jeu::launchGame()
 			}
 			map.affiche();
 		}
-		cout<<endl<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
-		cout<<"TABLEAU DE SCORE"<<endl;
 
 		afficherResultat();
-
-		cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
 
 	}
 	else
@@ -176,7 +182,8 @@ bool Jeu::launchGame()
 		int ok = 1;
 		if(joueurs.size()==0)
 		{
-			cout<<"Veuillez redemarrer le jeu"<<endl;
+			cout<<"Aucun joueur trouve (sauvegarde indisponible)"<<endl;
+			cout<<"Veuillez redemarrer le jeu et choisir une nouvelle partie OU continuer"<<endl;
 			return 0;
 		}
 
@@ -188,9 +195,6 @@ bool Jeu::launchGame()
 
 			joueurs[tour]->play(this,tour);
 			map.affiche();
-
-
-			cout<<"*******Je suis "<< joueurs[tour]->getName()<<" et mon estRobot = "<<joueurs[tour]->isEstRobot()<<endl;
 
 			if(!joueurs[tour]->isEstRobot())
 			{
@@ -233,15 +237,31 @@ bool Jeu::launchGame()
 
 void Jeu::afficherResultat()
 {
+	int cptgagnant = 0;
+	int pointMax = 0;
+	cout<<endl<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+	cout<<"TABLEAU DE SCORE"<<endl;
 	for(int i = 0; i<joueurs.size();i++)
 	{
+		cout<<"Point du Joueur : "<<joueurs[i]->getName()<<" "<<joueurs[i]->getPoint()<<endl;
 
-		cout<<endl<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
-				cout<<"TABLEAU DE SCORE"<<endl;
-				cout<<"Point Joueur : "<<joueurs[0]->getName()<<" "<<joueurs[0]->getPoint()<<endl;
-				cout<<"Point Joueur : "<<joueurs[1]->getName()<<" "<<joueurs[1]->getPoint()<<endl;
-				cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+		if(pointMax<joueurs[i]->getPoint())
+		{
+			pointMax = joueurs[i]->getPoint();
+			cptgagnant = i;
+		}
 	}
+	cout<<"Le gagnant est "<<joueurs[cptgagnant]->getName()<<" :)"<<endl;
+
+	for(int i = 0; i<joueurs.size();i++)
+	{
+		if(i!=cptgagnant)
+		{
+			cout<<"Dommage :( "<<joueurs[i]->getName()<<" vous gagnerez surement la prochaine fois"<<endl;
+		}
+	}
+
+	cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl<<endl;
 }
 
 int main(int argc, char **argv) {

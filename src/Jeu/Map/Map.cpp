@@ -220,9 +220,6 @@ void Map::affiche()
 
 vector<Case*> Map::proposeCases(Case* impala)
 {
-
-	cout<<"Avant null pointer ?"<<endl;
-	cout<<"Imapala position ; "<< impala->getX()<<", "<< impala->getY()<<endl;
 	int i = impala->getX();
 	int j = impala->getY();
 	vector<Case*> retour;
