@@ -100,7 +100,6 @@ bool Jeu::launchGame()
 
 		cout<<"Joueur : " << joueur1->getName() <<" veuillez saisir la position de l'impala"<<endl;
 		joueur1->getAction().deplacementImpalaPremiereFois();
-
 		map.affiche();
 		int ok = menuConfiguration();
 
@@ -124,11 +123,9 @@ bool Jeu::launchGame()
 		while(!map.estComplete(*this) && ok==1)
 		{
 			cout<<"###########################"<<endl;
-			cout<<"Tour du joueur :  "<<this->tour<<"  "<<joueurs[tour]->getName()<<endl;
+			cout<<"Tour du joueur :  "<<this->tour+1<<"  "<<joueurs[tour]->getName()<<endl;
 			cout<<"###########################"<<endl;
 			joueurs[tour]->play(this,tour);
-			map.affiche();
-
 			if(!joueurs[tour]->isEstRobot())
 			{
 				ok = menuConfiguration();
@@ -144,7 +141,6 @@ bool Jeu::launchGame()
 					Parser xml(nomFichier);
 					xml.save(*this);
 					cout<<"Sauvegarde terminee"<<endl;
-
 					cout<<"Fin du jeu"<<endl;
 					return 0;
 				}
@@ -179,14 +175,10 @@ bool Jeu::launchGame()
 		while(!map.estComplete(*this) && ok==1)
 		{
 			cout<<"###########################"<<endl;
-			cout<<"Tour du joueur :  "<<this->tour<<"  "<<joueurs[tour]->getName()<<endl;
+			cout<<"Tour du joueur :  "<<this->tour+1<<"  "<<joueurs[tour]->getName()<<endl;
 			cout<<"###########################"<<endl;
 
 			joueurs[tour]->play(this,tour);
-			map.affiche();
-
-
-			cout<<"*******Je suis "<< joueurs[tour]->getName()<<" et mon estRobot = "<<joueurs[tour]->isEstRobot()<<endl;
 
 			if(!joueurs[tour]->isEstRobot())
 			{

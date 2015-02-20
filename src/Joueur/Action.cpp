@@ -164,7 +164,7 @@ bool Action::deplacementImpala(bool robot)
 			if(!robot)
 			{
 				ostringstream m;
-				m<<"Vous avez "<<choix.size()<< "possibilite pour le deplacement de Impala\n";
+				m<<"Vous avez "<<choix.size()<< " possibilite pour le deplacement de Impala\n";
 
 				for(int i=0;i<choix.size();i++)
 				{
@@ -172,7 +172,6 @@ bool Action::deplacementImpala(bool robot)
 				}
 				m<<" Veuiller choisir la case sur laquelle vous voulez placer Impala"<<endl;
 				resultat = Jeu::testSaisie(m.str(),1,choix.size(),"Veuiller choisir une variable correcte");
-
 			}
 			else
 			{
