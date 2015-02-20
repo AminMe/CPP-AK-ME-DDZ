@@ -20,7 +20,6 @@ void Novice::play(Jeu *jeu, int tour)
 	map.gainBonus(*jeu);
 	map.affiche();
 	jeu->getJoueur()[tour]->getAction().deplacementImpala(true);
-	map.affiche();
 }
 
 void Novice::algo()

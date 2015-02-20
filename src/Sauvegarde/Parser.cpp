@@ -230,7 +230,6 @@ void Parser::parse(Jeu *jeu)
 				}
 				else{
 					acourant = NULL;
-					//cout<<"Animal : "<<nameA<<" non reconnu dans le parser"<<endl;
 				}
 
 				if(acourant!=NULL)
