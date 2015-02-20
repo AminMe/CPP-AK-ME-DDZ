@@ -217,7 +217,7 @@ bool Jeu::launchGame()
 		cout<<"Point Joueur : "<<joueurs[0]->getName()<<" "<<joueurs[0]->getPoint()<<endl;
 		cout<<"Point Joueur : "<<joueurs[1]->getName()<<" "<<joueurs[1]->getPoint()<<endl;
 	}
-
+	return 0;
 }
 
 int main(int argc, char **argv) {

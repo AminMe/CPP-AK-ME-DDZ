@@ -29,7 +29,7 @@ private:
 		    return *this;
 		 }
 
-		 Map (const Map& m){
+		 Map (const Map& m) : tab(NULL){
 		    cout<<"Map::Singleton"<<endl;
 		 }
 

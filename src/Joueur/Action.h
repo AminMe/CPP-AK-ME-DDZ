@@ -11,9 +11,9 @@ class Joueur;
 class Action {
 
 public:
-	ImpalaJones& impala = ImpalaJones::Instance();
+	ImpalaJones& impala;
 
-	Action(){}
+	Action():impala(ImpalaJones::Instance()){}
 	virtual ~Action(){}
 
 	void update();

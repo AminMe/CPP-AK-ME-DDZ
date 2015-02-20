@@ -24,13 +24,12 @@ class Animal;
 class Parser {
 private:
 	string name;
-	string datarepertory = "../Data";
-
+	Map& map;
 public:
-	Map& map = Map::Instance();
-	Parser(){this->name = "sauvegarde.xml";}
 
-	Parser(string name):name(name)
+	Parser():map(Map::Instance()){this->name = "sauvegarde.xml";}
+
+	Parser(string name):name(name),map(Map::Instance())
 	{
 	}
 	virtual ~Parser(){}

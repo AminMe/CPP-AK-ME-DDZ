@@ -41,7 +41,7 @@ protected:
 public:
 	Joueur() : num(-1), name("testErreur"), point(0), bonus(false), estRobot(false){}
 	Joueur(int num, string name) :
-			num(num), name(name), point(0), bonus(false) {
+			num(num), name(name), point(0), bonus(false), estRobot(false){
 		for (int i = 0; i < 6; i++) {
 			mesAnimaux.push_back(new Gazelle(this));
 		}
@@ -58,7 +58,7 @@ public:
 		}
 	}
 
-	Joueur(const Joueur *j):num(j->num),name(j->name),point(j->point),bonus(j->bonus)
+	Joueur(const Joueur *j):num(j->num),name(j->name),point(j->point),bonus(j->bonus),estRobot(j->estRobot)
 	{
 		for(Animal * ajout : j->mesAnimaux)
 		{
@@ -124,6 +124,10 @@ public:
 	}
 
 private:
+	/**
+	 * Permet de construire une main dynamique (a l'affichage) des animaux
+	 * que le joueur dispose
+	 */
 	int contains(string *animaux, string key);
 };
 
