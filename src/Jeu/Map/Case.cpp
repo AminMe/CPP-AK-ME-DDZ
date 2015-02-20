@@ -71,6 +71,7 @@ string Case::getAffiche()
 			{
 				m<<"  ("<<p->getJoueur()->getNum()<<","<<p->getName()[0]<<p->getName()[1]<<")  ";
 			}
+			m<<"V="<<p->getValeur();
 		}
 
 		message = m.str();
