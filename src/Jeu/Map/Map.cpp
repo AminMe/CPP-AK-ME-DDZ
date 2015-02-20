@@ -305,7 +305,6 @@ void Map::chercheBonus(Jeu j, int secteur)
 	}
     cout<<"------------------ Le joueur "<<j.getJoueur()[idMax]->getName()<<" gagne le bonus sur le secteur "<<secteur<<"--------"<<endl;
 	j.getJoueur()[idMax]->setBonus(true);
-	j.getJoueur()[idMax]->addPoint(5);
 }
 
 bool Map::estComplete(Jeu jo)

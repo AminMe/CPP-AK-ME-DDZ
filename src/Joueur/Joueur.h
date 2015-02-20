@@ -99,7 +99,12 @@ public:
 		this->point = point;
 	}
 
-	void setBonus(bool bonus) {this->bonus = bonus;}
+	void setBonus(bool bonus) {this->bonus = bonus;
+		if(bonus)
+		{
+			addPoint(5);
+		}
+	}
 	bool getBonus() { return this->bonus;}
 
 	vector<Animal*>& getMesAnimaux() {

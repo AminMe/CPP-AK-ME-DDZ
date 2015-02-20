@@ -29,10 +29,7 @@ public:
 	Jeu():tour(1){}
 	virtual ~Jeu(){}
 
-	void init();
 
-	bool isFinished();
-	int countNbAnimalLeft();
 	void addJoueur(Joueur* j) {joueurs.push_back(j);}
 	vector<Joueur*>& getJoueur(){return this->joueurs;}
 	bool launchGame();
