@@ -233,7 +233,15 @@ bool Jeu::launchGame()
 
 void Jeu::afficherResultat()
 {
+	for(int i = 0; i<joueurs.size();i++)
+	{
 
+		cout<<endl<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+				cout<<"TABLEAU DE SCORE"<<endl;
+				cout<<"Point Joueur : "<<joueurs[0]->getName()<<" "<<joueurs[0]->getPoint()<<endl;
+				cout<<"Point Joueur : "<<joueurs[1]->getName()<<" "<<joueurs[1]->getPoint()<<endl;
+				cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+	}
 }
 
 int main(int argc, char **argv) {
