@@ -49,7 +49,7 @@ bool Jeu::launchGame()
 {
 	srand(time(NULL));
 	map.affiche();
-	string nomFichier = "./sauvegarde.txt";
+	string nomFichier = "../Data/sauvegarde.txt";
 	int resultat;
 	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 	cout<<"-----------------------------"<<endl;
@@ -228,16 +228,25 @@ void Jeu::afficherResultat()
 	int cptgagnant = 0;
 	int pointMax = 0;
 	cout<<endl<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+
 	cout<<"TABLEAU DE SCORE"<<endl;
 	for(int i = 0; i<joueurs.size();i++)
 	{
-		cout<<"Point du Joueur : "<<joueurs[i]->getName()<<" "<<joueurs[i]->getPoint()<<endl;
-
+		if(joueurs[i]->getBonus())
+		{
+			cout<<"Point du Joueur (a gagne BONUS) : "<<joueurs[i]->getName()<<" "<<joueurs[i]->getPoint()<<endl;
+		}
+		else
+		{
+			cout<<"Point du Joueur : "<<joueurs[i]->getName()<<" "<<joueurs[i]->getPoint()<<endl;
+		}
 		if(pointMax<joueurs[i]->getPoint())
 		{
 			pointMax = joueurs[i]->getPoint();
 			cptgagnant = i;
 		}
+
+
 	}
 	cout<<"Le gagnant est "<<joueurs[cptgagnant]->getName()<<" :)"<<endl;
 

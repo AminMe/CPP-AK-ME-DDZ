@@ -359,10 +359,6 @@ bool Map::estComplete(Jeu jo)
 		}
 	}
 
-	cout<<"Joueur 1 : "<<jo.getJoueur()[0]->getPoint()<<endl;
-	cout<<"Joueur 2 : "<<jo.getJoueur()[1]->getPoint()<<endl;
-
-
 	for(int secteur = 1; secteur<7; secteur++)
 	{
 		chercheJoueurEnMajorite(jo,secteur);
@@ -407,7 +403,6 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 	{
 		cout<<" [][][][][][] "<<j.getJoueur()[i]->getName()<<" est present "<<occurence[i]<<" fois"<<endl;
 	}
-	cout<<endl;
 	/*
 	 * On cherche le max
 	 */
@@ -421,8 +416,10 @@ void Map::chercheJoueurEnMajorite(Jeu j, int secteur)
 			idMax = j.getJoueur()[k]->getNum();
 		}
 	}
-
-	j.getJoueur()[idMax-1]->addPoint(getPoint(caseSecteur));
+	int point = getPoint(caseSecteur);
+	cout<<"Le gagnant de ce secteur est "<<j.getJoueur()[idMax-1]->getName()<<" et a gagne "<<point<<" points"<<endl;
+	j.getJoueur()[idMax-1]->addPoint(point);
+	cout<<endl;
 
 }
 

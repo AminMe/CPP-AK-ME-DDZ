@@ -19,4 +19,5 @@ void Humain::play(Jeu *jeu, int tour)
 	map.gainBonus(*jeu);
 	map.affiche();
 	jeu->getJoueur()[tour]->getAction().deplacementImpala(false);
+	map.affiche();
 }

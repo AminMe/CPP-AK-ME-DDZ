@@ -54,10 +54,9 @@ void Parser::parse(Jeu *jeu)
 {
 	cout<<"Ouverture du fichier"<<endl;
 	fstream fp(name, fstream::out | fstream::in );
-
 	if(!fp.is_open())
 	{
-		fp.open("../sauvegarde.txt", fstream::out | fstream::in);
+		fp.open("./Data/sauvegarde.txt", fstream::out | fstream::in);
 		if(!fp.is_open())
 		{
 			cout<<"Le fichier que vous tentez de charger est inexistant"<<endl;
