@@ -56,7 +56,7 @@ bool Jeu::launchGame()
 {
 	srand(time(NULL));
 	map.affiche();
-
+	string nomFichier = "./sauvegarde.txt";
 	int resultat;
 	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 	cout<<"-----------------------------"<<endl;
@@ -107,7 +107,7 @@ bool Jeu::launchGame()
 		if(ok==2)
 		{
 			cout<<"Sauvegarde en cours ..."<<endl;
-			Parser xml("sauvegarde.xml");
+			Parser xml(nomFichier);
 			xml.save(*this);
 			cout<<"Sauvegarde terminee"<<endl;
 
@@ -137,7 +137,7 @@ bool Jeu::launchGame()
 				if(ok==2)
 				{
 					cout<<"Sauvegarde en cours ..."<<endl;
-					Parser xml("sauvegarde.xml");
+					Parser xml(nomFichier);
 					xml.save(*this);
 					cout<<"Sauvegarde terminee"<<endl;
 
@@ -165,12 +165,11 @@ bool Jeu::launchGame()
 	}
 	else
 	{
-		Parser xml("sauvegarde.xml");
+		Parser xml(nomFichier);
 		xml.parse(this);
 		int ok = 1;
 		if(joueurs.size()==0)
 		{
-			cout<<"Le fichier que vous tentez de charger est vide"<<endl;
 			cout<<"Veuillez redemarrer le jeu"<<endl;
 			return 0;
 		}
@@ -193,7 +192,7 @@ bool Jeu::launchGame()
 				if(ok==2)
 				{
 					cout<<"Sauvegarde en cours ..."<<endl;
-					Parser xml("sauvegarde.xml");
+					Parser xml(nomFichier);
 					xml.save(*this);
 					cout<<"Sauvegarde terminee"<<endl;
 
