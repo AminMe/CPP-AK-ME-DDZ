@@ -19,7 +19,6 @@ void Crocodile::check(Case position)
 	vector<Case*> retour = checkAlentour(position,"Gazelle");
 	vector<Case*> tmp;
 	int caseMap;
-	cout<<"je suis dans le check "<<endl;
 
 	if(this->joueur->isEstRobot())
 	{

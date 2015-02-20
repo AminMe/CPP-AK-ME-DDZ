@@ -96,6 +96,9 @@ public:
 			 * Destructeur
 			 */
 			virtual ~Map(){
+				for(int i=0;i<LIGNE;i++)
+				   delete[] tab[i];
+				delete[] tab;
 				cout<<"Destruction d'une Map"<<endl;
 
 				/* LIBERATION  DE LA MEMOIRE */
