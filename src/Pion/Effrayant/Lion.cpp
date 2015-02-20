@@ -39,6 +39,7 @@ void Lion::check(Case position)
 			if(p!=NULL && !p->isEstCache())
 			{
 				p->setEstCache(true);
+				p->setValeur(0);
 			}
 		}
 	}
