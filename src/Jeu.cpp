@@ -60,12 +60,12 @@ bool Jeu::launchGame()
 	int resultat;
 	cout<<"Bienvenue sur DROLE DE ZEBRE "<<endl;
 	cout<<"-----------------------------"<<endl;
-	resultat = testSaisie("1. Jouer \n2. Charger une sauvegarde", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
+	resultat = testSaisie("1. Jouer \n2. Charger une sauvegarde", 1, 2, "Vous avez effectue(e) un choix incorrecte, veuillez choisir dans la liste proposee");
 
 	if(resultat==1)
 	{
 		cout<<"Mode Jeu "<<endl;
-		resultat = testSaisie("1. Deux joueurs \n2. Jeu contre IA ", 1, 2, "Vous avez effectuer un choix incorrecte, veuillez choisir dans la liste proposee");
+		resultat = testSaisie("1. Deux joueurs \n2. Jeu contre IA ", 1, 2, "Vous avez effectue(e) un choix incorrecte, veuillez choisir dans la liste proposee");
 
 		cout<<"Veuillez saisir le nom du premier joueur (Humain) "<<endl;
 		string name;
@@ -73,7 +73,7 @@ bool Jeu::launchGame()
 
 		Joueur* joueur1 = NULL;
 		joueur1 = new Humain(1,name);
-		cout<<"Veuillez saisir le nom du deuxime joueur (Humain ou Robot)"<<endl;
+		cout<<"Veuillez saisir le nom du deuxieme joueur (Humain ou Robot)"<<endl;
 		cin>>name;
 
 		Joueur* joueur2 = NULL;
@@ -161,9 +161,13 @@ bool Jeu::launchGame()
 			}
 			map.affiche();
 		}
+		cout<<endl<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+		cout<<"TABLEAU DE SCORE"<<endl;
 
-		cout<<"Point Joueur : "<<joueur1->getName()<<" "<<joueur1->getPoint()<<endl;
-		cout<<"Point Joueur : "<<joueur2->getName()<<" "<<joueur2->getPoint()<<endl;
+		afficherResultat();
+
+		cout<<"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"<<endl;
+
 	}
 	else
 	{
@@ -222,10 +226,14 @@ bool Jeu::launchGame()
 			map.affiche();
 		}
 
-		cout<<"Point Joueur : "<<joueurs[0]->getName()<<" "<<joueurs[0]->getPoint()<<endl;
-		cout<<"Point Joueur : "<<joueurs[1]->getName()<<" "<<joueurs[1]->getPoint()<<endl;
+		afficherResultat();
 	}
 	return 0;
+}
+
+void Jeu::afficherResultat()
+{
+
 }
 
 int main(int argc, char **argv) {

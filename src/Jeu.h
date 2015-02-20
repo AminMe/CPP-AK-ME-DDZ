@@ -44,6 +44,8 @@ public:
 	void setTour(int tour) {
 		this->tour = tour;
 	}
+
+	void afficherResultat();
 };
 
 #endif /* SRC_JEU_H_ */
