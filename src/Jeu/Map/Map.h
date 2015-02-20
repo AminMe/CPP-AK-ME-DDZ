@@ -97,6 +97,7 @@ public:
 			 */
 			virtual ~Map(){
 				cout<<"Destruction d'une Map"<<endl;
+
 				/* LIBERATION  DE LA MEMOIRE */
 			}
 

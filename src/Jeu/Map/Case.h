@@ -59,10 +59,6 @@ public:
 
 	void affiche();
 	string getAffiche();
-	Case& operator = (const Case&& other) // copy assignment
-	{
-	    return *this;
-	}
 
 	void setPion(Pion *p);
 	Pion* getPionCase() const;
