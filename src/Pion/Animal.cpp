@@ -60,6 +60,7 @@ void Animal::switchPosition(Case *first, Case*second)
 
 	second->setPion(NULL);
 	second->setPion(animal1);
+
 	first->setPion(NULL);
 	first->setPion(animal2);
 }

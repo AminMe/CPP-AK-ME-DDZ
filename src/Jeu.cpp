@@ -115,6 +115,7 @@ bool Jeu::launchGame()
 			cout<<"Fin du jeu"<<endl;
 			return 0;
 		}
+
 		else if(ok==3)
 		{
 			cout<<"Fin du jeu"<<endl;
@@ -160,45 +161,56 @@ bool Jeu::launchGame()
 		cout<<"Point Joueur : "<<joueur1->getName()<<" "<<joueur1->getPoint()<<endl;
 		cout<<"Point Joueur : "<<joueur2->getName()<<" "<<joueur2->getPoint()<<endl;
 
-
-
 		map.affiche();
 	}
 	else
 	{
 		Parser xml("sauvegarde.xml");
 		xml.parse(this);
-
 		int ok = 1;
-
+		if(joueurs.size()==0)
+		{
+			cout<<"Le fichier que vous tentez de charger est vide"<<endl;
+			cout<<"Veuillez redemarrer le jeu"<<endl;
+			return 0;
+		}
+		cout<< " La valeur de tour est :"<<tour<<endl;
 		cout<<"Tours au joueur : "<<joueurs[tour]->getName()<<endl;
 
 		while(!map.estComplete(*this) && ok==1)
 		{
+			cout<<"TOUR = ===== = ="<<this->tour<<endl;
 			joueurs[tour]->play(this,tour);
 			map.affiche();
+
+
+			cout<<"*******Je suis "<< joueurs[tour]->getName()<<" et mon estRobot = "<<joueurs[tour]->isEstRobot()<<endl;
+
+			if(!joueurs[tour]->isEstRobot())
+			{
+				ok = menuConfiguration();
+
+				if(ok==2)
+				{
+					cout<<"Sauvegarde en cours ..."<<endl;
+					Parser xml("sauvegarde.xml");
+					xml.save(*this);
+					cout<<"Sauvegarde terminee"<<endl;
+
+
+					cout<<"Fin du jeu"<<endl;
+					return 0;
+				}
+				else if(ok==3)
+				{
+					cout<<"Fin du jeu"<<endl;
+					return 0;
+				}
+			}
 			tour++;
 			if(tour>=joueurs.size())
 			{
 				tour=0;
-			}
-			ok = menuConfiguration();
-
-			if(ok==2)
-			{
-				cout<<"Sauvegarde en cours ..."<<endl;
-				Parser xml("sauvegarde.xml");
-				xml.save(*this);
-				cout<<"Sauvegarde terminee"<<endl;
-
-
-				cout<<"Fin du jeu"<<endl;
-				return 0;
-			}
-			else if(ok==3)
-			{
-				cout<<"Fin du jeu"<<endl;
-				return 0;
 			}
 		}
 
@@ -207,11 +219,6 @@ bool Jeu::launchGame()
 	}
 
 }
-
-
-
-
-
 
 int main(int argc, char **argv) {
 	cout<<"MAP"<<endl;

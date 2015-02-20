@@ -55,6 +55,7 @@ void Parser::parse(Jeu *jeu)
 {
 	cout<<"Ouverture du fichier"<<endl;
 	fstream fp("sauvegarde.txt", fstream::out | fstream::in );
+
 	string line = "";
 
 	bool initCase = false;
@@ -114,6 +115,7 @@ void Parser::parse(Jeu *jeu)
 			if(tourTrouve)
 			{
 				jeu->setTour(atoi(line.c_str()));
+				tourTrouve = false;
 			}
 
 			if(line[0]=='|')
@@ -235,7 +237,14 @@ void Parser::parse(Jeu *jeu)
 			}
 			else if(line==DELIM_TOUR_D)
 			{
+				cout<<"tour trouve"<<endl;
 				tourTrouve = true;
+			}
+			/*Ajout de ce else if*/
+			else if(line==DELIM_TOUR_F)
+			{
+				cout<<"tour mis a false"<<endl;
+				tourTrouve = false;
 			}
 			else if(line!=DELIM_L_ANIMAUX_F)
 			{
@@ -270,8 +279,6 @@ void Parser::parse(Jeu *jeu)
 						//Categorie
 						else if(cpt==3)
 						{
-							//cpt = 0;
-							cout<<"Je vais creer le joueur "<<nameJ<<endl;
 							categorie = line;
 							int cat = atoi(categorie.c_str());
 							switch(cat)
@@ -333,11 +340,7 @@ void Parser::parse(Jeu *jeu)
 
 					if(hashtag!="")
 					{
-						//cout<<"Hashtag trouve "<<hashtag<<endl;
 						initCase = false;
-						hashtag = "";
-						//cout<<"LINE =  "<<line<<endl;
-						//Case(int posiX, int posiY, int secteurNum)
 						pair<int, int> index(atoi(x.c_str()),atoi(y.c_str()));
 
 
@@ -354,12 +357,6 @@ void Parser::parse(Jeu *jeu)
 							{
 								//------- /!!!!\ ici c'est -1 car si on a id = 1 => correspond au joueur 0
 								Joueur* jo = jeu->getJoueur()[atoi(line.c_str())-1];
-								//Animal* surCarte(pion,jeu->getJoueur()[atoi(line.c_str())-1],0);
-
-								/*if(surCarte==NULL)
-									break;*/
-								//cpt = 0;
-								//cout<<"Pion :"<<pion<<endl;
 
 
 								if(pion=="Gazelle")
@@ -383,7 +380,6 @@ void Parser::parse(Jeu *jeu)
 									map[index]->setPion(new Crocodile(jeu->getJoueur()[atoi(line.c_str())-1]));
 								}
 								Pion* pion = map[index]->getPionCase();
-
 								if(pion!=NULL)
 								{
 									Animal *surCarte = dynamic_cast<Animal*>(pion);
@@ -403,6 +399,7 @@ void Parser::parse(Jeu *jeu)
 									else if(hashtag=="#C")
 									{
 										surCarte->setEstCache(true);
+										surCarte->setValeur(0);
 									}
 								}
 							}
