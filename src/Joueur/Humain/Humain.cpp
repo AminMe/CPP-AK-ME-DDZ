@@ -17,5 +17,6 @@ void Humain::play(Jeu *jeu, int tour)
 	Map& map = Map::Instance();
 	jeu->getJoueur()[tour]->getAction().choixPion(jeu->getJoueur()[tour],false);
 	map.gainBonus(*jeu);
+	map.affiche();
 	jeu->getJoueur()[tour]->getAction().deplacementImpala(false);
 }
