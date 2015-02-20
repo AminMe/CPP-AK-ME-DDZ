@@ -237,13 +237,11 @@ void Parser::parse(Jeu *jeu)
 			}
 			else if(line==DELIM_TOUR_D)
 			{
-				cout<<"tour trouve"<<endl;
 				tourTrouve = true;
 			}
 			/*Ajout de ce else if*/
 			else if(line==DELIM_TOUR_F)
 			{
-				cout<<"tour mis a false"<<endl;
 				tourTrouve = false;
 			}
 			else if(line!=DELIM_L_ANIMAUX_F)

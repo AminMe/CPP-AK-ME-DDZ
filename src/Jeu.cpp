@@ -136,11 +136,15 @@ bool Jeu::launchGame()
 
 				if(ok==2)
 				{
+					tour++;
+					if(tour>=joueurs.size())
+					{
+						tour=0;
+					}
 					cout<<"Sauvegarde en cours ..."<<endl;
 					Parser xml("sauvegarde.xml");
 					xml.save(*this);
 					cout<<"Sauvegarde terminee"<<endl;
-
 
 					cout<<"Fin du jeu"<<endl;
 					return 0;
@@ -192,6 +196,11 @@ bool Jeu::launchGame()
 
 				if(ok==2)
 				{
+					tour++;
+					if(tour>=joueurs.size())
+					{
+						tour=0;
+					}
 					cout<<"Sauvegarde en cours ..."<<endl;
 					Parser xml("sauvegarde.xml");
 					xml.save(*this);
