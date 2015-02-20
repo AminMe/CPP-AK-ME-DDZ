@@ -175,7 +175,7 @@ bool Jeu::launchGame()
 		while(!map.estComplete(*this) && ok==1)
 		{
 			cout<<"###########################"<<endl;
-			cout<<"Tour du joueur :  "<<this->tour+1<<"  "<<joueurs[tour]->getName()<<endl;
+			cout<<"Tour du joueur :  "<<this->tour+1<<"   "<<joueurs[tour]->getName()<<endl;
 			cout<<"###########################"<<endl;
 
 			joueurs[tour]->play(this,tour);
