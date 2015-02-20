@@ -10,7 +10,6 @@
 #include <fstream>
 #include <string>
 #include <utility>
-#include <cstdlib>>
 
 #include "../Jeu/Map/Case.h"
 #include "../Jeu/Map/Map.h"
@@ -354,7 +353,7 @@ void Parser::parse(Jeu *jeu)
 							else
 							{
 								//------- /!!!!\ ici c'est -1 car si on a id = 1 => correspond au joueur 0
-								Joueur* jo = jeu->getJoueur()[atoi(line.c_str())-1];
+								//Joueur* jo = jeu->getJoueur()[atoi(line.c_str())-1];
 
 
 								if(pion=="Gazelle")

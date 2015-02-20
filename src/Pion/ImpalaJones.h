@@ -18,7 +18,7 @@ private:
 		this->setName("Impala Jones");
 	}
 	virtual ~ImpalaJones(){}
-	ImpalaJones& operator =(const ImpalaJones&){}
+
 	ImpalaJones (const ImpalaJones&):Pion("Impala Jones",0,0){}
 
 public :

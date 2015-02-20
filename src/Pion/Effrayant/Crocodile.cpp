@@ -18,7 +18,6 @@ void Crocodile::check(Case position)
 {
 	vector<Case*> retour = checkAlentour(position,"Gazelle");
 	vector<Case*> tmp;
-	int echange;
 	int caseMap;
 	cout<<"je suis dans le check "<<endl;
 
