@@ -183,7 +183,7 @@ bool Jeu::launchGame()
 			cout<<"###########################"<<endl;
 
 			joueurs[tour]->play(this,tour);
-			
+
 			if(!joueurs[tour]->isEstRobot())
 			{
 				ok = menuConfiguration();
