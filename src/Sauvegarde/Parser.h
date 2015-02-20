@@ -23,17 +23,15 @@ class Animal;
 
 class Parser {
 private:
-	char* name;
+	string name;
 	string datarepertory = "../Data";
 
 public:
 	Map& map = Map::Instance();
-	Parser(){this->name = (char*)calloc(100,sizeof(char));strcpy(name,"");}
+	Parser(){this->name = "sauvegarde.xml";}
 
-	Parser(char* name):name(NULL)
+	Parser(string name):name(name)
 	{
-		this->name = (char*)calloc(100,sizeof(char));
-		strcpy(this->name,name);
 	}
 	virtual ~Parser(){}
 
