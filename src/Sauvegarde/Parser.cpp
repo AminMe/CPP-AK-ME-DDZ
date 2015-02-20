@@ -53,7 +53,18 @@ using namespace std;
 void Parser::parse(Jeu *jeu)
 {
 	cout<<"Ouverture du fichier"<<endl;
-	fstream fp("sauvegarde.txt", fstream::out | fstream::in );
+	fstream fp(name, fstream::out | fstream::in );
+
+	if(!fp.is_open())
+	{
+		fp.open("../sauvegarde.txt", fstream::out | fstream::in);
+		if(!fp.is_open())
+		{
+			cout<<"Le fichier que vous tentez de charger est inexistant"<<endl;
+			cout<<"Veuillez redemarrer le jeu"<<endl;
+			return;
+		}
+	}
 
 	string line = "";
 
@@ -423,7 +434,7 @@ void Parser::parse(Jeu *jeu)
 void Parser::save(Jeu jeu)
 {
 	cout<<"Creation du fichier"<<endl;
-	fstream fp("sauvegarde.txt", fstream::out | fstream::in | fstream::trunc );
+	fstream fp(name, fstream::out | fstream::in | fstream::trunc );
 
 	saveJ(jeu.getJoueur(),&fp);
 	saveM(&fp);

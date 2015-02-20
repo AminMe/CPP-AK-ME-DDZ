@@ -27,7 +27,7 @@ private:
 	Map& map;
 public:
 
-	Parser():map(Map::Instance()){this->name = "sauvegarde.xml";}
+	Parser():map(Map::Instance()){this->name = "../sauvegarde.txt";}
 
 	Parser(string name):name(name),map(Map::Instance())
 	{
