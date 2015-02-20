@@ -123,12 +123,11 @@ bool Jeu::launchGame()
 		}
 		while(!map.estComplete(*this) && ok==1)
 		{
-			cout<<"TOUR = ===== = ="<<this->tour<<endl;
+			cout<<"###########################"<<endl;
+			cout<<"Tour du joueur :  "<<this->tour<<"  "<<joueurs[tour]->getName()<<endl;
+			cout<<"###########################"<<endl;
 			joueurs[tour]->play(this,tour);
 			map.affiche();
-
-
-			cout<<"*******Je suis "<< joueurs[tour]->getName()<<" et mon estRobot = "<<joueurs[tour]->isEstRobot()<<endl;
 
 			if(!joueurs[tour]->isEstRobot())
 			{
@@ -136,11 +135,15 @@ bool Jeu::launchGame()
 
 				if(ok==2)
 				{
+					tour++;
+					if(tour>=joueurs.size())
+					{
+						tour=0;
+					}
 					cout<<"Sauvegarde en cours ..."<<endl;
 					Parser xml(nomFichier);
 					xml.save(*this);
 					cout<<"Sauvegarde terminee"<<endl;
-
 
 					cout<<"Fin du jeu"<<endl;
 					return 0;
@@ -156,12 +159,11 @@ bool Jeu::launchGame()
 			{
 				tour=0;
 			}
+			map.affiche();
 		}
 
 		cout<<"Point Joueur : "<<joueur1->getName()<<" "<<joueur1->getPoint()<<endl;
 		cout<<"Point Joueur : "<<joueur2->getName()<<" "<<joueur2->getPoint()<<endl;
-
-		map.affiche();
 	}
 	else
 	{
@@ -173,12 +175,13 @@ bool Jeu::launchGame()
 			cout<<"Veuillez redemarrer le jeu"<<endl;
 			return 0;
 		}
-		cout<< " La valeur de tour est :"<<tour<<endl;
-		cout<<"Tours au joueur : "<<joueurs[tour]->getName()<<endl;
 
 		while(!map.estComplete(*this) && ok==1)
 		{
-			cout<<"TOUR = ===== = ="<<this->tour<<endl;
+			cout<<"###########################"<<endl;
+			cout<<"Tour du joueur :  "<<this->tour<<"  "<<joueurs[tour]->getName()<<endl;
+			cout<<"###########################"<<endl;
+
 			joueurs[tour]->play(this,tour);
 			map.affiche();
 
@@ -191,6 +194,11 @@ bool Jeu::launchGame()
 
 				if(ok==2)
 				{
+					tour++;
+					if(tour>=joueurs.size())
+					{
+						tour=0;
+					}
 					cout<<"Sauvegarde en cours ..."<<endl;
 					Parser xml(nomFichier);
 					xml.save(*this);
@@ -211,6 +219,7 @@ bool Jeu::launchGame()
 			{
 				tour=0;
 			}
+			map.affiche();
 		}
 
 		cout<<"Point Joueur : "<<joueurs[0]->getName()<<" "<<joueurs[0]->getPoint()<<endl;
