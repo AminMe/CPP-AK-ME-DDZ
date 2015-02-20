@@ -229,8 +229,18 @@ bool Jeu::launchGame()
 }
 
 int main(int argc, char **argv) {
-	cout<<"MAP"<<endl;
-	Jeu j = Jeu();
-	j.launchGame();
+
+	int continuer = 1;
+
+	do
+	{
+		Jeu j = Jeu();
+		Map& map = Map::Instance();
+		map.clear();
+
+		j.launchGame();
+		continuer = Jeu::testSaisie("Voulez vous rejouer ou continuer ? : 1 --- OUI | 2 --- NON",1,2,"Erreur : saisir 1 ou 2");
+	}
+	while(continuer==1);
 }
 
