@@ -97,11 +97,10 @@ int tirage_entier(int a,int b)
 bool Action::deplacementImpalaPremiereFois()
 {
 	Map& map = Map::Instance();
-
 	int x,y;
-	cout<<"Ligne :"<<endl;
+	cout<<"Ligne : "<<endl;
 	cin >>x;
-	cout<<"Colonne :"<<endl;
+	cout<<"Colonne : "<<endl;
 	cin >>y;
 	pair<int, int> index(x,y);
 	Case * c = map[index];
